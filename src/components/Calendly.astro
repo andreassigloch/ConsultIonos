@@ -1,0 +1,96 @@
+---
+/**
+ * Calendly Component
+ * @author andreas@siglochconsulting.de
+ *
+ * Embeds Calendly scheduling widget
+ * Sign up at https://calendly.com to get your scheduling URL
+ */
+
+interface Props {
+  url?: string;
+  title?: string;
+  buttonText?: string;
+  inline?: boolean;
+}
+
+const {
+  url = 'https://calendly.com/andreas-siglochconsulting',
+  title = 'Termin vereinbaren',
+  buttonText = 'Beratungstermin buchen',
+  inline = false
+} = Astro.props;
+---
+
+{inline ? (
+  <!-- Inline Calendly widget -->
+  <div class="calendly-inline-widget" data-url={url} style="min-width:320px;height:700px;"></div>
+) : (
+  <!-- Popup Calendly button -->
+  <div class="calendly-button-wrapper">
+    <button
+      class="calendly-button button button-primary button-large"
+      data-url={url}
+      type="button"
+    >
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" style="margin-right: var(--space-2);">
+        <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/>
+      </svg>
+      {buttonText}
+    </button>
+  </div>
+)}
+
+<!-- Calendly Script -->
+<script is:inline>
+  // Load Calendly widget script
+  (function() {
+    if (typeof window.Calendly !== 'undefined') return;
+
+    const script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    document.head.appendChild(script);
+
+    const link = document.createElement('link');
+    link.href = 'https://assets.calendly.com/assets/external/widget.css';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+  })();
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Initialize popup buttons
+    const buttons = document.querySelectorAll('.calendly-button');
+    buttons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const url = button.getAttribute('data-url');
+        if (url && typeof window.Calendly !== 'undefined') {
+          window.Calendly.initPopupWidget({ url });
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .calendly-button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: var(--space-8) 0;
+  }
+
+  .calendly-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .calendly-inline-widget {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+</style>

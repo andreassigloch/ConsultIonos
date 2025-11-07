@@ -1,0 +1,162 @@
+---
+/**
+ * Impressum (Legal Notice) Page
+ * @author andreas@siglochconsulting.de
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Impressum - Sigloch Consulting">
+  <Header />
+
+  <main>
+    <section class="legal-page">
+      <div class="container">
+        <h1>Impressum</h1>
+
+        <div class="legal-content">
+          <h2>Angaben gemäß § 5 TMG</h2>
+          <p>
+            <strong>Andreas Sigloch</strong><br>
+            Sigloch Consulting<br>
+            Dagersheimer Str. 11/2<br>
+            71065 Sindelfingen<br>
+            Deutschland
+          </p>
+
+          <h2>Kontakt</h2>
+          <p>
+            Telefon: <a href="tel:+491704454877">+49 170 4454877</a><br>
+            E-Mail: <a href="mailto:andreas@siglochconsulting.de">andreas@siglochconsulting.de</a>
+          </p>
+
+          <h2>Berufsbezeichnung und berufsrechtliche Regelungen</h2>
+          <p>
+            Berufsbezeichnung: Unternehmensberater<br>
+            Zuständige Kammer: Nicht kammerpflichtig
+          </p>
+
+          <h2>EU-Streitschlichtung</h2>
+          <p>
+            Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+            <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a>.<br>
+            Unsere E-Mail-Adresse finden Sie oben im Impressum.
+          </p>
+
+          <h2>Verbraucherstreitbeilegung/Universalschlichtungsstelle</h2>
+          <p>
+            Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
+            Verbraucherschlichtungsstelle teilzunehmen.
+          </p>
+
+          <h2>Haftung für Inhalte</h2>
+          <p>
+            Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten
+            nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als
+            Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde
+            Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige
+            Tätigkeit hinweisen.
+          </p>
+          <p>
+            Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den
+            allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch
+            erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei
+            Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend
+            entfernen.
+          </p>
+
+          <h2>Haftung für Links</h2>
+          <p>
+            Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen
+            Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr
+            übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder
+            Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der
+            Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum
+            Zeitpunkt der Verlinkung nicht erkennbar.
+          </p>
+
+          <h2>Urheberrecht</h2>
+          <p>
+            Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen
+            dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art
+            der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen
+            Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind
+            nur für den privaten, nicht kommerziellen Gebrauch gestattet.
+          </p>
+        </div>
+
+        <div class="legal-actions">
+          <a href="/" class="button button-primary">Zur Startseite</a>
+          <a href="/datenschutz" class="button button-secondary">Datenschutzerklärung</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding: var(--space-20) 0 var(--space-16) 0;
+    min-height: 60vh;
+  }
+
+  .legal-page h1 {
+    font-size: var(--text-5xl);
+    margin-bottom: var(--space-8);
+  }
+
+  .legal-content {
+    max-width: 800px;
+    margin: 0 auto var(--space-12) auto;
+  }
+
+  .legal-content h2 {
+    font-size: var(--text-2xl);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-4);
+  }
+
+  .legal-content p {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-4);
+  }
+
+  .legal-content a {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  .legal-content strong {
+    color: var(--color-text);
+  }
+
+  .legal-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .legal-page h1 {
+      font-size: var(--text-4xl);
+    }
+
+    .legal-actions {
+      flex-direction: column;
+    }
+
+    .legal-actions .button {
+      width: 100%;
+    }
+  }
+</style>

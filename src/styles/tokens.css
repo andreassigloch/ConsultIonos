@@ -1,0 +1,289 @@
+/**
+ * Sigloch Consulting Design System Tokens
+ * @author andreas@siglochconsulting.de
+ *
+ * MANDATORY: All components must use these CSS variables
+ * Never hardcode colors, spacing, or font sizes
+ *
+ * Brand Identity: Professional olive/sage green (#68780E)
+ * Typography: Poppins (headings), Open Sans (body)
+ */
+
+:root {
+  /* ===== BRAND COLORS ===== */
+
+  /* Primary: Olive/Sage Green (extracted from current site) */
+  --color-primary: #68780E;
+  --color-primary-50: #F5F6F0;
+  --color-primary-100: #E6E9D1;
+  --color-primary-200: #CDD4A3;
+  --color-primary-300: #B4BF75;
+  --color-primary-400: #9BAA47;
+  --color-primary-500: #68780E;      /* Brand color */
+  --color-primary-600: #53600B;
+  --color-primary-700: #3E4808;
+  --color-primary-800: #2A3006;
+  --color-primary-900: #151803;
+
+  /* Derived Light Variants */
+  --color-primary-light: #8FA518;
+  --color-primary-dark: #4A5509;
+
+  /* ===== SEMANTIC COLORS ===== */
+
+  /* Text Colors */
+  --color-text: #151515;              /* Primary text (near black) */
+  --color-text-secondary: #4A4A4A;    /* Secondary text */
+  --color-text-light: #6B6B6B;        /* Light text */
+  --color-text-lighter: #A0A0A0;      /* Button gray text */
+
+  /* Background Colors */
+  --color-background: #FFFFFF;
+  --color-background-alt: #F8F8F6;    /* Cream/beige alternate */
+  --color-background-dark: #151515;   /* Dark backgrounds */
+  --color-background-muted: #F1F5F9;
+
+  /* Border Colors */
+  --color-border: #E2E8F0;
+  --color-border-light: #F1F5F9;
+
+  /* Status Colors */
+  --color-success-bg: #D1FAE5;
+  --color-success-text: #065F46;
+  --color-success: #10B981;
+
+  --color-error-bg: #FEE2E2;
+  --color-error-text: #991B1B;
+  --color-error: #EF4444;
+
+  --color-warning-bg: #FEF3C7;
+  --color-warning-text: #92400E;
+  --color-warning: #F59E0B;
+
+  --color-info-bg: #DBEAFE;
+  --color-info-text: #1E40AF;
+  --color-info: #3B82F6;
+
+  /* Gray Scale */
+  --color-gray-50: #F8FAFC;
+  --color-gray-100: #F1F5F9;
+  --color-gray-200: #E2E8F0;
+  --color-gray-300: #CBD5E1;
+  --color-gray-400: #94A3B8;
+  --color-gray-500: #64748B;
+  --color-gray-600: #475569;
+  --color-gray-700: #334155;
+  --color-gray-800: #1E293B;
+  --color-gray-900: #0F172A;
+
+  /* ===== TYPOGRAPHY ===== */
+
+  /* Font Families (from current site) */
+  --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Monaco', 'Courier New', monospace;
+
+  /* Font Sizes (modular scale ~1.2) */
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.875rem;     /* 14px */
+  --text-base: 1rem;       /* 16px - body text */
+  --text-lg: 1.125rem;     /* 18px */
+  --text-xl: 1.25rem;      /* 20px */
+  --text-2xl: 1.5rem;      /* 24px */
+  --text-3xl: 1.75rem;     /* 28px - H3 from current site */
+  --text-4xl: 2.0625rem;   /* 33px - H2 from current site */
+  --text-5xl: 2.5rem;      /* 40px - H1 */
+  --text-6xl: 3rem;        /* 48px - Hero */
+
+  /* Font Weights */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+
+  /* Line Heights */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+
+  /* Letter Spacing */
+  --tracking-tighter: -0.05em;
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+
+  /* ===== SPACING ===== */
+
+  /* Base spacing scale (4px increments) */
+  --space-0: 0;
+  --space-1: 0.25rem;    /* 4px */
+  --space-2: 0.5rem;     /* 8px */
+  --space-3: 0.75rem;    /* 12px */
+  --space-4: 1rem;       /* 16px */
+  --space-5: 1.25rem;    /* 20px */
+  --space-6: 1.5rem;     /* 24px */
+  --space-8: 2rem;       /* 32px */
+  --space-10: 2.5rem;    /* 40px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+  --space-20: 5rem;      /* 80px */
+  --space-24: 6rem;      /* 96px */
+  --space-32: 8rem;      /* 128px */
+
+  /* ===== BORDERS ===== */
+
+  --border-width: 1px;
+  --border-width-2: 2px;
+  --border-width-4: 4px;
+
+  --radius-sm: 0.25rem;    /* 4px */
+  --radius-md: 0.5rem;     /* 8px */
+  --radius-lg: 1rem;       /* 16px */
+  --radius-xl: 1.5rem;     /* 24px */
+  --radius-2xl: 2rem;      /* 32px */
+  --radius-full: 50%;
+  --radius-pill: 9999px;   /* For pill-shaped buttons */
+
+  /* ===== SHADOWS ===== */
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+
+  /* ===== TRANSITIONS ===== */
+
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slower: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ===== Z-INDEX SCALE ===== */
+
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-popover: 600;
+  --z-tooltip: 700;
+
+  /* ===== CONTAINER & LAYOUT ===== */
+
+  --container-max-width: 1280px;
+  --container-padding: var(--space-4);
+  --section-padding-y: var(--space-16);
+}
+
+/* ===== UTILITY CLASSES ===== */
+
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 var(--space-8);
+  }
+}
+
+/* Text Utilities */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-primary { color: var(--color-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-muted { color: var(--color-text-light); }
+
+/* Typography Utilities */
+.heading-1 {
+  font-family: var(--font-heading);
+  font-size: var(--text-5xl);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  color: var(--color-primary);
+}
+
+.heading-2 {
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-tight);
+  color: var(--color-primary);
+}
+
+.heading-3 {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-snug);
+  color: var(--color-primary);
+}
+
+/* Button Base Styles */
+.button {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: var(--border-width-2) solid transparent;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.button-primary {
+  background: var(--color-primary);
+  color: var(--color-background);
+  border-color: var(--color-primary);
+}
+
+.button-primary:hover {
+  background: var(--color-primary-600);
+  border-color: var(--color-primary-600);
+}
+
+.button-secondary {
+  background: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.button-secondary:hover {
+  background: var(--color-primary-50);
+}
+
+.button-pill {
+  border-radius: var(--radius-pill);
+}
+
+.button-large {
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--text-lg);
+}

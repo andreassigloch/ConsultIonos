@@ -7,9 +7,12 @@
 # IDE
 .vscode/
 .idea/
+*.swp
+*.swo
 
 # Node
 node_modules/
+.pnpm-store/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -22,4 +25,21 @@ build/
 # Environment
 .env
 .env.local
+.env.production
 .env.*.local
+
+# Testing
+coverage/
+playwright-report/
+test-results/
+
+# Logs
+*.log
+
+# MCP
+.claude-flow/
+
+# Temporary files
+/tmp/
+*.tmp
+Thumbs.db
