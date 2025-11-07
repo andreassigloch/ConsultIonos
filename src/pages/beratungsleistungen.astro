@@ -1,0 +1,510 @@
+---
+/**
+ * Beratungsleistungen (Services) Page
+ * @author andreas@siglochconsulting.de
+ *
+ * Service Categories:
+ * 1. Strategy Consulting (Strategieberatung)
+ * 2. Efficiency Programs (Effizienzprogramme)
+ * 3. Operational Support (Operative Unterstützung)
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Beratungsleistungen - Sigloch Consulting"
+  description="Strategieberatung, Effizienzprogramme und operative Unterstützung für Systems Engineering, A-Spice, GenAI und Produktentwicklung"
+>
+  <Header />
+
+  <main>
+    <!-- Intro Section -->
+    <section class="services-intro">
+      <div class="container">
+        <h1>Meine Beratungsleistungen</h1>
+        <p class="intro-text">
+          Ich unterstütze Sie in den Bereichen <strong>Strategieberatung</strong>,
+          <strong>Effizienzprogramme</strong> und <strong>operative Unterstützung</strong>
+          für Ihre Entwicklungsorganisation.
+        </p>
+        <p class="intro-text">
+          Meine Schwerpunkte liegen in den Branchen <strong>Automotive</strong>,
+          <strong>Transportation</strong>, <strong>Defense</strong> und
+          <strong>Maschinenbau</strong>.
+        </p>
+        <p class="intro-highlight">
+          Der Fokus liegt auf der Ausrichtung und Optimierung Ihrer
+          Entwicklungsorganisation - mit Schwerpunkt auf Migration und Integration
+          in Ihre bestehende Umgebung.
+        </p>
+      </div>
+    </section>
+
+    <!-- Strategy Consulting -->
+    <section class="service-detail">
+      <div class="container">
+        <div class="service-grid">
+          <div class="service-content">
+            <h2>Strategieberatung</h2>
+            <p>
+              Definition der Ziele und Anforderungen an Ihren Entwicklungsprozess.
+              Erstellung der notwendigen Umsetzungspläne zur koordinierten
+              Umsetzung von Systems Engineering, A-Spice et cetera.
+            </p>
+            <p>
+              <strong>Eingebettet in Ihre Digitalisierungsstrategie und Entwicklungsprozesse.</strong>
+            </p>
+
+            <h3>Leistungsumfang:</h3>
+            <ul class="service-list">
+              <li>
+                <strong>Systems Engineering</strong><br>
+                Implementierung systematischer Entwicklungsansätze
+              </li>
+              <li>
+                <strong>Transformation Roadmap</strong><br>
+                Schrittweise Umsetzungsplanung für nachhaltige Veränderung
+              </li>
+              <li>
+                <strong>Process Integration Roadmap</strong><br>
+                Integration neuer Methoden in bestehende Prozesse
+              </li>
+              <li>
+                <strong>A-Spice</strong><br>
+                Automotive SPICE Implementierung und Optimierung
+              </li>
+              <li>
+                <strong>(IT) Infrastructure Roadmap</strong><br>
+                Planung von Tools, Schnittstellen und IT-Infrastruktur
+              </li>
+              <li>
+                <strong>Functional Safety</strong><br>
+                Integration funktionaler Sicherheit in Entwicklungsprozesse
+              </li>
+              <li>
+                <strong>Training & Communication</strong><br>
+                Schulungen und Change Management
+              </li>
+            </ul>
+          </div>
+
+          <div class="service-visual">
+            <div class="mindmap-placeholder">
+              <p>Strategy Consulting Mind Map</p>
+              <div class="mindmap-nodes">
+                <div class="node">Systems Engineering</div>
+                <div class="node">Transformation</div>
+                <div class="node">A-Spice</div>
+                <div class="node">IT Infrastructure</div>
+                <div class="node">Functional Safety</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Efficiency Programs -->
+    <section class="service-detail alternate">
+      <div class="container">
+        <div class="service-grid reverse">
+          <div class="service-visual">
+            <div class="mindmap-placeholder">
+              <p>Efficiency Programs Mind Map</p>
+              <div class="mindmap-nodes">
+                <div class="node">Value Stream Mapping</div>
+                <div class="node">Program Management</div>
+                <div class="node">AI Integration</div>
+                <div class="node">Process Optimization</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-content">
+            <h2>Effizienzprogramme</h2>
+            <p>
+              Analyse Ihres aktuellen Entwicklungsprozesses zum Beispiel mit
+              Value Stream Mapping und Konzepten zum operativen Einsatz von GenAI.
+            </p>
+            <p>
+              <strong>Maßnahmengenerierung und Umsetzungsbegleitung.</strong>
+            </p>
+
+            <h3>Leistungsumfang:</h3>
+            <ul class="service-list">
+              <li>
+                <strong>Value Stream Mapping</strong><br>
+                Visualisierung und Analyse Ihrer Entwicklungsprozesse zur
+                Identifikation von Verschwendung und Optimierungspotenzialen
+              </li>
+              <li>
+                <strong>AI Integration</strong><br>
+                Operative Implementierung von GenAI in der Produktentwicklung -
+                von der Strategie bis zur praktischen Umsetzung
+              </li>
+              <li>
+                <strong>Program Management</strong><br>
+                Koordination und Steuerung von Effizienzprogrammen mit
+                messbaren Zielen und klaren KPIs
+              </li>
+              <li>
+                <strong>Maßnahmenumsetzung</strong><br>
+                Begleitung bei der Implementierung identifizierter
+                Verbesserungsmaßnahmen
+              </li>
+              <li>
+                <strong>Continuous Improvement</strong><br>
+                Etablierung nachhaltiger Verbesserungsprozesse
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Operational Support -->
+    <section class="service-detail">
+      <div class="container">
+        <div class="service-grid">
+          <div class="service-content">
+            <h2>Operative Unterstützung</h2>
+            <p>
+              Praktische Unterstützung in Ihren laufenden Entwicklungsprojekten.
+              Ich bringe operative Expertise direkt in Ihre Teams ein.
+            </p>
+
+            <h3>Leistungsumfang:</h3>
+            <ul class="service-list">
+              <li>
+                <strong>Technisches Sparring</strong><br>
+                Fachliche Begleitung bei Systemschnitten, Use Cases und
+                Architekturentscheidungen
+              </li>
+              <li>
+                <strong>Modulkonzepte</strong><br>
+                Erstellung von Modulkonzepten und Plattformarchitekturen
+              </li>
+              <li>
+                <strong>Interimsmanagement</strong><br>
+                Übernahme von Management-Aufgaben in der Produktentwicklung
+                während Übergangsphasen
+              </li>
+              <li>
+                <strong>Requirements Engineering</strong><br>
+                Unterstützung bei der Anforderungsanalyse, -spezifikation
+                und -management
+              </li>
+              <li>
+                <strong>Process Coaching</strong><br>
+                Coaching von Teams bei der Einführung neuer Methoden und
+                Werkzeuge
+              </li>
+            </ul>
+          </div>
+
+          <div class="service-visual">
+            <div class="mindmap-placeholder">
+              <p>Operational Support</p>
+              <div class="mindmap-nodes simple">
+                <div class="node">Technical Sparring</div>
+                <div class="node">Module Concepts</div>
+                <div class="node">Interim Management</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="services-cta">
+      <div class="container">
+        <div class="cta-box">
+          <h2>Interessiert an meinen Leistungen?</h2>
+          <p>
+            Kontaktieren Sie mich für ein unverbindliches Erstgespräch.
+            Gemeinsam finden wir die passende Lösung für Ihre Herausforderungen.
+          </p>
+          <div class="cta-buttons">
+            <a href="/#kontakt" class="button button-primary button-large">
+              Kontakt aufnehmen
+            </a>
+            <a href="/" class="button button-secondary button-large">
+              Zur Startseite
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  /* Intro Section */
+  .services-intro {
+    padding: var(--space-20) 0 var(--space-16) 0;
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-50) 0%,
+      var(--color-background) 100%
+    );
+    text-align: center;
+  }
+
+  .services-intro h1 {
+    font-size: var(--text-5xl);
+    margin-bottom: var(--space-6);
+  }
+
+  .intro-text {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    max-width: 800px;
+    margin: 0 auto var(--space-4) auto;
+  }
+
+  .intro-text strong {
+    color: var(--color-primary);
+    font-weight: var(--font-semibold);
+  }
+
+  .intro-highlight {
+    font-size: var(--text-xl);
+    font-weight: var(--font-medium);
+    color: var(--color-text);
+    max-width: 800px;
+    margin: var(--space-8) auto 0 auto;
+    padding: var(--space-6);
+    background: var(--color-background);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--color-primary);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Service Detail Sections */
+  .service-detail {
+    padding: var(--space-20) 0;
+  }
+
+  .service-detail.alternate {
+    background: var(--color-background-alt);
+  }
+
+  .service-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .service-grid.reverse {
+    direction: rtl;
+  }
+
+  .service-grid.reverse > * {
+    direction: ltr;
+  }
+
+  .service-content h2 {
+    font-size: var(--text-4xl);
+    margin-bottom: var(--space-6);
+  }
+
+  .service-content h3 {
+    font-size: var(--text-2xl);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-4);
+  }
+
+  .service-content p {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-4);
+  }
+
+  .service-content strong {
+    color: var(--color-text);
+  }
+
+  .service-list {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-6);
+  }
+
+  .service-list li {
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
+    background: var(--color-background);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--color-primary);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-base);
+  }
+
+  .service-detail.alternate .service-list li {
+    background: var(--color-background);
+  }
+
+  .service-list li:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateX(4px);
+  }
+
+  .service-list li strong {
+    display: block;
+    color: var(--color-primary);
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-2);
+  }
+
+  /* Mind Map Visualization */
+  .service-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mindmap-placeholder {
+    width: 100%;
+    min-height: 400px;
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-100) 0%,
+      var(--color-primary-50) 100%
+    );
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mindmap-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 20px,
+      rgba(104, 120, 14, 0.05) 20px,
+      rgba(104, 120, 14, 0.05) 40px
+    );
+  }
+
+  .mindmap-placeholder > p {
+    font-style: italic;
+    color: var(--color-primary-700);
+    margin-bottom: var(--space-6);
+    font-weight: var(--font-semibold);
+    position: relative;
+    z-index: 1;
+  }
+
+  .mindmap-nodes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .mindmap-nodes.simple {
+    grid-template-columns: 1fr;
+  }
+
+  .node {
+    background: var(--color-background);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    text-align: center;
+    font-weight: var(--font-medium);
+    color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+    border: 2px solid var(--color-primary-300);
+  }
+
+  /* CTA Section */
+  .services-cta {
+    padding: var(--space-16) 0;
+    background: var(--color-primary-50);
+  }
+
+  .cta-box {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--space-12);
+    background: var(--color-background);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .cta-box h2 {
+    font-size: var(--text-4xl);
+    margin-bottom: var(--space-6);
+  }
+
+  .cta-box p {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-8);
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .service-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .service-grid.reverse {
+      direction: ltr;
+    }
+
+    .mindmap-placeholder {
+      min-height: 300px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .services-intro h1 {
+      font-size: var(--text-4xl);
+    }
+
+    .service-detail {
+      padding: var(--space-12) 0;
+    }
+
+    .service-content h2 {
+      font-size: var(--text-3xl);
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+    }
+
+    .cta-buttons .button {
+      width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,243 @@
+---
+/**
+ * Header Component
+ * @author andreas@siglochconsulting.de
+ *
+ * Sticky navigation with pill-shaped buttons matching current site design
+ */
+
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { label: 'Startseite', href: '/' },
+  { label: 'Beratungsleistungen', href: '/beratungsleistungen' },
+  { label: 'Wissenswertes', href: '/wissenswertes' },
+  { label: 'Kontakt', href: '/#kontakt' }
+];
+---
+
+<header class="header">
+  <div class="header-background"></div>
+  <nav class="nav container">
+    <a href="/" class="logo">
+      <span class="logo-text">Andreas Sigloch</span>
+      <span class="logo-subtitle">Consulting</span>
+    </a>
+
+    <button class="nav-toggle" aria-label="Navigation öffnen" aria-expanded="false">
+      <span class="hamburger"></span>
+    </button>
+
+    <ul class="nav-menu">
+      {navItems.map((item) => (
+        <li class="nav-item">
+          <a
+            href={item.href}
+            class:list={['nav-link', { active: currentPath === item.href }]}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
+    width: 100%;
+  }
+
+  .header-background {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-700) 0%,
+      var(--color-primary-600) 25%,
+      var(--color-primary-500) 50%,
+      var(--color-primary-600) 75%,
+      var(--color-primary-700) 100%
+    );
+    opacity: 0.95;
+    backdrop-filter: blur(10px);
+  }
+
+  .nav {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) var(--container-padding);
+    min-height: 70px;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    z-index: 2;
+  }
+
+  .logo-text {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    color: var(--color-background);
+    line-height: 1.2;
+  }
+
+  .logo-subtitle {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-primary-100);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 2;
+  }
+
+  .hamburger,
+  .hamburger::before,
+  .hamburger::after {
+    width: 30px;
+    height: 3px;
+    background: var(--color-background);
+    border-radius: 3px;
+    transition: all var(--transition-base);
+  }
+
+  .hamburger {
+    position: relative;
+  }
+
+  .hamburger::before,
+  .hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+
+  .hamburger::before {
+    top: -8px;
+  }
+
+  .hamburger::after {
+    bottom: -8px;
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-item {
+    margin: 0;
+  }
+
+  .nav-link {
+    display: inline-block;
+    padding: var(--space-2) var(--space-4);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: var(--font-medium);
+    color: var(--color-background);
+    text-decoration: none;
+    border-radius: var(--radius-pill);
+    transition: all var(--transition-base);
+    background: transparent;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--color-background);
+    transform: translateY(-1px);
+  }
+
+  .nav-link.active {
+    background: var(--color-primary-800);
+  }
+
+  /* Mobile Styles */
+  @media (max-width: 768px) {
+    .nav-toggle {
+      display: flex;
+    }
+
+    .nav-menu {
+      position: fixed;
+      top: 70px;
+      right: -100%;
+      flex-direction: column;
+      background: var(--color-primary-700);
+      width: 100%;
+      max-width: 300px;
+      height: calc(100vh - 70px);
+      padding: var(--space-8) var(--space-6);
+      gap: var(--space-4);
+      align-items: flex-start;
+      transition: right var(--transition-base);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .nav-menu.active {
+      right: 0;
+    }
+
+    .nav-link {
+      width: 100%;
+      padding: var(--space-3) var(--space-4);
+    }
+  }
+</style>
+
+<script>
+  // Mobile navigation toggle
+  document.addEventListener('DOMContentLoaded', () => {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (navToggle && navMenu) {
+      navToggle.addEventListener('click', () => {
+        const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', String(!isExpanded));
+        navMenu.classList.toggle('active');
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        if (!target.closest('.nav') && navMenu.classList.contains('active')) {
+          navMenu.classList.remove('active');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Close menu on link click
+      navMenu.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+          navToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  });
+</script>
