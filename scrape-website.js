@@ -19,7 +19,8 @@ async function scrapeWebsite(url) {
   const page = await context.newPage();
 
   try {
-    await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
+    // Try loading the page
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
 
     // Extract page information
     const pageInfo = await page.evaluate(() => {
