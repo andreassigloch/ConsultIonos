@@ -1,15 +1,8 @@
-# Dependencies
-node_modules/
-.pnpm-store/
+# Claude Code
+.claude/
 
-# Build output
-dist/
-.astro/
-
-# Environment
-.env
-.env.local
-.env.production
+# macOS
+.DS_Store
 
 # IDE
 .vscode/
@@ -17,9 +10,23 @@ dist/
 *.swp
 *.swo
 
-# OS
-.DS_Store
-Thumbs.db
+# Node
+node_modules/
+.pnpm-store/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build
+dist/
+build/
+.astro/
+
+# Environment
+.env
+.env.local
+.env.production
+.env.*.local
 
 # Testing
 coverage/
@@ -28,7 +35,6 @@ test-results/
 
 # Logs
 *.log
-npm-debug.log*
 
 # MCP
 .claude-flow/
@@ -36,3 +42,4 @@ npm-debug.log*
 # Temporary files
 /tmp/
 *.tmp
+Thumbs.db
