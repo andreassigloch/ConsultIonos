@@ -1,0 +1,118 @@
+#!/bin/bash
+# Pre-push hook for DSGVO/GDPR and BFSG compliance
+# @author andreas@siglochconsulting
+#
+# This hook runs before git push and checks for:
+# - Production build (syntax errors, TypeScript)
+# - SEO: Broken links, missing images, duplicate titles
+# - DSGVO: Personal data violations, credentials, secrets
+# - BFSG: Accessibility compliance (WCAG 2.1 AA)
+# - Lighthouse: Performance optimization (Core Web Vitals)
+
+set -e
+
+# Cleanup function on exit
+cleanup() {
+  echo ""
+  echo "🧹 Cleaning up..."
+  lsof -ti:4321 2>/dev/null | xargs kill -9 2>/dev/null || true
+  lsof -ti:4322 2>/dev/null | xargs kill -9 2>/dev/null || true
+}
+
+trap cleanup EXIT
+
+echo ""
+echo "╔═══════════════════════════════════════════════════════╗"
+echo "║          Running Pre-Push Compliance Checks          ║"
+echo "╚═══════════════════════════════════════════════════════╝"
+echo ""
+
+# Step 1: Production Build Test
+echo "🔨 Step 1/4: Production Build"
+echo "   Testing build to catch syntax errors..."
+echo ""
+
+npm run build
+
+BUILD_EXIT_CODE=$?
+
+if [ $BUILD_EXIT_CODE -ne 0 ]; then
+  echo ""
+  echo "❌ Production build failed!"
+  echo "   Fix build errors before pushing to GitHub"
+  echo ""
+  exit 1
+fi
+
+echo "✅ Production build passed"
+echo ""
+
+# Step 2: SEO Pre-Deployment Check
+echo "🔍 Step 2/4: SEO Check"
+echo "   Checking for broken links, missing images, duplicate titles..."
+echo ""
+
+npm run seo:check
+
+SEO_EXIT_CODE=$?
+
+if [ $SEO_EXIT_CODE -ne 0 ]; then
+  echo ""
+  echo "❌ SEO check failed!"
+  echo "   Fix broken links or missing images before pushing"
+  echo "   Run: npm run seo:check"
+  echo ""
+  exit 1
+fi
+
+echo "✅ SEO check passed"
+echo ""
+
+# Step 3: DSGVO Compliance Check
+echo "📋 Step 3/4: DSGVO/GDPR Compliance"
+echo "   Checking for personal data, credentials, and secrets..."
+echo ""
+
+npx tsx scripts/compliance-check.ts
+
+DSGVO_EXIT_CODE=$?
+
+if [ $DSGVO_EXIT_CODE -ne 0 ]; then
+  echo ""
+  echo "❌ DSGVO compliance check failed!"
+  echo "   Fix all privacy violations before pushing to GitHub"
+  echo ""
+  exit 1
+fi
+
+echo "✅ DSGVO compliance passed"
+echo ""
+
+# Step 4: BFSG Accessibility Compliance Check
+echo "♿ Step 4/4: BFSG Accessibility Compliance"
+echo "   Running accessibility checks (WCAG 2.1 AA)..."
+echo ""
+
+npm run compliance:bfsg
+
+BFSG_EXIT_CODE=$?
+
+if [ $BFSG_EXIT_CODE -ne 0 ]; then
+  echo ""
+  echo "❌ BFSG accessibility compliance check failed!"
+  echo "   Fix accessibility issues before pushing."
+  echo "   Run: npm run compliance:bfsg"
+  echo ""
+  exit 1
+fi
+
+echo "✅ BFSG compliance passed"
+echo ""
+
+# All checks passed
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "✅ All compliance checks passed!"
+echo "   Proceeding with push..."
+echo ""
+
+exit 0

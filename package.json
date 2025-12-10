@@ -1,0 +1,47 @@
+{
+  "name": "siglochconsulting-website",
+  "type": "module",
+  "version": "2.0.0",
+  "author": "andreas@siglochconsulting.de",
+  "description": "Sigloch Consulting - Systems Engineering & GenAI Consulting Website",
+  "scripts": {
+    "dev": "astro dev --port 4322",
+    "build": "astro build",
+    "preview": "astro preview",
+    "deploy": "./scripts/build-and-deploy.sh",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:unit": "vitest run --testNamePattern='Unit'",
+    "test:integration": "vitest run --testNamePattern='Integration'",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:debug": "playwright test --debug",
+    "compliance": "tsx scripts/compliance-check.ts",
+    "compliance:fix": "tsx scripts/compliance-check.ts --fix",
+    "compliance:bfsg": "tsx scripts/bfsg-agent.ts",
+    "seo:check": "tsx scripts/seo-check.ts",
+    "quality": "tsx scripts/code-quality-agent.ts",
+    "lint:design": "tsx scripts/design-token-lint.ts",
+    "validate:schema": "tsx scripts/schema-org-validator.ts",
+    "security:audit": "tsx scripts/security-audit.ts",
+    "validate:all": "npm run compliance && npm run lint:design && npm run validate:schema && npm run security:audit"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.6.0",
+    "@fontsource/poppins": "^5.2.7",
+    "astro": "^5.15.4",
+    "cheerio": "^1.1.2",
+    "playwright": "^1.56.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.10.0",
+    "@vitest/coverage-v8": "^4.0.8",
+    "dotenv": "^17.2.3",
+    "jsdom": "^27.1.0",
+    "lightningcss": "^1.30.2",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.8"
+  }
+}

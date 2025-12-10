@@ -1,0 +1,15 @@
+#!/bin/bash
+# Post-commit hook for code quality checks
+# @author andreas@siglochconsulting
+#
+# This hook runs after each commit to check code quality.
+# It is non-blocking (warnings only, doesn't prevent commits).
+
+echo ""
+echo "🔍 Running post-commit code quality check..."
+echo ""
+
+# Run code quality agent (non-blocking)
+npx tsx scripts/code-quality-agent.ts 2>/dev/null || true
+
+echo ""
