@@ -1,0 +1,228 @@
+---
+/**
+ * Hintergrund: Struktur vor KI
+ * @author andreas@siglochconsulting.de
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Struktur vor KI - Warum Datenqualität wichtiger ist | Sigloch Consulting"
+  description="KI kann fehlende Struktur nicht ersetzen. Reproduzierbarkeit, Nachvollziehbarkeit und planbare Kosten durch systematische Datenstrukturierung."
+>
+  <Header />
+
+  <main>
+    <article class="article" data-testid="article-struktur-vor-ki">
+      <header class="article-header">
+        <div class="container">
+          <a href="/hintergrund" class="back-link">← Hintergrund</a>
+          <h1>Struktur vor KI</h1>
+          <p class="article-subtitle">
+            Warum Datenqualität wichtiger ist als Algorithmen
+          </p>
+        </div>
+      </header>
+
+      <div class="container article-content">
+        <section>
+          <h2>Das Versprechen der KI</h2>
+          <p>
+            "Mit KI lösen wir das Problem." Dieser Satz fällt in vielen Unternehmen,
+            wenn es um Datenprobleme geht. Die Hoffnung: Ein intelligentes System,
+            das aus dem Chaos Ordnung macht.
+          </p>
+          <p>
+            Die Realität sieht anders aus. <strong>KI kann fehlende Struktur nicht ersetzen.</strong>
+            Sie kann bestenfalls Muster in strukturierten Daten erkennen – aber wenn
+            die Grundstruktur fehlt, fehlt auch die Basis für jede sinnvolle Analyse.
+          </p>
+        </section>
+
+        <section>
+          <h2>Die richtige Reihenfolge</h2>
+          <p>Ein systematischer Ansatz folgt dieser Reihenfolge:</p>
+          <ol class="numbered-list">
+            <li><strong>Daten erfassen und strukturieren</strong> – Was haben wir? Wo liegt es? Wie hängt es zusammen?</li>
+            <li><strong>Zusammenhänge explizit machen</strong> – Beziehungen zwischen Objekten als vernetzte Daten</li>
+            <li><strong>Geschäftsregeln formulieren</strong> – Was macht gute Daten aus? Welche Prüfungen sind nötig?</li>
+            <li><strong>Qualität messen</strong> – Objektive Scores statt Bauchgefühl</li>
+            <li><strong>KI gezielt einsetzen</strong> – Nur dort, wo deterministische Regeln nicht ausreichen</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Drei Vorteile strukturierter Systeme</h2>
+
+          <h3>Reproduzierbarkeit</h3>
+          <p>
+            Ein deterministisches System liefert bei gleichen Eingaben immer die
+            gleichen Ergebnisse. Das ist fundamental für Qualitätssicherung und Audits.
+            LLMs hingegen sind probabilistisch – die gleiche Frage kann unterschiedliche
+            Antworten liefern.
+          </p>
+
+          <h3>Nachvollziehbarkeit</h3>
+          <p>
+            Wenn ein System eine Entscheidung trifft, muss nachvollziehbar sein,
+            warum. Bei regelbasierten Systemen ist jeder Schritt transparent.
+            Bei Black-Box-KI bleibt oft unklar, wie das Ergebnis zustande kam.
+          </p>
+
+          <h3>Planbare Kosten</h3>
+          <p>
+            Cloud-basierte KI-Dienste kosten pro Anfrage. Bei hohem Volumen summiert
+            sich das schnell. Lokale, deterministische Systeme haben fixe Infrastrukturkosten,
+            aber keine laufenden API-Gebühren.
+          </p>
+        </section>
+
+        <section>
+          <h2>Wann KI sinnvoll ist</h2>
+          <p>
+            KI hat ihren Platz – aber als Werkzeug, nicht als Allheilmittel:
+          </p>
+          <ul>
+            <li><strong>In der Entwicklungsphase:</strong> Muster erkennen, Prototypen bauen, Ideen validieren</li>
+            <li><strong>Bei unstrukturierten Inputs:</strong> Natürlichsprachliche Texte verstehen</li>
+            <li><strong>Für Klassifikation:</strong> Ähnlichkeiten finden, Kategorien vorschlagen</li>
+          </ul>
+          <p>
+            Im laufenden Betrieb sollten kritische Entscheidungen jedoch auf
+            deterministischen Regeln basieren – nicht auf probabilistischen Modellen.
+          </p>
+        </section>
+
+        <section class="cta-box">
+          <h2>Nächster Schritt</h2>
+          <p>
+            Möchten Sie verstehen, wo Ihr Unternehmen auf der Datenreife-Skala steht?
+          </p>
+          <a href="/kontakt" class="button button-primary">Gespräch vereinbaren</a>
+        </section>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .article-header {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-50) 0%,
+      var(--color-background) 100%
+    );
+    padding: var(--space-16) 0;
+  }
+
+  .back-link {
+    display: inline-block;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-medium);
+    margin-bottom: var(--space-4);
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  .article-header h1 {
+    margin-bottom: var(--space-4);
+  }
+
+  .article-subtitle {
+    font-size: var(--text-xl);
+    color: var(--color-text-secondary);
+  }
+
+  .article-content {
+    max-width: 750px;
+    padding: var(--space-12) var(--container-padding);
+  }
+
+  .article-content section {
+    margin-bottom: var(--space-12);
+  }
+
+  .article-content h2 {
+    margin-bottom: var(--space-6);
+    margin-top: var(--space-8);
+  }
+
+  .article-content h3 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  .article-content p {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-4);
+  }
+
+  .article-content ul,
+  .article-content ol {
+    margin-bottom: var(--space-6);
+    padding-left: var(--space-6);
+  }
+
+  .article-content li {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-3);
+  }
+
+  .numbered-list {
+    list-style: none;
+    counter-reset: step;
+    padding-left: 0;
+  }
+
+  .numbered-list li {
+    counter-increment: step;
+    padding-left: var(--space-10);
+    position: relative;
+  }
+
+  .numbered-list li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 32px;
+    height: 32px;
+    background: var(--color-primary);
+    color: var(--color-background);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-bold);
+    font-size: var(--text-sm);
+  }
+
+  .cta-box {
+    background: var(--color-primary-50);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    margin-top: var(--space-16);
+  }
+
+  .cta-box h2 {
+    margin-top: 0;
+  }
+
+  .cta-box p {
+    margin-bottom: var(--space-6);
+  }
+</style>

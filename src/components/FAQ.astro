@@ -1,0 +1,172 @@
+---
+/**
+ * FAQ Component with Schema.org FAQPage markup
+ * @author andreas@siglochconsulting.de
+ *
+ * 7 häufige Fragen zum Datenreife-Ansatz
+ * Optimiert für GEO (Generative Engine Optimization)
+ */
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+const faqItems: FAQItem[] = [
+  {
+    question: "Warum sollte ich mich mit Datenstrukturierung beschäftigen?",
+    answer: "Je länger Wissen in Köpfen einzelner Mitarbeiter steckt statt in Systemen, desto größer das Risiko bei Personalwechsel. Je fragmentierter die Daten, desto mehr Zeit geht für Suche und Abstimmung verloren. Strukturierte Daten sind die Grundlage für jede Form von Automatisierung – mit oder ohne KI."
+  },
+  {
+    question: "Warum jetzt?",
+    answer: "Fachkräfte werden knapper, Audit-Anforderungen steigen (MDR, ISO, TISAX), und die Konkurrenz investiert bereits. Mittelständler haben dabei einen Vorteil: kürzere Entscheidungswege ermöglichen schnellere Umsetzung als in Konzernen."
+  },
+  {
+    question: "Was bringt mir das konkret?",
+    answer: "Typische Ergebnisse: Suchzeit von Minuten auf Sekunden reduziert, Fehlerquote bei Prüfungen deutlich gesenkt, Einarbeitung neuer Mitarbeiter beschleunigt. Der ROI ergibt sich aus vermiedenen Fehlern und eingesparter Zeit – oft schon im ersten Jahr."
+  },
+  {
+    question: "Was kostet das?",
+    answer: "Richtwerte: Stufe 2→3 (vernetzte Daten): €10.000-30.000 über 2-4 Monate. Stufe 3→4 (automatische Prüfung): €15.000-40.000 über 3-6 Monate. Stufe 4→5 (messbare Qualität): €20.000-50.000 über 4-8 Monate. Kein SaaS-Modell bedeutet keine laufenden API-Kosten nach der Implementierung."
+  },
+  {
+    question: "Wir haben keine KI-Experten. Können wir das trotzdem umsetzen?",
+    answer: "89% der Unternehmen arbeiten bei solchen Projekten mit externen Partnern. Das System läuft danach ohne KI-Experten – das ist ja der Punkt: deterministische Regeln statt Black-Box-KI. Ziel ist Befähigung Ihres Teams, nicht dauerhafte Abhängigkeit."
+  },
+  {
+    question: "Was ist mit sensiblen Daten?",
+    answer: "Lokale Verarbeitung ist möglich – Daten verlassen Ihr Unternehmen nicht. Wir setzen auf Open-Source-Komponenten (Neo4j Community, SHACL, Ollama), keine proprietären Black Boxes. Audit-Trails für regulatorische Anforderungen (MDR, ISO, TISAX) sind eingebaut."
+  },
+  {
+    question: "Wie fange ich an?",
+    answer: "30 Minuten Gespräch klären, ob der Ansatz zu Ihrer Situation passt. Dann 1-2 Tage Assessment: Wo stehen Sie auf der Datenreife-Skala? Danach 2-3 Monate Pilot an einem konkreten Prozess zur Validierung. Erst nach erfolgreicher Pilotphase Entscheidung über Skalierung."
+  }
+];
+
+// Schema.org FAQPage markup
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+};
+---
+
+<div class="faq-container" data-testid="faq-container">
+  <div class="faq-list">
+    {faqItems.map((item, index) => (
+      <details class="faq-item" data-testid={`faq-item-${index}`}>
+        <summary class="faq-question">
+          <span class="faq-question-text">{item.question}</span>
+          <span class="faq-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        </summary>
+        <div class="faq-answer">
+          <p>{item.answer}</p>
+        </div>
+      </details>
+    ))}
+  </div>
+</div>
+
+<!-- Schema.org FAQPage markup -->
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<style>
+  .faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .faq-item {
+    background: var(--color-background);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: box-shadow var(--transition-base);
+  }
+
+  .faq-item:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  .faq-item[open] {
+    box-shadow: var(--shadow-md);
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-5) var(--space-6);
+    cursor: pointer;
+    list-style: none;
+    font-weight: var(--font-semibold);
+    color: var(--color-text);
+    transition: background var(--transition-base);
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question:hover {
+    background: var(--color-gray-50);
+  }
+
+  .faq-question-text {
+    flex: 1;
+    padding-right: var(--space-4);
+    font-size: var(--text-lg);
+    line-height: var(--leading-snug);
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    color: var(--color-primary);
+    transition: transform var(--transition-base);
+  }
+
+  .faq-item[open] .faq-icon {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    padding: 0 var(--space-6) var(--space-6);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .faq-answer p {
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .faq-question {
+      padding: var(--space-4) var(--space-5);
+    }
+
+    .faq-question-text {
+      font-size: var(--text-base);
+    }
+
+    .faq-answer {
+      padding: 0 var(--space-5) var(--space-5);
+    }
+  }
+</style>

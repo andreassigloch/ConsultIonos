@@ -1,0 +1,331 @@
+---
+/**
+ * Beiträge - Content Hub
+ * @author andreas@siglochconsulting.de
+ *
+ * Zentraler Hub für alle Veröffentlichungen (LinkedIn, Medium, Original)
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Beitrag {
+  title: string;
+  platform: "linkedin" | "medium" | "original" | "conference";
+  originalUrl?: string;
+  pubDate: string;
+  tags: string[];
+  excerpt: string;
+}
+
+const beitraege: Beitrag[] = [
+  {
+    title: "Struktur vor KI: Warum Datenqualität wichtiger ist als Algorithmen",
+    platform: "linkedin",
+    originalUrl: "https://www.linkedin.com/in/andreas-sigloch/",
+    pubDate: "2024-11-15",
+    tags: ["Datenmanagement", "KI", "Strategie"],
+    excerpt: "Die meisten KI-Projekte scheitern nicht an den Modellen, sondern an der Datenqualität. Ein Plädoyer für Struktur vor Technologie."
+  },
+  {
+    title: "7 Stufen zur Datenreife: Ein praktisches Framework",
+    platform: "linkedin",
+    originalUrl: "https://www.linkedin.com/in/andreas-sigloch/",
+    pubDate: "2024-10-20",
+    tags: ["Framework", "Datenreife", "Assessment"],
+    excerpt: "Wie Sie den aktuellen Stand Ihrer Datenreife bewerten und systematisch verbessern können."
+  },
+  {
+    title: "Graph-Datenbanken im Systems Engineering",
+    platform: "original",
+    pubDate: "2024-09-10",
+    tags: ["Neo4j", "MBSE", "Systems Engineering"],
+    excerpt: "Warum vernetzte Daten besser zu komplexen Produkten passen als relationale Tabellen."
+  },
+  {
+    title: "GenAI in der Produktentwicklung - ReConf 2024",
+    platform: "conference",
+    pubDate: "2024-03-15",
+    tags: ["Konferenz", "GenAI", "Praxis"],
+    excerpt: "Konferenzbeitrag über praktische Erfahrungen mit der Integration von Generative AI in Systems Engineering Prozesse."
+  }
+];
+
+const platformIcons: Record<string, string> = {
+  linkedin: `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>`,
+  medium: `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M2.846 6.887c.03-.295-.083-.586-.303-.784l-2.24-2.7v-.403h6.958l5.378 11.795 4.728-11.795h6.633v.403l-1.916 1.837c-.165.126-.247.333-.213.538v13.498c-.034.204.048.411.213.537l1.871 1.837v.403h-9.412v-.403l1.939-1.882c.19-.19.19-.246.19-.537v-10.91l-5.389 13.688h-.728l-6.275-13.688v9.174c-.052.385.076.774.347 1.052l2.521 3.058v.404h-7.148v-.404l2.521-3.058c.27-.279.39-.67.325-1.052v-10.608z"/></svg>`,
+  original: `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 2H5a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V5a3 3 0 0 0-3-3zm-9 15H7v-2h3v2zm0-4H7v-2h3v2zm0-4H7V7h3v2zm7 8h-5v-2h5v2zm0-4h-5v-2h5v2zm0-4h-5V7h5v2z"/></svg>`,
+  conference: `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>`
+};
+
+const platformLabels: Record<string, string> = {
+  linkedin: "LinkedIn",
+  medium: "Medium",
+  original: "Blog",
+  conference: "Konferenz"
+};
+
+function formatDate(dateString: string): string {
+  return new Date(dateString).toLocaleDateString('de-DE', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+---
+
+<BaseLayout
+  title="Beiträge - Content Hub | Sigloch Consulting"
+  description="Artikel, Publikationen und Konferenzbeiträge rund um Datenstrukturierung, Systems Engineering und KI-Integration."
+>
+  <Header />
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero" data-testid="beitraege-hero">
+      <div class="container">
+        <h1>Beiträge</h1>
+        <p class="hero-subtitle">
+          Artikel, Publikationen und Konferenzbeiträge
+        </p>
+      </div>
+    </section>
+
+    <!-- Beiträge List -->
+    <section class="beitraege-section" data-testid="beitraege-section">
+      <div class="container">
+        <div class="beitraege-list">
+          {beitraege.map((beitrag, index) => (
+            <article class="beitrag-card" data-testid={`beitrag-card-${index}`}>
+              <div class="beitrag-meta">
+                <span class="beitrag-platform" set:html={platformIcons[beitrag.platform]}>
+                </span>
+                <span class="platform-label">{platformLabels[beitrag.platform]}</span>
+                <span class="beitrag-date">{formatDate(beitrag.pubDate)}</span>
+              </div>
+
+              <h2 class="beitrag-title">
+                {beitrag.originalUrl ? (
+                  <a href={beitrag.originalUrl} target="_blank" rel="noopener noreferrer">
+                    {beitrag.title}
+                  </a>
+                ) : (
+                  beitrag.title
+                )}
+              </h2>
+
+              <p class="beitrag-excerpt">{beitrag.excerpt}</p>
+
+              <div class="beitrag-tags">
+                {beitrag.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+
+              {beitrag.originalUrl && (
+                <a href={beitrag.originalUrl} target="_blank" rel="noopener noreferrer" class="beitrag-link">
+                  Auf {platformLabels[beitrag.platform]} lesen →
+                </a>
+              )}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" data-testid="beitraege-cta">
+      <div class="container cta-content">
+        <h2>Eigenes Thema?</h2>
+        <p>
+          Lassen Sie uns über Ihre spezifischen Herausforderungen sprechen.
+        </p>
+        <a href="/kontakt" class="button button-primary button-large" data-testid="cta-contact">
+          Gespräch vereinbaren
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  /* Page Hero */
+  .page-hero {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-50) 0%,
+      var(--color-background) 100%
+    );
+    padding: var(--space-20) 0 var(--space-16);
+    text-align: center;
+  }
+
+  .page-hero h1 {
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-subtitle {
+    font-size: var(--text-xl);
+    color: var(--color-text-secondary);
+  }
+
+  /* Beiträge Section */
+  .beitraege-section {
+    padding: var(--space-16) 0;
+    background: var(--color-background);
+  }
+
+  .beitraege-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .beitrag-card {
+    background: var(--color-background-alt);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--color-primary);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .beitrag-card:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .beitrag-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--color-text-light);
+  }
+
+  .beitrag-platform {
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+  }
+
+  .platform-label {
+    font-weight: var(--font-semibold);
+    color: var(--color-primary);
+  }
+
+  .beitrag-date {
+    margin-left: auto;
+  }
+
+  .beitrag-title {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-4);
+    line-height: var(--leading-snug);
+  }
+
+  .beitrag-title a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color var(--transition-base);
+  }
+
+  .beitrag-title a:hover {
+    color: var(--color-primary);
+  }
+
+  .beitrag-excerpt {
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-6);
+  }
+
+  .beitrag-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+
+  .tag {
+    background: var(--color-primary-100);
+    color: var(--color-primary-700);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+  }
+
+  .beitrag-link {
+    color: var(--color-primary);
+    font-weight: var(--font-semibold);
+    text-decoration: none;
+    transition: color var(--transition-base);
+  }
+
+  .beitrag-link:hover {
+    color: var(--color-primary-600);
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: var(--space-16) 0;
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-700) 0%,
+      var(--color-primary-600) 50%,
+      var(--color-primary-700) 100%
+    );
+    color: var(--color-background);
+  }
+
+  .cta-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta-section h2 {
+    color: var(--color-background);
+    margin-bottom: var(--space-4);
+  }
+
+  .cta-section p {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-8);
+    opacity: 0.9;
+  }
+
+  .cta-section .button-primary {
+    background: var(--color-background);
+    color: var(--color-primary);
+    border-color: var(--color-background);
+  }
+
+  .cta-section .button-primary:hover {
+    background: var(--color-primary-50);
+    transform: translateY(-2px);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .beitrag-meta {
+      flex-wrap: wrap;
+    }
+
+    .beitrag-date {
+      margin-left: 0;
+      width: 100%;
+      margin-top: var(--space-2);
+    }
+
+    .beitrag-title {
+      font-size: var(--text-xl);
+    }
+  }
+</style>

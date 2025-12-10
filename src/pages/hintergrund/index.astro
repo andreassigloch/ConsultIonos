@@ -1,0 +1,194 @@
+---
+/**
+ * Hintergrund - Übersichtsseite
+ * @author andreas@siglochconsulting.de
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const articles = [
+  {
+    title: "Struktur vor KI",
+    description: "Warum Datenqualität wichtiger ist als Algorithmen. Ein Plädoyer für Reproduzierbarkeit und Nachvollziehbarkeit.",
+    href: "/hintergrund/struktur-vor-ki",
+    icon: "layers"
+  },
+  {
+    title: "7 Fragen",
+    description: "Die wichtigsten Fragen zur Datenstrukturierung – ehrlich beantwortet. Mit konkreten Investitions-Richtwerten.",
+    href: "/hintergrund/7-fragen",
+    icon: "help"
+  },
+  {
+    title: "Branchen",
+    description: "Systems Engineering und Immobilien: Gleiche Methodik, verschiedene Anwendungen.",
+    href: "/hintergrund/branchen",
+    icon: "building"
+  },
+  {
+    title: "Technischer Stack",
+    description: "Neo4j, SHACL, Ollama: Die Komponenten für strukturierte Daten und messbare Qualität.",
+    href: "/hintergrund/technik",
+    icon: "code"
+  }
+];
+---
+
+<BaseLayout
+  title="Hintergrund - Vertiefende Artikel | Sigloch Consulting"
+  description="Vertiefende Artikel zu Datenstrukturierung, Graph-Modellierung und dem technischen Stack für messbare Qualität."
+>
+  <Header />
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero" data-testid="hintergrund-hero">
+      <div class="container">
+        <h1>Hintergrund</h1>
+        <p class="hero-subtitle">
+          Vertiefende Artikel für Entscheider und Techniker
+        </p>
+      </div>
+    </section>
+
+    <!-- Articles Grid -->
+    <section class="articles-section" data-testid="articles-section">
+      <div class="container">
+        <div class="articles-grid">
+          {articles.map((article, index) => (
+            <a href={article.href} class="article-card" data-testid={`article-card-${index}`}>
+              <h2>{article.title}</h2>
+              <p>{article.description}</p>
+              <span class="read-more">Weiterlesen →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" data-testid="hintergrund-cta">
+      <div class="container cta-content">
+        <h2>Konkrete Fragen?</h2>
+        <p>
+          Lassen Sie uns direkt über Ihre Situation sprechen.
+        </p>
+        <a href="/kontakt" class="button button-primary button-large" data-testid="cta-contact">
+          Gespräch vereinbaren
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  /* Page Hero */
+  .page-hero {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-50) 0%,
+      var(--color-background) 100%
+    );
+    padding: var(--space-20) 0 var(--space-16);
+    text-align: center;
+  }
+
+  .page-hero h1 {
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-subtitle {
+    font-size: var(--text-xl);
+    color: var(--color-text-secondary);
+  }
+
+  /* Articles Section */
+  .articles-section {
+    padding: var(--space-16) 0;
+    background: var(--color-background);
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .article-card {
+    background: var(--color-background-alt);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    border-top: 4px solid var(--color-primary);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .article-card h2 {
+    font-size: var(--text-2xl);
+    color: var(--color-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .article-card p {
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    flex-grow: 1;
+    margin-bottom: var(--space-4);
+  }
+
+  .read-more {
+    color: var(--color-primary);
+    font-weight: var(--font-semibold);
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: var(--space-16) 0;
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-700) 0%,
+      var(--color-primary-600) 50%,
+      var(--color-primary-700) 100%
+    );
+    color: var(--color-background);
+  }
+
+  .cta-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta-section h2 {
+    color: var(--color-background);
+    margin-bottom: var(--space-4);
+  }
+
+  .cta-section p {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-8);
+    opacity: 0.9;
+  }
+
+  .cta-section .button-primary {
+    background: var(--color-background);
+    color: var(--color-primary);
+    border-color: var(--color-background);
+  }
+
+  .cta-section .button-primary:hover {
+    background: var(--color-primary-50);
+    transform: translateY(-2px);
+  }
+</style>

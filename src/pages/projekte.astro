@@ -1,0 +1,324 @@
+---
+/**
+ * Projekte - Portfolio
+ * @author andreas@siglochconsulting.de
+ *
+ * Projekt-Portfolio mit Frameworks, Tools und Publications
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Project {
+  name: string;
+  type: string;
+  status: "Active" | "Completed" | "In Development";
+  description: string;
+  tags: string[];
+  links?: { type: string; url: string; label: string }[];
+}
+
+const projects: Project[] = [
+  {
+    name: "Datenreife-Modell",
+    type: "Framework / Methodik",
+    status: "Active",
+    description: "7-Stufen-Modell zur systematischen Bewertung und Verbesserung der Datenreife in Unternehmen. Fokus auf Struktur vor Technologie.",
+    tags: ["Datenmanagement", "Assessment", "Strategie"],
+    links: [
+      { type: "page", url: "/mein-ansatz", label: "Mehr erfahren" }
+    ]
+  },
+  {
+    name: "Graph-basierte Modellierung",
+    type: "Methodik",
+    status: "Active",
+    description: "Umsetzung von INCOSE-Prinzipien mit Neo4j Graph-Datenbank. Vernetzte Daten für Requirements, Architektur und Testfälle.",
+    tags: ["Neo4j", "MBSE", "INCOSE", "Systems Engineering"]
+  },
+  {
+    name: "SHACL Validierung",
+    type: "Tool / Methodik",
+    status: "Active",
+    description: "Deterministische Geschäftsregeln als ausführbare Validierung. W3C-Standard für Datenqualitätsprüfung ohne KI.",
+    tags: ["SHACL", "Validierung", "Datenqualität", "W3C"]
+  },
+  {
+    name: "Location Scoring",
+    type: "Tool",
+    status: "Active",
+    description: "Automatisierte Standortbewertung für Immobilien mit OpenStreetMap-Daten. Objektive Infrastruktur-Scores.",
+    tags: ["Immobilien", "OpenStreetMap", "Scoring", "Automation"]
+  },
+  {
+    name: "MCP Server Integration",
+    type: "Tool / Code",
+    status: "In Development",
+    description: "Model Context Protocol Server für strukturierte KI-Interaktion. Verbindung zwischen LLMs und Unternehmensdaten.",
+    tags: ["MCP", "LLM", "Integration", "Automation"]
+  },
+  {
+    name: "ReConf 2024 Vortrag",
+    type: "Publication",
+    status: "Completed",
+    description: "Konferenzbeitrag zur Integration von GenAI in Systems Engineering Prozesse. Praktische Erfahrungen aus der Umsetzung.",
+    tags: ["Konferenz", "Systems Engineering", "GenAI"]
+  }
+];
+
+const statusColors: Record<string, string> = {
+  "Active": "status-active",
+  "Completed": "status-completed",
+  "In Development": "status-dev"
+};
+---
+
+<BaseLayout
+  title="Projekte - Portfolio | Sigloch Consulting"
+  description="Frameworks, Tools und Publikationen rund um Datenstrukturierung, Graph-Modellierung und Systems Engineering."
+>
+  <Header />
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero" data-testid="projects-hero">
+      <div class="container">
+        <h1>Projekte</h1>
+        <p class="hero-subtitle">
+          Frameworks, Tools und Publikationen aus der Praxis
+        </p>
+      </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="projects-section" data-testid="projects-section">
+      <div class="container">
+        <div class="projects-grid">
+          {projects.map((project, index) => (
+            <article class="project-card" data-testid={`project-card-${index}`}>
+              <div class="project-header">
+                <span class="project-type">{project.type}</span>
+                <span class:list={["project-status", statusColors[project.status]]}>
+                  {project.status}
+                </span>
+              </div>
+
+              <h2 class="project-name">{project.name}</h2>
+              <p class="project-description">{project.description}</p>
+
+              <div class="project-tags">
+                {project.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+
+              {project.links && project.links.length > 0 && (
+                <div class="project-links">
+                  {project.links.map((link) => (
+                    <a href={link.url} class="project-link">
+                      {link.label} →
+                    </a>
+                  ))}
+                </div>
+              )}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" data-testid="projects-cta">
+      <div class="container cta-content">
+        <h2>Eigenes Projekt?</h2>
+        <p>
+          Lassen Sie uns besprechen, wie diese Ansätze auf Ihre Situation übertragen werden können.
+        </p>
+        <a href="/kontakt" class="button button-primary button-large" data-testid="cta-contact">
+          Gespräch vereinbaren
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  /* Page Hero */
+  .page-hero {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-50) 0%,
+      var(--color-background) 100%
+    );
+    padding: var(--space-20) 0 var(--space-16);
+    text-align: center;
+  }
+
+  .page-hero h1 {
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-subtitle {
+    font-size: var(--text-xl);
+    color: var(--color-text-secondary);
+  }
+
+  /* Projects Section */
+  .projects-section {
+    padding: var(--space-16) 0;
+    background: var(--color-background);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .project-card {
+    background: var(--color-background-alt);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    border-top: 4px solid var(--color-primary);
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-4);
+  }
+
+  .project-type {
+    font-size: var(--text-sm);
+    color: var(--color-text-light);
+    font-weight: var(--font-medium);
+  }
+
+  .project-status {
+    font-size: var(--text-xs);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-pill);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .status-active {
+    background: var(--color-success-bg);
+    color: var(--color-success-text);
+  }
+
+  .status-completed {
+    background: var(--color-info-bg);
+    color: var(--color-info-text);
+  }
+
+  .status-dev {
+    background: var(--color-warning-bg);
+    color: var(--color-warning-text);
+  }
+
+  .project-name {
+    font-size: var(--text-2xl);
+    color: var(--color-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .project-description {
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-6);
+    flex-grow: 1;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+
+  .tag {
+    background: var(--color-primary-100);
+    color: var(--color-primary-700);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+  }
+
+  .project-links {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-4);
+  }
+
+  .project-link {
+    color: var(--color-primary);
+    font-weight: var(--font-semibold);
+    text-decoration: none;
+    transition: color var(--transition-base);
+  }
+
+  .project-link:hover {
+    color: var(--color-primary-600);
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: var(--space-16) 0;
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-700) 0%,
+      var(--color-primary-600) 50%,
+      var(--color-primary-700) 100%
+    );
+    color: var(--color-background);
+  }
+
+  .cta-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta-section h2 {
+    color: var(--color-background);
+    margin-bottom: var(--space-4);
+  }
+
+  .cta-section p {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-8);
+    opacity: 0.9;
+  }
+
+  .cta-section .button-primary {
+    background: var(--color-background);
+    color: var(--color-primary);
+    border-color: var(--color-background);
+  }
+
+  .cta-section .button-primary:hover {
+    background: var(--color-primary-50);
+    transform: translateY(-2px);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

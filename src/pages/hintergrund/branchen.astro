@@ -1,0 +1,250 @@
+---
+/**
+ * Hintergrund: Branchen
+ * @author andreas@siglochconsulting.de
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Branchen - Gleiche Methodik, verschiedene Anwendungen | Sigloch Consulting"
+  description="Graph-basierte Modellierung für Systems Engineering und Immobilien. Dieselben Prinzipien, branchenspezifische Umsetzung."
+>
+  <Header />
+
+  <main>
+    <article class="article" data-testid="article-branchen">
+      <header class="article-header">
+        <div class="container">
+          <a href="/hintergrund" class="back-link">← Hintergrund</a>
+          <h1>Branchen</h1>
+          <p class="article-subtitle">
+            Gleiche Methodik, verschiedene Anwendungen
+          </p>
+        </div>
+      </header>
+
+      <div class="container article-content">
+        <section>
+          <h2>Das gemeinsame Muster</h2>
+          <p>
+            Auf den ersten Blick haben Systems Engineering und Immobilien wenig
+            gemeinsam. Bei genauerem Hinsehen zeigt sich: Die Grundstruktur der
+            Datenprobleme ist identisch.
+          </p>
+          <p>
+            In beiden Fällen geht es um:
+          </p>
+          <ul>
+            <li><strong>Objekte</strong> mit Eigenschaften (Anforderungen, Immobilien)</li>
+            <li><strong>Beziehungen</strong> zwischen Objekten (Traceability, Standortfaktoren)</li>
+            <li><strong>Regeln</strong> zur Qualitätsprüfung (Compliance, Bewertungskriterien)</li>
+            <li><strong>Scores</strong> zur Quantifizierung (Reifegrade, Standort-Ratings)</li>
+          </ul>
+        </section>
+
+        <section class="branch-section">
+          <h2>Systems Engineering</h2>
+          <p>
+            Graph-basierte Modellierung nach INCOSE-Prinzipien. Anforderungen,
+            Architektur, Testfälle und Risiken als vernetzte Daten.
+          </p>
+
+          <div class="example-box">
+            <h3>Beispiel: Stufe 3 → 4</h3>
+            <p>
+              Ein Medizintechnik-Hersteller hat 5.000 Anforderungen in Excel.
+              Bei Änderungen ist unklar, welche anderen Dokumente betroffen sind.
+            </p>
+            <p>
+              <strong>Lösung:</strong> Migration in Neo4j Graph-Datenbank.
+              Impact-Analysen in Sekunden statt Tagen. Automatische Prüfung
+              gegen MDR-Anforderungen.
+            </p>
+          </div>
+
+          <h3>Typische Anwendungen</h3>
+          <ul>
+            <li>Requirements Traceability über Systemgrenzen</li>
+            <li>Change Impact Analysis</li>
+            <li>Compliance-Checks (A-SPICE, ISO 26262, MDR)</li>
+            <li>Architektur-Konsistenz-Prüfung</li>
+          </ul>
+        </section>
+
+        <section class="branch-section">
+          <h2>Immobilien</h2>
+          <p>
+            Dieselbe Graph-Methodik für Objektbewertung und Prozessautomatisierung.
+            Standortfaktoren, Marktdaten und Objekteigenschaften als vernetztes System.
+          </p>
+
+          <div class="example-box">
+            <h3>Beispiel: Stufe 4 → 5</h3>
+            <p>
+              Ein Makler bewertet Standorte manuell nach Erfahrung. Neue Mitarbeiter
+              brauchen Jahre, um die gleiche Einschätzungsqualität zu erreichen.
+            </p>
+            <p>
+              <strong>Lösung:</strong> OpenStreetMap-Daten als Basis für
+              automatisierte Infrastruktur-Scores. Objektive Kennzahlen statt
+              subjektiver Einschätzung.
+            </p>
+          </div>
+
+          <h3>Typische Anwendungen</h3>
+          <ul>
+            <li>Automatisierte Standortbewertung</li>
+            <li>POI-basiertes Infrastruktur-Scoring</li>
+            <li>Prozessautomatisierung für Makler</li>
+            <li>Marktdaten-Integration</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Das verbindende Element: Graphen</h2>
+          <p>
+            Graph-Datenbanken wie Neo4j sind ideal für beide Branchen, weil
+            sie Beziehungen als First-Class-Citizens behandeln. Anders als
+            relationale Datenbanken müssen Verbindungen nicht über JOINs
+            konstruiert werden – sie sind direkt im Datenmodell abgebildet.
+          </p>
+          <p>
+            Das ermöglicht:
+          </p>
+          <ul>
+            <li>Schnelle Abfragen über beliebige Beziehungspfade</li>
+            <li>Natürliche Modellierung komplexer Zusammenhänge</li>
+            <li>Flexible Schema-Evolution ohne Migrationsaufwand</li>
+          </ul>
+        </section>
+
+        <section class="cta-box">
+          <h2>Ihre Branche?</h2>
+          <p>
+            Die Methodik ist übertragbar. Lassen Sie uns besprechen, wie sie
+            auf Ihre spezifische Situation angewendet werden kann.
+          </p>
+          <a href="/kontakt" class="button button-primary">Gespräch vereinbaren</a>
+        </section>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .article-header {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-50) 0%,
+      var(--color-background) 100%
+    );
+    padding: var(--space-16) 0;
+  }
+
+  .back-link {
+    display: inline-block;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-medium);
+    margin-bottom: var(--space-4);
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  .article-header h1 {
+    margin-bottom: var(--space-4);
+  }
+
+  .article-subtitle {
+    font-size: var(--text-xl);
+    color: var(--color-text-secondary);
+  }
+
+  .article-content {
+    max-width: 750px;
+    padding: var(--space-12) var(--container-padding);
+  }
+
+  .article-content section {
+    margin-bottom: var(--space-12);
+  }
+
+  .article-content h2 {
+    margin-bottom: var(--space-6);
+    margin-top: var(--space-8);
+  }
+
+  .article-content h3 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  .article-content p {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-4);
+  }
+
+  .article-content ul {
+    margin-bottom: var(--space-6);
+    padding-left: var(--space-6);
+  }
+
+  .article-content li {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-3);
+  }
+
+  .branch-section {
+    background: var(--color-background-alt);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-12);
+  }
+
+  .branch-section h2 {
+    margin-top: 0;
+    color: var(--color-primary);
+  }
+
+  .example-box {
+    background: var(--color-background);
+    padding: var(--space-6);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--color-primary);
+    margin: var(--space-6) 0;
+  }
+
+  .example-box h3 {
+    margin-top: 0;
+    color: var(--color-primary);
+  }
+
+  .cta-box {
+    background: var(--color-primary-50);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    margin-top: var(--space-16);
+  }
+
+  .cta-box h2 {
+    margin-top: 0;
+  }
+
+  .cta-box p {
+    margin-bottom: var(--space-6);
+  }
+</style>

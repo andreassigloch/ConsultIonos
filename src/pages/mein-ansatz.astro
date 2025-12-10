@@ -1,0 +1,573 @@
+---
+/**
+ * Mein Ansatz - 7-Stufen Datenreife-Modell
+ * @author andreas@siglochconsulting.de
+ *
+ * "Welches Tool brauchen wir?" ist die falsche Frage.
+ * "Welche Struktur haben unsere Daten?" ist die richtige.
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '@lib/config';
+
+const stages = [
+  {
+    level: 1,
+    name: "Unstrukturierte Ablage",
+    description: "Dokumente in Ordnern, keine Verbindungen, manuelle Suche",
+    aiShare: "0%",
+    highlight: false
+  },
+  {
+    level: 2,
+    name: "Durchsuchbare Inhalte",
+    description: "Volltextsuche, Tags, erste Metadaten",
+    aiShare: "10-20%",
+    highlight: false
+  },
+  {
+    level: 3,
+    name: "Vernetzte Daten",
+    description: "Beziehungen zwischen Objekten, Impact-Analysen möglich",
+    aiShare: "10-30%",
+    highlight: false
+  },
+  {
+    level: 4,
+    name: "Automatische Prüfung",
+    description: "Geschäftsregeln als ausführbare Validierung, Fehler früher erkennen",
+    aiShare: "5-10%",
+    highlight: false
+  },
+  {
+    level: 5,
+    name: "Messbare Qualität",
+    description: "Objektive Scores statt Bauchgefühl, Trends erkennbar",
+    aiShare: "20-30%",
+    highlight: true
+  },
+  {
+    level: 6,
+    name: "Vorhersagen",
+    description: "Proaktive Warnungen, Risiko-Prognosen",
+    aiShare: "15-25%",
+    highlight: false
+  },
+  {
+    level: 7,
+    name: "Lernende Systeme",
+    description: "Kontinuierliche Optimierung, selbstanpassende Regeln",
+    aiShare: "30-50%",
+    highlight: false
+  }
+];
+
+const passstGut = [
+  "Informationen in verschiedenen Systemen sind nicht verbunden",
+  "Erfahrungswissen steckt in Köpfen einzelner Mitarbeiter",
+  "Audit-Anforderungen wachsen (MDR, ISO, Automotive)",
+  "Entscheidungen sind schwer nachvollziehbar",
+  "Neue Mitarbeiter brauchen Monate zur Einarbeitung"
+];
+
+const passtNicht = [
+  "Sie suchen ein fertiges Produkt zum Selbst-Installieren",
+  "Die Herausforderung ist primär Marketing oder Vertrieb",
+  "Weniger als 20 Mitarbeiter mit überschaubarer Komplexität",
+  "Keine Bereitschaft für initiale Strukturierungsarbeit"
+];
+---
+
+<BaseLayout
+  title="Mein Ansatz - 7 Stufen zur Datenreife | Sigloch Consulting"
+  description="Struktur vor KI: Das 7-Stufen-Modell zur Datenreife. Warum der Wert bis Stufe 5 aus Struktur und Regeln kommt, nicht aus künstlicher Intelligenz."
+>
+  <Header />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="page-hero" data-testid="approach-hero">
+      <div class="container">
+        <h1>Mein Ansatz</h1>
+        <p class="hero-quote">
+          "Welches Tool brauchen wir?" ist die falsche Frage.<br/>
+          "Welche Struktur haben unsere Daten?" ist die richtige.
+        </p>
+      </div>
+    </section>
+
+    <!-- Two Phases Section -->
+    <section class="phases-section" data-testid="phases-section">
+      <div class="container">
+        <h2>Zwei Phasen, ein Ziel</h2>
+        <div class="phases-grid">
+          <div class="phase-card">
+            <div class="phase-header">
+              <span class="phase-label">Phase 1</span>
+              <h3>Entwicklung</h3>
+            </div>
+            <p>
+              KI-Werkzeuge intensiv nutzen: schneller bauen, Muster erkennen,
+              Prototypen validieren. Hier ist KI ein Produktivitäts-Multiplikator.
+            </p>
+          </div>
+          <div class="phase-arrow">→</div>
+          <div class="phase-card">
+            <div class="phase-header">
+              <span class="phase-label">Phase 2</span>
+              <h3>Betrieb</h3>
+            </div>
+            <p>
+              Das System läuft ohne KI: klare Regeln, deterministische Algorithmen,
+              nachvollziehbare Ergebnisse. Keine laufenden API-Kosten, volle Kontrolle.
+            </p>
+          </div>
+        </div>
+        <div class="phases-result">
+          <p><strong>Ergebnis:</strong> Planbare Kosten, keine API-Abhängigkeit, volle Nachvollziehbarkeit.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 Stages Section -->
+    <section class="stages-section" data-testid="stages-section">
+      <div class="container">
+        <h2>Die 7 Stufen der Datenreife</h2>
+        <p class="stages-intro">
+          Von unstrukturierter Ablage bis zu lernenden Systemen –
+          ein klarer Pfad mit messbarem Fortschritt.
+        </p>
+
+        <div class="stages-table-wrapper">
+          <table class="stages-table" data-testid="stages-table">
+            <thead>
+              <tr>
+                <th>Stufe</th>
+                <th>Name</th>
+                <th>Was sich ändert</th>
+                <th>KI-Anteil</th>
+              </tr>
+            </thead>
+            <tbody>
+              {stages.map((stage) => (
+                <tr class:list={[{ highlight: stage.highlight }]}>
+                  <td class="stage-level">{stage.level}</td>
+                  <td class="stage-name">
+                    {stage.name}
+                    {stage.highlight && <span class="stage-star" title="Typisches Ziel">★</span>}
+                  </td>
+                  <td class="stage-description">{stage.description}</td>
+                  <td class="stage-ai">{stage.aiShare}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="key-insight">
+          <p>
+            <strong>Key Insight:</strong> Bis Stufe 5 kommt der Wert überwiegend aus
+            Struktur und Regeln, nicht aus KI. Die KI-Anteile beziehen sich auf die
+            Entwicklungsphase – im Betrieb laufen die Systeme deterministisch.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fit Section -->
+    <section class="fit-section" data-testid="fit-section">
+      <div class="container">
+        <h2>Passt der Ansatz?</h2>
+        <div class="fit-grid">
+          <div class="fit-card fit-yes">
+            <h3>Passt gut, wenn...</h3>
+            <ul>
+              {passstGut.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="fit-card fit-no">
+            <h3>Passt nicht, wenn...</h3>
+            <ul>
+              {passtNicht.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" data-testid="approach-cta">
+      <div class="container cta-content">
+        <h2>Nächster Schritt?</h2>
+        <p>
+          30 Minuten reichen, um zu klären, wo Sie auf der Datenreife-Skala stehen
+          und ob der Ansatz zu Ihrer Situation passt.
+        </p>
+        <a href="/kontakt" class="button button-primary button-large" data-testid="cta-contact">
+          Gespräch vereinbaren
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  /* Page Hero */
+  .page-hero {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-50) 0%,
+      var(--color-background) 100%
+    );
+    padding: var(--space-20) 0 var(--space-16);
+    text-align: center;
+  }
+
+  .page-hero h1 {
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-quote {
+    font-size: var(--text-xl);
+    color: var(--color-text-secondary);
+    font-style: italic;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: var(--leading-relaxed);
+  }
+
+  /* Phases Section */
+  .phases-section {
+    padding: var(--space-16) 0;
+    background: var(--color-background);
+  }
+
+  .phases-section h2 {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .phases-grid {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+  }
+
+  .phase-card {
+    background: var(--color-background-alt);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    flex: 1;
+    max-width: 400px;
+  }
+
+  .phase-header {
+    margin-bottom: var(--space-4);
+  }
+
+  .phase-label {
+    display: inline-block;
+    background: var(--color-primary);
+    color: var(--color-background);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    margin-bottom: var(--space-2);
+  }
+
+  .phase-card h3 {
+    font-size: var(--text-2xl);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .phase-card p {
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: var(--leading-relaxed);
+  }
+
+  .phase-arrow {
+    color: var(--color-primary);
+    font-size: var(--text-4xl);
+    font-weight: var(--font-bold);
+    align-self: center;
+  }
+
+  .phases-result {
+    text-align: center;
+    padding: var(--space-6);
+    background: var(--color-primary-50);
+    border-radius: var(--radius-lg);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .phases-result p {
+    margin: 0;
+    font-size: var(--text-lg);
+  }
+
+  /* Stages Section */
+  .stages-section {
+    padding: var(--space-16) 0;
+    background: var(--color-background-alt);
+  }
+
+  .stages-section h2 {
+    text-align: center;
+    margin-bottom: var(--space-4);
+  }
+
+  .stages-intro {
+    text-align: center;
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-12);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .stages-table-wrapper {
+    overflow-x: auto;
+    margin-bottom: var(--space-8);
+  }
+
+  .stages-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-background);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+
+  .stages-table th {
+    background: var(--color-primary);
+    color: var(--color-background);
+    padding: var(--space-4) var(--space-5);
+    text-align: left;
+    font-weight: var(--font-semibold);
+  }
+
+  .stages-table td {
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .stages-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .stages-table tr.highlight {
+    background: var(--color-primary-50);
+  }
+
+  .stages-table tr.highlight td {
+    font-weight: var(--font-medium);
+  }
+
+  .stage-level {
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+    font-size: var(--text-xl);
+    text-align: center;
+    width: 60px;
+  }
+
+  .stage-name {
+    font-weight: var(--font-semibold);
+    color: var(--color-text);
+  }
+
+  .stage-star {
+    color: var(--color-primary);
+    margin-left: var(--space-2);
+  }
+
+  .stage-description {
+    color: var(--color-text-secondary);
+  }
+
+  .stage-ai {
+    text-align: center;
+    font-weight: var(--font-medium);
+    white-space: nowrap;
+  }
+
+  .key-insight {
+    background: var(--color-primary);
+    color: var(--color-background);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .key-insight p {
+    margin: 0;
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* Fit Section */
+  .fit-section {
+    padding: var(--space-16) 0;
+    background: var(--color-background);
+  }
+
+  .fit-section h2 {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .fit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-8);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .fit-card {
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+  }
+
+  .fit-card h3 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-6);
+  }
+
+  .fit-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .fit-card li {
+    padding: var(--space-3) 0;
+    padding-left: var(--space-8);
+    position: relative;
+    line-height: var(--leading-relaxed);
+  }
+
+  .fit-yes {
+    background: var(--color-success-bg);
+    border: 2px solid var(--color-success);
+  }
+
+  .fit-yes h3 {
+    color: var(--color-success-text);
+  }
+
+  .fit-yes li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-success);
+    font-weight: var(--font-bold);
+    font-size: var(--text-xl);
+  }
+
+  .fit-no {
+    background: var(--color-error-bg);
+    border: 2px solid var(--color-error);
+  }
+
+  .fit-no h3 {
+    color: var(--color-error-text);
+  }
+
+  .fit-no li::before {
+    content: "✗";
+    position: absolute;
+    left: 0;
+    color: var(--color-error);
+    font-weight: var(--font-bold);
+    font-size: var(--text-xl);
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: var(--space-16) 0;
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-700) 0%,
+      var(--color-primary-600) 50%,
+      var(--color-primary-700) 100%
+    );
+    color: var(--color-background);
+  }
+
+  .cta-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta-section h2 {
+    color: var(--color-background);
+    margin-bottom: var(--space-4);
+  }
+
+  .cta-section p {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-8);
+    opacity: 0.9;
+  }
+
+  .cta-section .button-primary {
+    background: var(--color-background);
+    color: var(--color-primary);
+    border-color: var(--color-background);
+  }
+
+  .cta-section .button-primary:hover {
+    background: var(--color-primary-50);
+    transform: translateY(-2px);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .phases-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .phase-arrow {
+      transform: rotate(90deg);
+    }
+
+    .phase-card {
+      max-width: 100%;
+    }
+
+    .fit-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .stages-table th,
+    .stages-table td {
+      padding: var(--space-3);
+      font-size: var(--text-sm);
+    }
+
+    .stage-level {
+      font-size: var(--text-lg);
+    }
+  }
+</style>

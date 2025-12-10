@@ -9,8 +9,8 @@
 export const siteConfig = {
   // Site Meta
   name: 'Sigloch Consulting',
-  title: 'Sigloch Consulting - Systems Engineering & GenAI Beratung',
-  description: 'Strategische Beratung für Systems Engineering, GenAI-Integration und LEAN-Methoden. Ihr Partner für Effizienzsteigerung in der Industrie.',
+  title: 'Sigloch Consulting - Daten strukturieren. Qualität messbar machen.',
+  description: 'Systematischer Ansatz für Unternehmen, die ihre Prozesse auf eine belastbare Grundlage stellen wollen – bevor sie über KI nachdenken.',
   url: 'https://siglochconsulting.de',
   locale: 'de-DE',
 

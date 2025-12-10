@@ -1,0 +1,365 @@
+---
+/**
+ * Hintergrund: Technik
+ * @author andreas@siglochconsulting.de
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Technischer Stack - Open Source, Lokal, Deterministisch | Sigloch Consulting"
+  description="Neo4j, SHACL, Ollama: Die technischen Komponenten für strukturierte Daten und messbare Qualität."
+>
+  <Header />
+
+  <main>
+    <article class="article" data-testid="article-technik">
+      <header class="article-header">
+        <div class="container">
+          <a href="/hintergrund" class="back-link">← Hintergrund</a>
+          <h1>Technischer Stack</h1>
+          <p class="article-subtitle">
+            Open Source, lokal deploybar, deterministisch
+          </p>
+        </div>
+      </header>
+
+      <div class="container article-content">
+        <section>
+          <h2>Leitprinzipien</h2>
+          <div class="principles-grid">
+            <div class="principle">
+              <h3>Open Source</h3>
+              <p>Keine Vendor-Abhängigkeit. Der Code gehört Ihnen.</p>
+            </div>
+            <div class="principle">
+              <h3>Lokal deploybar</h3>
+              <p>Daten verlassen Ihr Unternehmen nicht.</p>
+            </div>
+            <div class="principle">
+              <h3>Deterministisch</h3>
+              <p>Reproduzierbare Ergebnisse bei gleichen Eingaben.</p>
+            </div>
+            <div class="principle">
+              <h3>Audit-fähig</h3>
+              <p>Nachvollziehbare Entscheidungen für Compliance.</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Kernkomponenten</h2>
+
+          <div class="component-card">
+            <h3>Neo4j Community Edition</h3>
+            <p class="component-type">Graph-Datenbank (Open Source)</p>
+            <p>
+              Speichert Daten und ihre Beziehungen als Graph. Ideal für
+              Requirements Traceability, Impact-Analysen und vernetzte Daten.
+              Die Community Edition ist vollständig kostenlos.
+            </p>
+            <ul>
+              <li>Native Graph-Speicherung</li>
+              <li>Cypher Query Language</li>
+              <li>ACID-transaktional</li>
+              <li>Horizontale Skalierung möglich</li>
+            </ul>
+          </div>
+
+          <div class="component-card">
+            <h3>SHACL (Shapes Constraint Language)</h3>
+            <p class="component-type">Validierung (W3C Standard)</p>
+            <p>
+              Definiert Geschäftsregeln als ausführbare Constraints.
+              100% deterministisch – keine Black Box, keine Überraschungen.
+            </p>
+            <ul>
+              <li>W3C-Standard für RDF-Validierung</li>
+              <li>Deklarative Regelsprache</li>
+              <li>Vollständig nachvollziehbar</li>
+              <li>Integration in CI/CD möglich</li>
+            </ul>
+          </div>
+
+          <div class="component-card">
+            <h3>Ollama</h3>
+            <p class="component-type">Lokale LLMs (Open Source)</p>
+            <p>
+              Wenn KI benötigt wird: Lokale Modelle wie Llama 3.1 8B oder
+              Mistral 7B. Keine API-Kosten, Daten bleiben im Haus.
+            </p>
+            <ul>
+              <li>Llama 3.1, Mistral, Code Llama</li>
+              <li>Läuft auf Consumer-Hardware</li>
+              <li>Keine Internetverbindung nötig</li>
+              <li>Vollständige Datenkontrolle</li>
+            </ul>
+          </div>
+
+          <div class="component-card">
+            <h3>MCP Server</h3>
+            <p class="component-type">Orchestrierung</p>
+            <p>
+              Model Context Protocol für strukturierte KI-Interaktion.
+              Verbindet LLMs mit Unternehmensdaten über definierte Schnittstellen.
+            </p>
+            <ul>
+              <li>Standardisiertes Protokoll</li>
+              <li>Tool-Integration</li>
+              <li>Kontextmanagement</li>
+              <li>Erweiterbar durch Plugins</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h2>Kostenvergleich: Cloud vs. Lokal</h2>
+
+          <div class="cost-table-wrapper">
+            <table class="cost-table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Cloud API (pro Jahr)</th>
+                  <th>Lokal (einmalig)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Jahr 1</strong></td>
+                  <td>€1.800 - 18.000</td>
+                  <td>€2.000 - 5.000</td>
+                </tr>
+                <tr>
+                  <td><strong>Jahr 2+</strong></td>
+                  <td>€1.800 - 18.000</td>
+                  <td>~€500 (Wartung)</td>
+                </tr>
+                <tr class="highlight">
+                  <td><strong>3-Jahres-TCO</strong></td>
+                  <td>€5.400 - 54.000</td>
+                  <td>€3.000 - 6.000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="note">
+            <strong>Break-even:</strong> Typischerweise nach 6-12 Monaten.
+            Bei hohem Anfragevolumen noch schneller.
+          </p>
+        </section>
+
+        <section>
+          <h2>Warum nicht Cloud?</h2>
+          <p>
+            Cloud-Dienste haben ihre Berechtigung, aber für kritische
+            Unternehmensprozesse gibt es Nachteile:
+          </p>
+          <ul>
+            <li><strong>Laufende Kosten:</strong> API-Gebühren skalieren mit der Nutzung</li>
+            <li><strong>Datenschutz:</strong> Daten verlassen das Unternehmen</li>
+            <li><strong>Abhängigkeit:</strong> Preiserhöhungen und API-Änderungen außer Kontrolle</li>
+            <li><strong>Verfügbarkeit:</strong> Abhängigkeit von Internetverbindung und Provider-Uptime</li>
+          </ul>
+        </section>
+
+        <section class="cta-box">
+          <h2>Technische Fragen?</h2>
+          <p>
+            Lassen Sie uns über die passende Architektur für Ihre Anforderungen sprechen.
+          </p>
+          <a href="/kontakt" class="button button-primary">Gespräch vereinbaren</a>
+        </section>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .article-header {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-50) 0%,
+      var(--color-background) 100%
+    );
+    padding: var(--space-16) 0;
+  }
+
+  .back-link {
+    display: inline-block;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-medium);
+    margin-bottom: var(--space-4);
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  .article-header h1 {
+    margin-bottom: var(--space-4);
+  }
+
+  .article-subtitle {
+    font-size: var(--text-xl);
+    color: var(--color-text-secondary);
+  }
+
+  .article-content {
+    max-width: 800px;
+    padding: var(--space-12) var(--container-padding);
+  }
+
+  .article-content section {
+    margin-bottom: var(--space-12);
+  }
+
+  .article-content h2 {
+    margin-bottom: var(--space-6);
+    margin-top: var(--space-8);
+  }
+
+  .article-content p {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-4);
+  }
+
+  .article-content ul {
+    margin-bottom: var(--space-6);
+    padding-left: var(--space-6);
+  }
+
+  .article-content li {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-2);
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-6);
+  }
+
+  .principle {
+    background: var(--color-background-alt);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    border-top: 4px solid var(--color-primary);
+  }
+
+  .principle h3 {
+    font-size: var(--text-lg);
+    color: var(--color-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .principle p {
+    font-size: var(--text-base);
+    margin: 0;
+  }
+
+  .component-card {
+    background: var(--color-background-alt);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+  }
+
+  .component-card h3 {
+    font-size: var(--text-xl);
+    color: var(--color-text);
+    margin-bottom: var(--space-1);
+  }
+
+  .component-type {
+    font-size: var(--text-sm) !important;
+    color: var(--color-primary) !important;
+    font-weight: var(--font-semibold);
+    margin-bottom: var(--space-4) !important;
+  }
+
+  .component-card ul {
+    margin-bottom: 0;
+  }
+
+  .component-card li {
+    font-size: var(--text-base);
+  }
+
+  .cost-table-wrapper {
+    overflow-x: auto;
+    margin: var(--space-8) 0;
+  }
+
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-background);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+
+  .cost-table th {
+    background: var(--color-primary);
+    color: var(--color-background);
+    padding: var(--space-4) var(--space-5);
+    text-align: left;
+    font-weight: var(--font-semibold);
+  }
+
+  .cost-table td {
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .cost-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .cost-table tr.highlight {
+    background: var(--color-primary-50);
+    font-weight: var(--font-semibold);
+  }
+
+  .note {
+    background: var(--color-primary-50);
+    padding: var(--space-4) var(--space-6);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .cta-box {
+    background: var(--color-primary-50);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    margin-top: var(--space-16);
+  }
+
+  .cta-box h2 {
+    margin-top: 0;
+  }
+
+  .cta-box p {
+    margin-bottom: var(--space-6);
+  }
+
+  @media (max-width: 768px) {
+    .principles-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
