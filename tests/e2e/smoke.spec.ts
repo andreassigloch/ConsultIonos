@@ -86,7 +86,7 @@ test.describe('Mein Ansatz Page', () => {
   test('should display 7 stages table', async ({ page }) => {
     await page.goto('/mein-ansatz');
 
-    await expect(page.locator('h1')).toContainText('Mein Ansatz');
+    await expect(page.locator('main h1').first()).toContainText('Mein Ansatz');
 
     const stagesTable = page.locator('[data-testid="stages-table"]');
     await expect(stagesTable).toBeVisible();
