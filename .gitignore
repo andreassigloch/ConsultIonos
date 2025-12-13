@@ -25,3 +25,10 @@ coverage/
 # Logs
 *.log
 npm-debug.log*
+
+# Claude Code / MCP
+.claude-flow/
+.swarm/
+
+# Legacy migration artifacts
+consult/
