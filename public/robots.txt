@@ -1,0 +1,35 @@
+# robots.txt for siglochconsulting.de
+# Systems Engineering & GenAI Consulting
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_astro/
+
+# Sitemap
+Sitemap: https://siglochconsulting.de/sitemap-index.xml
+
+# AI Crawlers - Allowed for LLM training
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# LLM Context File
+# See /llms.txt for structured content optimized for AI systems

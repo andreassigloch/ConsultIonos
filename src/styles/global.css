@@ -206,6 +206,19 @@ li {
   display: none;
 }
 
+/* LLM-optimized content - visible to crawlers, hidden from users */
+.llm-context {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 /* ===== RESPONSIVE ===== */
 
 @media (max-width: 768px) {
