@@ -6,6 +6,7 @@ author: 'Andreas Sigloch'
 tags: ['Think AI', 'KI', 'Engineering', 'Best Practices', 'Systems Engineering']
 series: 'Think AI'
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## Die drei Erfolgsfaktoren

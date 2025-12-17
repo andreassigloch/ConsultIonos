@@ -7,6 +7,7 @@ image: '/images/1748866254584.jpeg'
 tags: ['Think AI', 'KI', 'Lokale KI', 'DSGVO', 'On-Premise']
 series: 'Think AI'
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## Der Versuch

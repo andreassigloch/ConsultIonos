@@ -7,6 +7,7 @@ image: '/images/1730281380077.png'
 tags: ['Vibe Coding', 'KI', 'Cline', 'Software Development']
 series: 'Vibe Coding'
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## Time for a Review

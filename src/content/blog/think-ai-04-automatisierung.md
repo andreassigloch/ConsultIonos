@@ -6,6 +6,7 @@ author: 'Andreas Sigloch'
 tags: ['Think AI', 'KI', 'Automatisierung', 'Software Development', 'Vibe Coding']
 series: 'Think AI'
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## Der klassische Weg

@@ -17,6 +17,10 @@ const sortedBlogPosts = blogPosts.sort((a, b) =>
   new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
 );
 
+// Separate by LinkedIn status
+const linkedinPublished = sortedBlogPosts.filter(p => p.data.linkedinStatus === 'published');
+const blogOnly = sortedBlogPosts.filter(p => p.data.linkedinStatus !== 'published');
+
 interface ExternalPublication {
   title: string;
   type: "linkedin" | "conference";
@@ -86,19 +90,20 @@ function formatDate(date: Date | string): string {
       </div>
     </nav>
 
-    <!-- Blog Section -->
+    <!-- Blog Section (not yet on LinkedIn) -->
     <section class="publications-section" id="blog" data-testid="blog-section">
       <div class="container">
         <h2 class="section-title">
           <span class="section-icon" set:html={typeIcons.blog}></span>
           Blog
         </h2>
+        <p class="section-subtitle">Artikel, die noch nicht auf LinkedIn veröffentlicht wurden</p>
 
         <div class="publications-list">
-          {sortedBlogPosts.map((post) => (
+          {blogOnly.map((post) => (
             <article class="publication-card" data-testid={`blog-${post.slug}`}>
               <div class="publication-meta">
-                <span class="publication-type">Blog</span>
+                <span class="publication-type type-blog">Blog</span>
                 <span class="publication-date">{formatDate(post.data.pubDate)}</span>
               </div>
 
@@ -123,50 +128,56 @@ function formatDate(date: Date | string): string {
       </div>
     </section>
 
-    <!-- LinkedIn Section -->
+    <!-- LinkedIn Section (articles published on LinkedIn) -->
     <section class="publications-section alternate" id="linkedin" data-testid="linkedin-section">
       <div class="container">
         <h2 class="section-title">
           <span class="section-icon" set:html={typeIcons.linkedin}></span>
           LinkedIn
         </h2>
+        <p class="section-subtitle">Auf LinkedIn veröffentlichte Artikel ({linkedinPublished.length})</p>
 
         <div class="publications-list">
-          {externalPublications.filter(p => p.type === 'linkedin').map((pub, index) => (
-            <article class="publication-card" data-testid={`linkedin-${index}`}>
+          {linkedinPublished.map((post) => (
+            <article class="publication-card" data-testid={`linkedin-${post.slug}`}>
               <div class="publication-meta">
-                <span class="publication-type">LinkedIn</span>
-                <span class="publication-date">{formatDate(pub.pubDate)}</span>
+                <span class="publication-type type-linkedin">LinkedIn</span>
+                <span class="publication-date">{formatDate(post.data.linkedinPostDate || post.data.pubDate)}</span>
               </div>
 
               <h3 class="publication-title">
-                {pub.url ? (
-                  <a href={pub.url} target="_blank" rel="noopener noreferrer">{pub.title}</a>
+                {post.data.linkedinUrl ? (
+                  <a href={post.data.linkedinUrl} target="_blank" rel="noopener noreferrer">{post.data.title}</a>
                 ) : (
-                  pub.title
+                  <a href={`/blog/${post.slug}`}>{post.data.title}</a>
                 )}
               </h3>
 
-              <p class="publication-excerpt">{pub.excerpt}</p>
+              <p class="publication-excerpt">{post.data.description}</p>
 
               <div class="publication-tags">
-                {pub.tags.map((tag) => (
+                {post.data.tags.map((tag: string) => (
                   <span class="tag">{tag}</span>
                 ))}
               </div>
 
-              {pub.url && (
-                <a href={pub.url} target="_blank" rel="noopener noreferrer" class="publication-link">
-                  Auf LinkedIn lesen →
+              <div class="publication-actions">
+                <a href={`/blog/${post.slug}`} class="publication-link">
+                  Artikel lesen →
                 </a>
-              )}
+                {post.data.linkedinUrl && (
+                  <a href={post.data.linkedinUrl} target="_blank" rel="noopener noreferrer" class="publication-link linkedin-link">
+                    Auf LinkedIn →
+                  </a>
+                )}
+              </div>
             </article>
           ))}
         </div>
 
         <div class="linkedin-cta">
-          <a href="https://www.linkedin.com/in/andreas-sigloch/" target="_blank" rel="noopener noreferrer" class="button button-secondary">
-            Alle LinkedIn-Beiträge →
+          <a href="https://www.linkedin.com/in/andreas-sigloch-consulting" target="_blank" rel="noopener noreferrer" class="button button-secondary">
+            LinkedIn Profil →
           </a>
         </div>
       </div>
@@ -184,7 +195,7 @@ function formatDate(date: Date | string): string {
           {externalPublications.filter(p => p.type === 'conference').map((pub, index) => (
             <article class="publication-card" data-testid={`conference-${index}`}>
               <div class="publication-meta">
-                <span class="publication-type">Konferenz</span>
+                <span class="publication-type type-conference">Konferenz</span>
                 <span class="publication-date">{formatDate(pub.pubDate)}</span>
               </div>
 
@@ -301,6 +312,13 @@ function formatDate(date: Date | string): string {
     align-items: center;
   }
 
+  .section-subtitle {
+    color: var(--color-text-secondary);
+    margin-top: calc(-1 * var(--space-6));
+    margin-bottom: var(--space-8);
+    font-size: var(--text-base);
+  }
+
   .publications-list {
     display: flex;
     flex-direction: column;
@@ -340,6 +358,21 @@ function formatDate(date: Date | string): string {
     padding: var(--space-1) var(--space-3);
     border-radius: var(--radius-sm);
     font-weight: var(--font-semibold);
+  }
+
+  .publication-type.type-linkedin {
+    background: var(--color-linkedin-bg);
+    color: var(--color-linkedin);
+  }
+
+  .publication-type.type-blog {
+    background: var(--color-primary-100);
+    color: var(--color-primary-700);
+  }
+
+  .publication-type.type-conference {
+    background: var(--color-conference-bg);
+    color: var(--color-conference);
   }
 
   .publication-date {
@@ -393,6 +426,20 @@ function formatDate(date: Date | string): string {
 
   .publication-link:hover {
     color: var(--color-primary-600);
+  }
+
+  .publication-actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .publication-link.linkedin-link {
+    color: var(--color-linkedin);
+  }
+
+  .publication-link.linkedin-link:hover {
+    color: var(--color-linkedin-dark);
   }
 
   .linkedin-cta {

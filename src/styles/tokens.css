@@ -64,6 +64,14 @@
   --color-info-text: #1E40AF;
   --color-info: #3B82F6;
 
+  /* External Brand Colors (Social Media) */
+  --color-linkedin-bg: #E7F3FF;
+  --color-linkedin: #0077B5;
+  --color-linkedin-dark: #006399;
+
+  --color-conference-bg: #FFF3E0;
+  --color-conference: #E65100;
+
   /* Gray Scale */
   --color-gray-50: #F8FAFC;
   --color-gray-100: #F1F5F9;

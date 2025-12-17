@@ -1,0 +1,636 @@
+---
+/**
+ * Hintergrund: Technik (Stack für Level 3-7)
+ * @author andreas@siglochconsulting.de
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const sources = [
+  {
+    id: 1,
+    text: "Neo4j Graph Database Documentation",
+    url: "https://neo4j.com/docs/"
+  },
+  {
+    id: 2,
+    text: "PuppyGraph: Graph Database Tools 2025",
+    url: "https://www.puppygraph.com/blog/graph-database-tools"
+  },
+  {
+    id: 3,
+    text: "SHACL: W3C Shapes Constraint Language",
+    url: "https://www.w3.org/TR/shacl/"
+  },
+  {
+    id: 4,
+    text: "SCOOP: Constraints Flavours for Knowledge Graphs (ESWC 2024)",
+    url: "https://2024.eswc-conferences.org/wp-content/uploads/2024/04/146640551.pdf"
+  },
+  {
+    id: 5,
+    text: "I-Score/K-Score: Measurement of Knowledge in KGs (AAAI 2023)",
+    url: "https://r2hcai.github.io/AAAI-23/files/CameraReadys/9.pdf"
+  },
+  {
+    id: 6,
+    text: "TigerGraph: Graph Databases for AI",
+    url: "https://www.tigergraph.com/blog/unleashing-ais-potential-why-graph-databases-are-the-secret-weapon/"
+  },
+  {
+    id: 7,
+    text: "PowerDrill Self-Improving Agents",
+    url: "https://powerdrill.ai/blog/self-improving-data-agents"
+  },
+  {
+    id: 8,
+    text: "Ollama: Run LLMs locally",
+    url: "https://ollama.ai/"
+  },
+  {
+    id: 9,
+    text: "Model Context Protocol (MCP) - Anthropic",
+    url: "https://modelcontextprotocol.io/"
+  }
+];
+---
+
+<BaseLayout
+  title="Technischer Stack für Level 3-7 | Sigloch Consulting"
+  description="Neo4j, TigerGraph, PuppyGraph, SHACL, Ollama, MCP: Der Open-Source-Stack für quantifizierbare Datenreife. I-Score/K-Score für messbare KG-Qualität."
+>
+  <Header />
+
+  <main>
+    <article class="article" data-testid="article-technik">
+      <header class="article-header">
+        <div class="container">
+          <a href="/mein-ansatz" class="back-link">← Mein Ansatz</a>
+          <h1>Technischer Stack</h1>
+          <p class="article-subtitle">
+            Open Source für Level 3-7: Graph, Regeln, Scores, Prediction
+          </p>
+        </div>
+      </header>
+
+      <div class="container article-content">
+        <section>
+          <h2>Leitprinzipien</h2>
+          <div class="principles-grid">
+            <div class="principle">
+              <h3>Open Source</h3>
+              <p>Keine Vendor-Abhängigkeit. Der Code gehört Ihnen.</p>
+            </div>
+            <div class="principle">
+              <h3>Lokal deploybar</h3>
+              <p>Daten verlassen Ihr Unternehmen nicht.</p>
+            </div>
+            <div class="principle">
+              <h3>Deterministisch</h3>
+              <p>Reproduzierbare Ergebnisse bei gleichen Eingaben.</p>
+            </div>
+            <div class="principle">
+              <h3>CO₂-optimiert</h3>
+              <p>Klassische Algos wo möglich, KI nur wo nötig.</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Stack nach Level</h2>
+
+          <div class="level-stack">
+            <div class="level-header-bar">Level 3: Ontologie + Graph</div>
+            <div class="component-card">
+              <h3>Neo4j Community Edition<sup>[1]</sup></h3>
+              <p class="component-type">Graph-Datenbank (Open Source)</p>
+              <p>
+                Speichert Daten und ihre Beziehungen als Graph. Ideal für
+                Requirements Traceability, Impact-Analysen und vernetzte Daten.
+              </p>
+              <ul>
+                <li>Native Graph-Speicherung mit Cypher Query Language</li>
+                <li>ACID-transaktional, horizontal skalierbar</li>
+                <li>Community Edition vollständig kostenlos</li>
+              </ul>
+              <p class="use-case">
+                <strong>Use Case:</strong> „Welche Requirements sind von Änderung X betroffen?"
+                – Graph-Traversierung in Millisekunden.
+              </p>
+            </div>
+
+            <div class="component-card">
+              <h3>PuppyGraph<sup>[2]</sup></h3>
+              <p class="component-type">Graph Query Layer (Alternative)</p>
+              <p>
+                Läuft direkt auf bestehenden Datenquellen (Parquet, Delta Lake, PostgreSQL).
+                Keine Datenmigration nötig.
+              </p>
+              <ul>
+                <li>Zero-ETL Graph Analytics</li>
+                <li>Sub-second Queries auf großen Datenmengen</li>
+                <li>Ideal für bestehende Data Lakes</li>
+              </ul>
+              <p class="use-case">
+                <strong>Use Case:</strong> Graph-Queries auf Data Lake ohne Daten zu kopieren
+                – ideal bei bestehender Snowflake/Databricks-Infrastruktur.
+              </p>
+            </div>
+          </div>
+
+          <div class="level-stack">
+            <div class="level-header-bar">Level 4: Logische Regeln</div>
+            <div class="component-card">
+              <h3>SHACL (Shapes Constraint Language)<sup>[3][4]</sup></h3>
+              <p class="component-type">Validierung (W3C Standard)</p>
+              <p>
+                Definiert Geschäftsregeln als ausführbare Constraints.
+                100% deterministisch – keine Black Box, keine Überraschungen.
+              </p>
+              <ul>
+                <li>W3C-Standard für RDF-Validierung</li>
+                <li>Deklarative Regelsprache, vollständig nachvollziehbar</li>
+                <li>Integration in CI/CD möglich</li>
+              </ul>
+              <p class="use-case">
+                <strong>Use Case:</strong> „Jedes Requirement muss einen Verantwortlichen haben"
+                – Validierung läuft automatisch bei jedem Commit.
+              </p>
+            </div>
+
+            <div class="component-card">
+              <h3>Datalog in Neo4j<sup>[1]</sup></h3>
+              <p class="component-type">Regelbasierte Inferenz</p>
+              <p>
+                Prolog-ähnliche Regeln direkt in der Graph-Datenbank.
+                90% des Wertes ohne KI – rein deterministisch.
+              </p>
+              <ul>
+                <li>Rekursive Abfragen für Pfadanalysen</li>
+                <li>Compliance-Checks (A-SPICE, ISO 26262, MDR)</li>
+                <li>Automatische Impact-Propagation</li>
+              </ul>
+              <p class="use-case">
+                <strong>Use Case:</strong> „Finde alle transitiven Abhängigkeiten von Komponente X"
+                – rekursive Traversierung mit vollständiger Traceability.
+              </p>
+            </div>
+          </div>
+
+          <div class="level-stack highlight">
+            <div class="level-header-bar">Level 5: Quantifizierbare Scores ★</div>
+            <div class="component-card">
+              <h3>I-Score / K-Score<sup>[5]</sup></h3>
+              <p class="component-type">Knowledge Graph Metriken (AAAI 2023)</p>
+              <p>
+                Informationstheoretische Messung der KG-Qualität.
+                Objektive Scores statt Bauchgefühl.
+              </p>
+              <ul>
+                <li><strong>I-Score:</strong> Informationsgehalt pro Knoten – wie viel Wissen steckt drin?</li>
+                <li><strong>K-Score:</strong> Konnektivität und Vollständigkeit – wie gut vernetzt?</li>
+                <li>Trend-Tracking über Zeit für kontinuierliche Verbesserung</li>
+              </ul>
+              <p class="use-case">
+                <strong>Use Case:</strong> „Unser Requirements-Graph hat I-Score 0.73 – letzten Monat 0.68"
+                – objektive Fortschrittsmessung für Management-Reports.
+              </p>
+            </div>
+
+            <div class="component-card">
+              <h3>TigerGraph Vector-Scoring<sup>[6]</sup></h3>
+              <p class="component-type">Hybrides Graph + Vector</p>
+              <p>
+                Vektoren als Attribute auf Graph-Knoten.
+                Kombiniert semantische Ähnlichkeit mit struktureller Analyse.
+              </p>
+              <ul>
+                <li>Vektoren direkt im Graph gespeichert – keine separate Vector DB nötig</li>
+                <li>Hybride Queries: Graph-Traversierung + Vektor-Suche in einer Anfrage</li>
+                <li>Architektur-Scoring, Risiko-Bewertung, Ähnlichkeitssuche</li>
+              </ul>
+              <p class="use-case">
+                <strong>Use Case:</strong> „Finde ähnliche Requirements (semantisch) die auch im selben Modul liegen (strukturell)"
+                – Hybrid-Queries in Millisekunden.
+              </p>
+            </div>
+          </div>
+
+          <div class="level-stack">
+            <div class="level-header-bar">Level 6-7: Prediction & Feedback</div>
+            <div class="component-card">
+              <h3>TigerGraph GNNs<sup>[6]</sup></h3>
+              <p class="component-type">Graph Neural Networks</p>
+              <p>
+                Prädiktive Analytics auf Graph-Strukturen.
+                Lieferengpässe, Risiko-Prognosen, Anomalie-Erkennung.
+              </p>
+              <ul>
+                <li>Native GNN-Integration in Graph-DB – kein separates ML-Framework nötig</li>
+                <li>Sub-second Queries auf großen Graphen (Millionen Knoten)</li>
+                <li>Time-Series + Graph kombiniert für prädiktive Insights</li>
+              </ul>
+              <p class="use-case">
+                <strong>Use Case:</strong> „Warnung: Lieferant X hat 73% Ausfallrisiko in 4 Wochen"
+                – GNN analysiert historische Muster + aktuelle Graph-Struktur.
+              </p>
+            </div>
+
+            <div class="component-card">
+              <h3>PowerDrill Agents<sup>[7]</sup></h3>
+              <p class="component-type">Self-Improving durch RLHF</p>
+              <p>
+                Agenten, die aus Nutzer-Feedback lernen.
+                Autonome Experimente für kontinuierliche Verbesserung.
+              </p>
+              <ul>
+                <li>RLHF (Reinforcement Learning from Human Feedback)</li>
+                <li>Autonome Hypothesen-Tests – Agent probiert Optimierungen selbst</li>
+                <li>Evaluation Suites für Qualitätssicherung bei jedem Update</li>
+              </ul>
+              <p class="use-case">
+                <strong>Use Case:</strong> „Agent hat selbstständig 15% bessere Klassifikation erreicht"
+                – durch autonomes Experimentieren mit Nutzer-Feedback.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>LLM-Integration (wo nötig)</h2>
+
+          <div class="component-card">
+            <h3>Ollama<sup>[8]</sup></h3>
+            <p class="component-type">Lokale LLMs (Open Source)</p>
+            <p>
+              Wenn KI benötigt wird: Lokale Modelle wie Llama 3.1 8B oder
+              Mistral 7B. Keine API-Kosten, Daten bleiben im Haus.
+            </p>
+            <ul>
+              <li>Llama 3.1, Mistral, Code Llama – aktuelle Open-Source-Modelle</li>
+              <li>Läuft auf Consumer-Hardware (M1/M2/M3 Mac, RTX 3060+)</li>
+              <li>Keine Internetverbindung nötig – 100% Air-Gapped möglich</li>
+            </ul>
+            <p class="use-case">
+              <strong>Use Case:</strong> Entwickler fragen Requirements in natürlicher Sprache ab
+              – LLM läuft lokal, Daten verlassen nie das Firmennetz.
+            </p>
+          </div>
+
+          <div class="component-card">
+            <h3>MCP Server<sup>[9]</sup></h3>
+            <p class="component-type">Model Context Protocol (Anthropic)</p>
+            <p>
+              Standardisiertes Protokoll für strukturierte KI-Interaktion.
+              Verbindet LLMs mit Unternehmensdaten über definierte Schnittstellen.
+            </p>
+            <ul>
+              <li>Tool-Integration: Graph-Abfragen, Validierung, Code-Ausführung</li>
+              <li>Kontextmanagement und Guardrails gegen Halluzinationen</li>
+              <li>Erweiterbar durch Plugins – eigene Tools einfach integrieren</li>
+            </ul>
+            <p class="use-case">
+              <strong>Use Case:</strong> LLM erhält strukturierten Zugriff auf Neo4j-Graph
+              – keine direkten Datenbankzugriffe, nur über definierte Tools.
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <h2>Kostenvergleich: Cloud vs. Lokal</h2>
+
+          <div class="cost-table-wrapper">
+            <table class="cost-table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Cloud API (pro Jahr)</th>
+                  <th>Lokal (einmalig)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Jahr 1</strong></td>
+                  <td>€1.800 - 18.000</td>
+                  <td>€2.000 - 5.000</td>
+                </tr>
+                <tr>
+                  <td><strong>Jahr 2+</strong></td>
+                  <td>€1.800 - 18.000</td>
+                  <td>~€500 (Wartung)</td>
+                </tr>
+                <tr class="highlight">
+                  <td><strong>3-Jahres-TCO</strong></td>
+                  <td>€5.400 - 54.000</td>
+                  <td>€3.000 - 6.000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="note">
+            <strong>Break-even:</strong> Typischerweise nach 6-12 Monaten.
+            Bei hohem Anfragevolumen noch schneller.
+          </p>
+        </section>
+
+        <section>
+          <h2>Warum nicht Cloud?</h2>
+          <p>
+            Cloud-Dienste haben ihre Berechtigung, aber für kritische
+            Unternehmensprozesse gibt es Nachteile:
+          </p>
+          <ul>
+            <li><strong>Laufende Kosten:</strong> API-Gebühren skalieren mit der Nutzung</li>
+            <li><strong>Datenschutz:</strong> Daten verlassen das Unternehmen</li>
+            <li><strong>Abhängigkeit:</strong> Preiserhöhungen und API-Änderungen außer Kontrolle</li>
+            <li><strong>Verfügbarkeit:</strong> Abhängigkeit von Internetverbindung und Provider-Uptime</li>
+          </ul>
+        </section>
+
+        <section class="cta-box">
+          <h2>Technische Fragen?</h2>
+          <p>
+            Lassen Sie uns über die passende Architektur für Ihre Anforderungen sprechen.
+          </p>
+          <a href="/kontakt" class="button button-primary">Gespräch vereinbaren</a>
+        </section>
+
+        <section class="sources">
+          <h2>Quellen</h2>
+          <ol>
+            {sources.map((source) => (
+              <li id={`source-${source.id}`}>
+                <a href={source.url} target="_blank" rel="noopener noreferrer">
+                  {source.text}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .article-header {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-50) 0%,
+      var(--color-background) 100%
+    );
+    padding: var(--space-16) 0;
+  }
+
+  .back-link {
+    display: inline-block;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-medium);
+    margin-bottom: var(--space-4);
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  .article-header h1 {
+    margin-bottom: var(--space-4);
+  }
+
+  .article-subtitle {
+    font-size: var(--text-xl);
+    color: var(--color-text-secondary);
+  }
+
+  .article-content {
+    max-width: 800px;
+    padding: var(--space-12) var(--container-padding);
+  }
+
+  .article-content section {
+    margin-bottom: var(--space-12);
+  }
+
+  .article-content h2 {
+    margin-bottom: var(--space-6);
+    margin-top: var(--space-8);
+  }
+
+  .article-content p {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-4);
+  }
+
+  .article-content ul {
+    margin-bottom: var(--space-6);
+    padding-left: var(--space-6);
+  }
+
+  .article-content li {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-2);
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-6);
+  }
+
+  .principle {
+    background: var(--color-background-alt);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    border-top: 4px solid var(--color-primary);
+  }
+
+  .principle h3 {
+    font-size: var(--text-lg);
+    color: var(--color-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .principle p {
+    font-size: var(--text-base);
+    margin: 0;
+  }
+
+  .component-card {
+    background: var(--color-background-alt);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+  }
+
+  .component-card h3 {
+    font-size: var(--text-xl);
+    color: var(--color-text);
+    margin-bottom: var(--space-1);
+  }
+
+  .component-type {
+    font-size: var(--text-sm) !important;
+    color: var(--color-primary) !important;
+    font-weight: var(--font-semibold);
+    margin-bottom: var(--space-4) !important;
+  }
+
+  .component-card ul {
+    margin-bottom: 0;
+  }
+
+  .component-card li {
+    font-size: var(--text-base);
+  }
+
+  .cost-table-wrapper {
+    overflow-x: auto;
+    margin: var(--space-8) 0;
+  }
+
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-background);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+
+  .cost-table th {
+    background: var(--color-primary);
+    color: var(--color-background);
+    padding: var(--space-4) var(--space-5);
+    text-align: left;
+    font-weight: var(--font-semibold);
+  }
+
+  .cost-table td {
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .cost-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .cost-table tr.highlight {
+    background: var(--color-primary-50);
+    font-weight: var(--font-semibold);
+  }
+
+  .note {
+    background: var(--color-primary-50);
+    padding: var(--space-4) var(--space-6);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .cta-box {
+    background: var(--color-primary-50);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    margin-top: var(--space-16);
+  }
+
+  .cta-box h2 {
+    margin-top: 0;
+  }
+
+  .cta-box p {
+    margin-bottom: var(--space-6);
+  }
+
+  /* Level Stack */
+  .level-stack {
+    margin-bottom: var(--space-8);
+  }
+
+  .level-stack.highlight {
+    background: var(--color-primary-50);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    margin-left: calc(-1 * var(--space-6));
+    margin-right: calc(-1 * var(--space-6));
+  }
+
+  .level-header-bar {
+    background: var(--color-primary);
+    color: var(--color-background);
+    padding: var(--space-3) var(--space-5);
+    border-radius: var(--radius-md);
+    font-weight: var(--font-semibold);
+    margin-bottom: var(--space-4);
+  }
+
+  @media (max-width: 768px) {
+    .principles-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .level-stack.highlight {
+      margin-left: calc(-1 * var(--space-4));
+      margin-right: calc(-1 * var(--space-4));
+      padding: var(--space-4);
+    }
+  }
+
+  .use-case {
+    font-size: var(--text-sm) !important;
+    background: var(--color-background);
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--color-primary);
+    margin-top: var(--space-3) !important;
+    margin-bottom: 0 !important;
+    font-style: italic;
+  }
+
+  /* Sources */
+  .sources {
+    margin-top: var(--space-12);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .sources h2 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-4);
+  }
+
+  .sources ol {
+    padding-left: var(--space-6);
+    margin: 0;
+  }
+
+  .sources li {
+    font-size: var(--text-sm) !important;
+    margin-bottom: var(--space-2);
+  }
+
+  .sources a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .sources a:hover {
+    text-decoration: underline;
+  }
+
+  sup {
+    font-size: var(--text-xs);
+    color: var(--color-primary);
+  }
+</style>

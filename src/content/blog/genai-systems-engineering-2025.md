@@ -6,6 +6,7 @@ author: 'Andreas Sigloch'
 image: '/images/1735827072875.jpeg'
 tags: ['KI', 'GenAI', 'Systems Engineering', 'Ausblick']
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## Rückblick und Ausblick

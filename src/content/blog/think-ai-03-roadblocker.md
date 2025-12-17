@@ -7,6 +7,7 @@ image: '/images/1745407248069.png'
 tags: ['Think AI', 'KI', 'GenAI', 'Enterprise', 'Sicherheit']
 series: 'Think AI'
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## Zwei Perspektiven

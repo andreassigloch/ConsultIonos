@@ -6,6 +6,7 @@ author: 'Andreas Sigloch'
 image: '/images/1761726624645.jpeg'
 tags: ['KI', 'Websites', 'Apps', 'Zukunft', 'SEO']
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## Die Frage

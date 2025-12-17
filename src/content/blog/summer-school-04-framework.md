@@ -7,6 +7,7 @@ image: '/images/1724594345666.png'
 tags: ['Summer School', 'KI', 'Systems Engineering', 'Framework']
 series: 'Summer School'
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## Die Erkenntnis

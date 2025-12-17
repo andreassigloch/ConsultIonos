@@ -19,6 +19,9 @@ const DIST_DIR = './dist';
 // Pages excluded from indexing (robots.txt Disallow or technical pages) - skip extended checks
 const EXCLUDED_PATHS = ['/admin/', '/version/', '/version.json', '/404.html'];
 
+// Links that are expected to be generated at deploy time, not build time
+const EXCLUDED_LINKS = ['/version.json'];
+
 interface PageInfo {
   file: string;
   title: string;
@@ -184,6 +187,7 @@ function checkBrokenLinks(htmlFiles: string[]): { brokenLinks: BrokenLink[]; mis
     // Check hrefs (links)
     for (const href of hrefs) {
       if (!isInternalLink(href)) continue;
+      if (EXCLUDED_LINKS.includes(href)) continue;
 
       const resolvedPath = resolveInternalPath(href, file);
 

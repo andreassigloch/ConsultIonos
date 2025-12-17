@@ -6,6 +6,7 @@ author: 'Andreas Sigloch'
 image: '/images/1754645450552.jpeg'
 tags: ['KI', 'Prompt Engineering', 'Requirements Engineering', 'INCOSE', 'Systems Engineering']
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## Die Frage

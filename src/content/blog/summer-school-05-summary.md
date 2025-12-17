@@ -7,6 +7,7 @@ image: '/images/1725113264207.jpeg'
 tags: ['Summer School', 'KI', 'Systems Engineering', 'Sysli']
 series: 'Summer School'
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## Das Feedback

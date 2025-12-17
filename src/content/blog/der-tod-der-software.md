@@ -5,6 +5,7 @@ pubDate: 2024-11-15
 author: 'Andreas Sigloch'
 tags: ['KI', 'GenAI', 'Software', 'Disruption', 'Zukunft']
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## Der Auslöser

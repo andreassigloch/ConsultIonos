@@ -7,6 +7,7 @@ image: '/images/1747387002586.jpeg'
 tags: ['Think AI', 'KI', 'Requirements Engineering', 'GenAI', 'Systems Engineering']
 series: 'Think AI'
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## Die These

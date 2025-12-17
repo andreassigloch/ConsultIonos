@@ -7,6 +7,7 @@ image: '/images/1723914416709.jpeg'
 tags: ['Summer School', 'KI', 'Use Cases', 'Requirements Engineering']
 series: 'Summer School'
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## Das Experiment

@@ -1,0 +1,613 @@
+---
+/**
+ * Hintergrund: Ausblick (Level 6-13)
+ * @author andreas@siglochconsulting.de
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const sources = [
+  {
+    id: 1,
+    text: "TigerGraph: Unleashing AI's Potential with Graph Databases",
+    url: "https://www.tigergraph.com/blog/unleashing-ais-potential-why-graph-databases-are-the-secret-weapon/"
+  },
+  {
+    id: 2,
+    text: "PowerDrill: Self-Improving Data Agents",
+    url: "https://powerdrill.ai/blog/self-improving-data-agents"
+  },
+  {
+    id: 3,
+    text: "FedR: Federated Learning on Knowledge Graphs (ACL 2022)",
+    url: "https://aclanthology.org/2022.findings-emnlp.43/"
+  },
+  {
+    id: 4,
+    text: "Blockchain Ontology Taxonomies (WSEAS 2023)",
+    url: "https://wseas.com/journals/cr/2023/a085118-002(2023).pdf"
+  },
+  {
+    id: 5,
+    text: "AgentaNet: Trustless Agent Swarms (OpenReview)",
+    url: "https://openreview.net/forum?id=uQsxYDKmoQ"
+  },
+  {
+    id: 6,
+    text: "NVIDIA Cosmos World Foundation Models (arXiv 2025)",
+    url: "https://arxiv.org/html/2501.03575v3"
+  },
+  {
+    id: 7,
+    text: "High-AGI Ontologies: Conceptual Taxonomy (arXiv 2025)",
+    url: "https://arxiv.org/pdf/2510.12809.pdf"
+  }
+];
+
+const advancedLevels = [
+  {
+    level: 6,
+    name: "Data Prediction",
+    businessValue: "85-90%",
+    aiOps: "20%",
+    description: "Proaktive Warnungen, Lieferengpässe, Risiko-Prognosen",
+    techStack: "Time-Series + Graph (80%) + LLM (20%)",
+    solutions: "TigerGraph GNNs, PuppyGraph Analytics",
+    sourceRef: 1,
+    example: "Automotive: 3 Wochen vor Engpass warnen statt reagieren"
+  },
+  {
+    level: 7,
+    name: "Lernen aus Feedback",
+    businessValue: "90-95%",
+    aiOps: "40%",
+    description: "Anforderungs-Extraktion, kontinuierliche Verbesserung",
+    techStack: "RLHF (60%) + Rule-Learning (40%)",
+    solutions: "PowerDrill Self-Improving Agents",
+    sourceRef: 2,
+    example: "Agenten lernen aus Nutzer-Korrekturen automatisch"
+  },
+  {
+    level: 8,
+    name: "Selbstoptimierung",
+    businessValue: "95-97%",
+    aiOps: "50%",
+    description: "Graph-Fix, automatische Regelanpassung",
+    techStack: "Reflexions-Agent (LLM 70%) + Auto-Rule",
+    solutions: "AlphaZero-Style Agents, Gödel Agent",
+    sourceRef: 2,
+    example: "System erkennt und behebt eigene Fehler autonom"
+  },
+  {
+    level: 9,
+    name: "Föderiertes Lernen",
+    businessValue: "97-98%",
+    aiOps: "30%",
+    description: "Cross-Supplier-Modelle, Privacy-preserving",
+    techStack: "Federated Algos (80%) + LLM-Meta (20%)",
+    solutions: "FedR (KG-Federated Learning)",
+    sourceRef: 3,
+    example: "Tier-1-Supplier lernen gemeinsam ohne Daten zu teilen"
+  },
+  {
+    level: 10,
+    name: "Ontologie-Konsens",
+    businessValue: "98-99%",
+    aiOps: "20%",
+    description: "Spezifikations-Voting, dezentrale Taxonomien",
+    techStack: "Blockchain/ZKP (90%) + LLM (10%)",
+    solutions: "Blockchain Ontology Taxonomies (Aptos PoS)",
+    sourceRef: 4,
+    example: "Branchen-weite Taxonomie per Konsens-Mechanismus"
+  },
+  {
+    level: 11,
+    name: "Trustless Kollaboration",
+    businessValue: "99%",
+    aiOps: "30%",
+    description: "Agent-Verhandlungen ohne zentrale Autorität",
+    techStack: "Smart Contracts (70%) + LLM-Dialog (30%)",
+    solutions: "AgentaNet (Trustless Agent Swarms)",
+    sourceRef: 5,
+    example: "Agenten verhandeln Preise/Kapazitäten autonom"
+  },
+  {
+    level: 12,
+    name: "World Model Federation",
+    businessValue: "99.5%",
+    aiOps: "40%",
+    description: "Branchen-Ontologie, simulierte Welten",
+    techStack: "Distributed Graph (85%) + LLM-Fusion (15%)",
+    solutions: "Cosmos World Foundation Models",
+    sourceRef: 6,
+    example: "Physik-Simulation für Robotik, autonomes Fahren"
+  },
+  {
+    level: 13,
+    name: "Domänen-Souveränität",
+    businessValue: "100%+",
+    aiOps: "50%",
+    description: "Emergente Systeme, AGI-Supply-Chain",
+    techStack: "Emergente Hybride (LLM 20-40%)",
+    solutions: "High-AGI Ontologies (Forschung)",
+    sourceRef: 7,
+    example: "Vollständig autonome Lieferketten-Steuerung"
+  }
+];
+---
+
+<BaseLayout
+  title="Ausblick Level 6-13: Lernende Systeme & darüber hinaus | Sigloch Consulting"
+  description="Von Data Prediction bis World Model Federation: Was nach dem Fundament kommt. GNNs, Federated Learning, Blockchain-Konsens und die Zukunft der Datenreife."
+>
+  <Header />
+
+  <main>
+    <article class="article" data-testid="article-ausblick">
+      <header class="article-header">
+        <div class="container">
+          <a href="/mein-ansatz" class="back-link">← Mein Ansatz</a>
+          <h1>Ausblick</h1>
+          <p class="article-subtitle">
+            Level 6-13: Lernende Systeme und darüber hinaus
+          </p>
+        </div>
+      </header>
+
+      <div class="container article-content">
+        <section>
+          <h2>Jenseits des Fundaments</h2>
+          <p>
+            Mit Level 5 (Quantifizierbare Scores) ist das Fundament gelegt: 70-80% Business Value
+            durch Struktur und Regeln. Ab hier beginnt das Terrain, in dem KI operativ
+            relevant wird – aber auf Basis der geschaffenen Struktur.
+          </p>
+          <p>
+            Die folgenden Level sind keine Zukunftsmusik. Für jeden existieren
+            bereits konkrete Tools und Forschung (Stand 2025).
+          </p>
+        </section>
+
+        <section>
+          <h2>Die erweiterte Leiter</h2>
+          <div class="advanced-levels">
+            {advancedLevels.map((level) => (
+              <div class="level-card" data-testid={`level-${level.level}`}>
+                <div class="level-header">
+                  <span class="level-number">{level.level}</span>
+                  <div class="level-title">
+                    <h3>{level.name}<sup>[{level.sourceRef}]</sup></h3>
+                    <div class="level-stats">
+                      <span class="stat value">{level.businessValue} Value</span>
+                      <span class="stat ai">{level.aiOps} KI</span>
+                    </div>
+                  </div>
+                </div>
+                <p class="level-description">{level.description}</p>
+                <p class="level-example">{level.example}</p>
+                <div class="level-tech">
+                  <div class="tech-row">
+                    <span class="tech-label">Stack:</span>
+                    <span class="tech-value">{level.techStack}</span>
+                  </div>
+                  <div class="tech-row">
+                    <span class="tech-label">Lösungen:</span>
+                    <span class="tech-value solutions">{level.solutions}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2>Drei Phasen des Fortschritts</h2>
+
+          <div class="phase-box">
+            <h3>Phase 1: Prediction (Level 6-7)</h3>
+            <p>
+              <strong>Was passiert:</strong> Das System lernt aus Daten und Feedback.
+              Nicht mehr nur reaktiv, sondern proaktiv.
+            </p>
+            <ul>
+              <li>
+                <strong>TigerGraph GNNs:</strong> Graph Neural Networks für prädiktive Analytics.
+                Sub-second Queries auf großen Graphen. Time-Series + Graph kombiniert.<sup>[1]</sup>
+              </li>
+              <li>
+                <strong>PowerDrill Agents:</strong> Self-Improving durch RLHF.
+                Autonome Experimente, Evaluation Suites für Qualitätssicherung.<sup>[2]</sup>
+              </li>
+            </ul>
+            <p class="phase-note">
+              <strong>Praxisreif für:</strong> Lieferketten-Optimierung, Risiko-Früherkennung, Anforderungs-Extraktion
+            </p>
+          </div>
+
+          <div class="phase-box">
+            <h3>Phase 2: Federation (Level 8-10)</h3>
+            <p>
+              <strong>Was passiert:</strong> Systeme lernen übergreifend – ohne Daten zu teilen.
+              Dezentrale Konsensbildung über Ontologien.
+            </p>
+            <ul>
+              <li>
+                <strong>FedR:</strong> Privacy-preserving Federated Learning auf Knowledge Graphs.
+                58 Zitationen. Daten bleiben lokal, nur Gradienten werden geteilt.<sup>[3]</sup>
+              </li>
+              <li>
+                <strong>Blockchain-Ontologien:</strong> Aptos PoS für dezentrale Taxonomie-Abstimmung.
+                Unveränderliche, nachvollziehbare Konsenshistorie.<sup>[4]</sup>
+              </li>
+            </ul>
+            <p class="phase-note">
+              <strong>Relevant für:</strong> Cross-Company Collaboration, Branchen-Standards, Regulatory Compliance
+            </p>
+          </div>
+
+          <div class="phase-box">
+            <h3>Phase 3: Emergence (Level 11-13)</h3>
+            <p>
+              <strong>Was passiert:</strong> Agenten verhandeln autonom. Weltmodelle simulieren
+              komplexe Systeme. Emergente Eigenschaften entstehen.
+            </p>
+            <ul>
+              <li>
+                <strong>AgentaNet:</strong> Trustless Agent Swarms für dezentrale Ökonomien.
+                Smart Contracts orchestrieren Multi-Agent-Verhandlungen.<sup>[5]</sup>
+              </li>
+              <li>
+                <strong>Cosmos WFMs:</strong> NVIDIA World Foundation Models für physische AI-Simulation.
+                Trainiert auf massiven Video-Datensätzen für physikalisch korrekte Prognosen.<sup>[6]</sup>
+              </li>
+            </ul>
+            <p class="phase-note">
+              <strong>Forschungsstand:</strong> Aktiv in Entwicklung bei Google, NVIDIA, akademischen Instituten
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <h2>Der rote Faden: KI-Anteil</h2>
+          <p>
+            Bemerkenswert: Selbst auf Level 13 bleibt der KI-Anteil bei 20-50%.
+            Der Großteil der Arbeit wird von klassischen Algorithmen erledigt:
+            Graph-Traversierung, Constraint-Solving, kryptographische Verifikation.
+          </p>
+          <p>
+            <strong>Die Lektion:</strong> KI ist Beschleuniger, nicht Ersatz.
+            Je weiter man auf der Leiter steigt, desto wichtiger wird die Grundstruktur.
+          </p>
+        </section>
+
+        <section>
+          <h2>Wo stehen Sie?</h2>
+          <p>
+            Die meisten Unternehmen befinden sich zwischen Level 1 und 3.
+            Der Sprung auf Level 5 bringt bereits 70-80% des möglichen Werts.
+            Alles darüber hinaus ist Optimierung – lohnend, aber nicht zwingend.
+          </p>
+          <p>
+            <strong>Empfehlung:</strong> Erst das Fundament (Level 5), dann den Ausblick.
+          </p>
+        </section>
+
+        <section class="cta-box">
+          <h2>Fundament zuerst</h2>
+          <p>
+            Lassen Sie uns klären, wo Sie auf der Leiter stehen –
+            und welcher nächste Schritt den größten Hebel hat.
+          </p>
+          <a href="/kontakt" class="button button-primary">Gespräch vereinbaren</a>
+        </section>
+
+        <section class="sources">
+          <h2>Quellen</h2>
+          <ol>
+            {sources.map((source) => (
+              <li id={`source-${source.id}`}>
+                <a href={source.url} target="_blank" rel="noopener noreferrer">
+                  {source.text}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .article-header {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-50) 0%,
+      var(--color-background) 100%
+    );
+    padding: var(--space-16) 0;
+  }
+
+  .back-link {
+    display: inline-block;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-medium);
+    margin-bottom: var(--space-4);
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  .article-header h1 {
+    margin-bottom: var(--space-4);
+  }
+
+  .article-subtitle {
+    font-size: var(--text-xl);
+    color: var(--color-text-secondary);
+  }
+
+  .article-content {
+    max-width: 850px;
+    padding: var(--space-12) var(--container-padding);
+  }
+
+  .article-content section {
+    margin-bottom: var(--space-12);
+  }
+
+  .article-content h2 {
+    margin-bottom: var(--space-6);
+    margin-top: var(--space-8);
+  }
+
+  .article-content h3 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  .article-content p {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-4);
+  }
+
+  .article-content ul {
+    margin-bottom: var(--space-6);
+    padding-left: var(--space-6);
+  }
+
+  .article-content li {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-3);
+  }
+
+  /* Advanced Levels */
+  .advanced-levels {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  .level-card {
+    background: var(--color-background-alt);
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .level-header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    margin-bottom: var(--space-3);
+  }
+
+  .level-number {
+    width: 36px;
+    height: 36px;
+    background: var(--color-primary);
+    color: var(--color-background);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-bold);
+    font-size: var(--text-sm);
+    flex-shrink: 0;
+  }
+
+  .level-title {
+    flex-grow: 1;
+  }
+
+  .level-title h3 {
+    font-size: var(--text-lg);
+    margin: 0 0 var(--space-2) 0;
+  }
+
+  .level-stats {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .level-stats .stat {
+    font-size: var(--text-xs);
+    font-weight: var(--font-semibold);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+  }
+
+  .stat.value {
+    background: var(--color-success-bg);
+    color: var(--color-success-text);
+  }
+
+  .stat.ai {
+    background: var(--color-info-bg);
+    color: var(--color-info-text);
+  }
+
+  .level-description {
+    font-size: var(--text-base) !important;
+    margin-bottom: var(--space-3) !important;
+  }
+
+  .level-tech {
+    background: var(--color-background);
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+  }
+
+  .tech-row {
+    display: flex;
+    gap: var(--space-2);
+    margin-bottom: var(--space-1);
+  }
+
+  .tech-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .tech-label {
+    color: var(--color-text-light);
+    font-weight: var(--font-medium);
+    min-width: 70px;
+  }
+
+  .tech-value {
+    color: var(--color-text-secondary);
+  }
+
+  .tech-value.solutions {
+    color: var(--color-primary);
+    font-weight: var(--font-medium);
+  }
+
+  /* Phase Boxes */
+  .phase-box {
+    background: var(--color-background-alt);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+  }
+
+  .phase-box h3 {
+    color: var(--color-primary);
+    margin-top: 0;
+    margin-bottom: var(--space-4);
+  }
+
+  .phase-box ul {
+    margin-bottom: var(--space-4);
+  }
+
+  .phase-box li {
+    font-size: var(--text-base);
+  }
+
+  .phase-note {
+    font-size: var(--text-sm) !important;
+    background: var(--color-primary-50);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    margin-bottom: 0 !important;
+  }
+
+  /* CTA Box */
+  .cta-box {
+    background: var(--color-primary-50);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    margin-top: var(--space-16);
+  }
+
+  .cta-box h2 {
+    margin-top: 0;
+  }
+
+  .cta-box p {
+    margin-bottom: var(--space-6);
+  }
+
+  @media (max-width: 768px) {
+    .level-header {
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .level-number {
+      width: 32px;
+      height: 32px;
+    }
+
+    .tech-row {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .tech-label {
+      min-width: auto;
+    }
+  }
+
+  .level-example {
+    font-size: var(--text-sm) !important;
+    font-style: italic;
+    color: var(--color-text-light) !important;
+    background: var(--color-background);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-3) !important;
+  }
+
+  /* Sources */
+  .sources {
+    margin-top: var(--space-12);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .sources h2 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-4);
+  }
+
+  .sources ol {
+    padding-left: var(--space-6);
+    margin: 0;
+  }
+
+  .sources li {
+    font-size: var(--text-sm) !important;
+    margin-bottom: var(--space-2);
+  }
+
+  .sources a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .sources a:hover {
+    text-decoration: underline;
+  }
+
+  sup {
+    font-size: var(--text-xs);
+    color: var(--color-primary);
+  }
+</style>

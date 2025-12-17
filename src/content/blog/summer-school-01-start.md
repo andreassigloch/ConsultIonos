@@ -7,6 +7,7 @@ image: '/images/1720096908080.jpeg'
 tags: ['Summer School', 'KI', 'Systems Engineering', 'Ontology']
 series: 'Summer School'
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## My Summer School

@@ -5,6 +5,7 @@ pubDate: 2025-01-15
 author: 'Andreas Sigloch'
 tags: ['GenAI', 'Systems Engineering', 'AI', 'ReConf']
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## Einleitung

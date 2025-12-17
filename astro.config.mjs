@@ -21,8 +21,8 @@ export default defineConfig({
         if (item.url.includes('/beratungsleistungen')) {
           item.priority = 0.9;
         }
-        // Blog
-        if (item.url.includes('/wissenswertes') || item.url.includes('/blog/')) {
+        // Blog/Publikationen
+        if (item.url.includes('/publikationen') || item.url.includes('/blog/')) {
           item.priority = 0.7;
           item.changefreq = 'monthly';
         }

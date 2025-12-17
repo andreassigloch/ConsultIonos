@@ -38,9 +38,11 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.56.1",
+    "@types/glob": "^8.1.0",
     "@types/node": "^24.10.0",
     "@vitest/coverage-v8": "^4.0.8",
     "dotenv": "^17.2.3",
+    "glob": "^13.0.0",
     "gray-matter": "^4.0.3",
     "jsdom": "^27.1.0",
     "lightningcss": "^1.30.2",

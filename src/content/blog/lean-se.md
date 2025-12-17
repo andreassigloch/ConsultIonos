@@ -5,6 +5,7 @@ pubDate: 2024-12-15
 author: 'Andreas Sigloch'
 tags: ['Lean SE', 'Systems Engineering', 'Efficiency', 'Process Optimization']
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## Das Problem

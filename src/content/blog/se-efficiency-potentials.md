@@ -5,6 +5,7 @@ pubDate: 2024-11-20
 author: 'Andreas Sigloch'
 tags: ['Efficiency', 'Systems Engineering', 'Process Optimization', 'Value Stream']
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## Wo liegt Verschwendung im SE-Prozess?

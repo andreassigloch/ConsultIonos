@@ -7,6 +7,7 @@ image: '/images/1748171763292.png'
 tags: ['Vibe Coding', 'KI', 'Software Development', 'Prompt Engineering']
 series: 'Vibe Coding'
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## Was ist Vibe Coding?

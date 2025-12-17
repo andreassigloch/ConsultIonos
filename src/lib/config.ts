@@ -31,7 +31,7 @@ export const siteConfig = {
 
   // Social Media
   social: {
-    linkedin: 'https://www.linkedin.com/in/andreas-sigloch/',
+    linkedin: 'https://www.linkedin.com/in/andreas-sigloch-consulting',
     xing: 'https://www.xing.com/profile/Andreas_Sigloch/',
   },
 
@@ -150,7 +150,7 @@ export const siteConfig = {
 
   // Calendly Configuration
   calendly: {
-    url: 'https://calendly.com/siglochconsulting/erstgespraech',
+    url: 'https://calendly.com/andreas-euyz/30min',
     buttonText: 'Termin vereinbaren',
   },
 

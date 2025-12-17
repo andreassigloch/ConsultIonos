@@ -7,6 +7,7 @@ image: '/images/1743172292631.jpeg'
 tags: ['Think AI', 'KI', 'Vibe Coding', 'Claude Code', 'Erfahrungsbericht']
 series: 'Think AI'
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## Nach einem Jahr Vibe-Coding

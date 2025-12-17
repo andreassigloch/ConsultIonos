@@ -1,0 +1,653 @@
+---
+/**
+ * Hintergrund: Markt & Trends
+ * @author andreas@siglochconsulting.de
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const marketPlayers = [
+  {
+    name: "Google",
+    level: "9-10",
+    focus: "Plattform & Consumer AI",
+    valuation: "~$2T Marktkapitalisierung",
+    strengths: [
+      "Massive Data-Pipelines, Knowledge Graph (seit 2012)",
+      "Federated Learning (GBoard auf 2+ Mrd. Devices)",
+      "AutoML, RL in Ads/YouTube – kontinuierliche Optimierung",
+      "Extrem ausgereifte Data Prediction für Search, Maps, Cloud"
+    ],
+    positioning: "Global skalierte, föderierte KI-Ökosysteme",
+    mittelstandRelevanz: "Nicht direkt übertragbar, aber inspirierend für Federated-Learning-Ansätze in Branchen-Konsortien."
+  },
+  {
+    name: "Palantir",
+    level: "3-7",
+    focus: "Enterprise & Regulated",
+    valuation: "~$50 Mrd. Bewertung (2025)",
+    strengths: [
+      "Ontology-Driven AI (Foundry/Gotham/AIP) – Level 3-5",
+      "Quantifizierbare Scores, Szenario-Simulation – Level 5-6",
+      "LLM nur als Interface auf strukturierten Daten – 20-40% KI",
+      "Defense, Healthcare, Automotive – regulierte Branchen"
+    ],
+    positioning: "Blaupause für domänenspezifische Enterprise-Setups",
+    mittelstandRelevanz: "Direkt übertragbar mit Open-Source-Stack (Neo4j, SHACL, Ollama) statt Palantir-Lizenz (~$1M+/Jahr)."
+  }
+];
+
+const maturityStudies = [
+  {
+    source: "McKinsey State of AI 2025",
+    finding: "70% der AI-Projekte scheitern an Datenqualität, nicht an Algorithmen",
+    url: "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai",
+    detail: "Global Survey mit 1.400+ Führungskräften. Wichtigster Erfolgsfaktor: Dateninfrastruktur."
+  },
+  {
+    source: "IMD AI Maturity Index 2025",
+    finding: "Top-Performer fokussieren auf Dateninfrastruktur vor KI-Modellen",
+    url: "https://www.imd.org/ibyimd/white-papers/ai-strategies-that-are-working/",
+    detail: "Unternehmen mit hoher Datenreife haben 2,3x höheren AI-ROI."
+  },
+  {
+    source: "TDWI Data Insights",
+    finding: "Strukturierte Daten liefern 3x höheren ROI als unstrukturierte AI-Ansätze",
+    url: "https://tdwi.org/blogs/data-101/2025/09/structured-vs-unstructured-data.aspx",
+    detail: "Analyse von 500+ Enterprise-Projekten zeigt klaren Struktur-Vorteil."
+  }
+];
+
+const sources = [
+  {
+    id: 1,
+    text: "McKinsey State of AI 2025",
+    url: "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai"
+  },
+  {
+    id: 2,
+    text: "IMD AI Maturity Index 2025",
+    url: "https://www.imd.org/ibyimd/white-papers/ai-strategies-that-are-working/"
+  },
+  {
+    id: 3,
+    text: "TDWI: Structured vs. Unstructured Data",
+    url: "https://tdwi.org/blogs/data-101/2025/09/structured-vs-unstructured-data.aspx"
+  },
+  {
+    id: 4,
+    text: "Palantir AIP Documentation",
+    url: "https://www.palantir.com/docs/foundry/aip/overview"
+  },
+  {
+    id: 5,
+    text: "Palantir vs Google: Which AI Company is Better? (2025)",
+    url: "https://www.sectorhq.co/compare/palantir-vs-google"
+  }
+];
+---
+
+<BaseLayout
+  title="Markt & Trends - Wo stehen Google, Palantir & Co? | Sigloch Consulting"
+  description="Google Level 9-10, Palantir Level 3-7: Wie Enterprise-Player die Datenreife-Leiter nutzen. McKinsey, IMD Studien zur AI Maturity 2025."
+>
+  <Header />
+
+  <main>
+    <article class="article" data-testid="article-markt-trends">
+      <header class="article-header">
+        <div class="container">
+          <a href="/mein-ansatz" class="back-link">← Mein Ansatz</a>
+          <h1>Markt & Trends</h1>
+          <p class="article-subtitle">
+            Wo stehen Google, Palantir & Co auf der Datenreife-Leiter?
+          </p>
+        </div>
+      </header>
+
+      <div class="container article-content">
+        <section>
+          <h2>Die Realität hinter dem AI-Hype</h2>
+          <p>
+            Der AI-Markt 2025 zeigt ein klares Muster: Die erfolgreichsten Unternehmen
+            investieren nicht primär in KI-Modelle, sondern in Datenstruktur.
+            McKinsey, IMD und TDWI bestätigen: <strong>Struktur vor KI ist kein
+            Consulting-Mantra, sondern empirisch belegt.</strong>
+          </p>
+        </section>
+
+        <section>
+          <h2>Was die Studien zeigen</h2>
+          <div class="studies-grid">
+            {maturityStudies.map((study) => (
+              <div class="study-card">
+                <h3>
+                  <a href={study.url} target="_blank" rel="noopener noreferrer">
+                    {study.source}
+                  </a>
+                </h3>
+                <p class="study-finding">„{study.finding}"</p>
+                <p class="study-detail">{study.detail}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2>Enterprise-Player auf der Leiter</h2>
+          <div class="players-grid">
+            {marketPlayers.map((player) => (
+              <div class="player-card" data-testid={`player-${player.name.toLowerCase()}`}>
+                <div class="player-header">
+                  <h3>{player.name}</h3>
+                  <span class="player-level">Level {player.level}</span>
+                </div>
+                <p class="player-valuation">{player.valuation}</p>
+                <p class="player-focus">{player.focus}</p>
+                <ul class="player-strengths">
+                  {player.strengths.map((strength) => (
+                    <li>{strength}</li>
+                  ))}
+                </ul>
+                <p class="player-positioning">
+                  <strong>Positionierung:</strong> {player.positioning}
+                </p>
+                <p class="player-mittelstand">
+                  <strong>Für Mittelstand:</strong> {player.mittelstandRelevanz}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2>Was das für Sie bedeutet</h2>
+
+          <div class="insight-box">
+            <h3>Google-Modell (Level 9-10)</h3>
+            <p>
+              Für Unternehmen mit massiven Datenmengen und Consumer-Fokus.
+              Erfordert enorme Infrastruktur-Investitionen und globale Skalierung.
+            </p>
+            <p class="insight-verdict">
+              <strong>Für Mittelstand:</strong> Nicht direkt übertragbar, aber inspirierend
+              für Federated-Learning-Ansätze in Branchen-Konsortien.
+            </p>
+          </div>
+
+          <div class="insight-box highlight">
+            <h3>Palantir-Modell (Level 3-7)</h3>
+            <p>
+              Für domänenspezifische, regulierte Umgebungen.
+              Ontologie + Rules + LLM-Interface. Genau der Ansatz, den ich empfehle.
+            </p>
+            <p class="insight-verdict">
+              <strong>Für Mittelstand:</strong> Direkt übertragbar mit Open-Source-Stack
+              (Neo4j, SHACL, Ollama) statt Palantir-Lizenz.
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <h2>Der Mittelstands-Vorteil</h2>
+          <p>
+            Während Großkonzerne auf teure Plattformen setzen (Palantir: ~$1M+/Jahr),
+            können mittelständische Unternehmen dieselben Prinzipien mit Open-Source
+            umsetzen:
+          </p>
+          <div class="comparison-table-wrapper">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Aspekt</th>
+                  <th>Enterprise-Plattform</th>
+                  <th>Open-Source-Stack</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Graph-Datenbank</td>
+                  <td>Palantir Ontology</td>
+                  <td>Neo4j Community</td>
+                </tr>
+                <tr>
+                  <td>Regeln/Validierung</td>
+                  <td>AIP Logic</td>
+                  <td>SHACL / Datalog</td>
+                </tr>
+                <tr>
+                  <td>LLM-Interface</td>
+                  <td>AIP Assist</td>
+                  <td>Ollama + MCP</td>
+                </tr>
+                <tr>
+                  <td>Kosten Jahr 1</td>
+                  <td>$1M+</td>
+                  <td>€20-50k</td>
+                </tr>
+                <tr>
+                  <td>Kosten Jahr 2+</td>
+                  <td>$1M+</td>
+                  <td>~€5k Wartung</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h2>Trend-Prognose 2025-2027</h2>
+          <div class="trends-list">
+            <div class="trend">
+              <span class="trend-marker">1</span>
+              <div class="trend-content">
+                <h3>Ontologie wird Standard</h3>
+                <p>
+                  Enterprise-Software integriert Graph-basierte Datenmodelle.
+                  SAP, Salesforce, Microsoft investieren massiv in Knowledge Graphs.
+                </p>
+              </div>
+            </div>
+            <div class="trend">
+              <span class="trend-marker">2</span>
+              <div class="trend-content">
+                <h3>LLM-Kosten sinken, Struktur-ROI steigt</h3>
+                <p>
+                  Sinkende LLM-Preise machen KI zugänglicher – aber erhöhen den
+                  relativen Wert strukturierter Daten als Differenzierungsmerkmal.
+                </p>
+              </div>
+            </div>
+            <div class="trend">
+              <span class="trend-marker">3</span>
+              <div class="trend-content">
+                <h3>Regulation erzwingt Traceability</h3>
+                <p>
+                  EU AI Act, MDR, ISO 26262: Nachvollziehbarkeit wird Pflicht.
+                  Black-Box-KI ohne strukturierte Basis wird regulatorisch riskant.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cta-box">
+          <h2>Ihre Position im Markt?</h2>
+          <p>
+            Lassen Sie uns klären, wo Sie relativ zum Markt stehen –
+            und welche Schritte den größten Wettbewerbsvorteil bringen.
+          </p>
+          <a href="/kontakt" class="button button-primary">Gespräch vereinbaren</a>
+        </section>
+
+        <section class="sources">
+          <h2>Quellen</h2>
+          <ol>
+            {sources.map((source) => (
+              <li id={`source-${source.id}`}>
+                <a href={source.url} target="_blank" rel="noopener noreferrer">
+                  {source.text}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .article-header {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-50) 0%,
+      var(--color-background) 100%
+    );
+    padding: var(--space-16) 0;
+  }
+
+  .back-link {
+    display: inline-block;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-medium);
+    margin-bottom: var(--space-4);
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  .article-header h1 {
+    margin-bottom: var(--space-4);
+  }
+
+  .article-subtitle {
+    font-size: var(--text-xl);
+    color: var(--color-text-secondary);
+  }
+
+  .article-content {
+    max-width: 850px;
+    padding: var(--space-12) var(--container-padding);
+  }
+
+  .article-content section {
+    margin-bottom: var(--space-12);
+  }
+
+  .article-content h2 {
+    margin-bottom: var(--space-6);
+    margin-top: var(--space-8);
+  }
+
+  .article-content h3 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  .article-content p {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-4);
+  }
+
+  .article-content ul {
+    margin-bottom: var(--space-6);
+    padding-left: var(--space-6);
+  }
+
+  .article-content li {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-2);
+  }
+
+  /* Studies Grid */
+  .studies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  .study-card {
+    background: var(--color-background-alt);
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    border-top: 4px solid var(--color-primary);
+  }
+
+  .study-card h3 {
+    font-size: var(--text-base);
+    color: var(--color-primary);
+    margin: 0 0 var(--space-3) 0;
+  }
+
+  .study-finding {
+    font-size: var(--text-base) !important;
+    font-style: italic;
+    margin-bottom: var(--space-3) !important;
+  }
+
+  .study-link {
+    font-size: var(--text-sm);
+    color: var(--color-text-light);
+  }
+
+  /* Players Grid */
+  .players-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-6);
+  }
+
+  .player-card {
+    background: var(--color-background-alt);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-3);
+  }
+
+  .player-header h3 {
+    font-size: var(--text-2xl);
+    margin: 0;
+  }
+
+  .player-level {
+    background: var(--color-primary);
+    color: var(--color-background);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-pill);
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+  }
+
+  .player-focus {
+    font-size: var(--text-base) !important;
+    color: var(--color-primary) !important;
+    font-weight: var(--font-medium);
+    margin-bottom: var(--space-4) !important;
+  }
+
+  .player-strengths {
+    margin-bottom: var(--space-4);
+  }
+
+  .player-positioning {
+    font-size: var(--text-sm) !important;
+    background: var(--color-background);
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    margin-bottom: 0 !important;
+  }
+
+  /* Insight Boxes */
+  .insight-box {
+    background: var(--color-background-alt);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-4);
+  }
+
+  .insight-box.highlight {
+    background: var(--color-primary-50);
+    border: 2px solid var(--color-primary);
+  }
+
+  .insight-box h3 {
+    margin-top: 0;
+    color: var(--color-primary);
+  }
+
+  .insight-verdict {
+    font-size: var(--text-base) !important;
+    background: var(--color-background);
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    margin-bottom: 0 !important;
+  }
+
+  /* Comparison Table */
+  .comparison-table-wrapper {
+    overflow-x: auto;
+    margin: var(--space-6) 0;
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-background);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+
+  .comparison-table th {
+    background: var(--color-primary);
+    color: var(--color-background);
+    padding: var(--space-4) var(--space-5);
+    text-align: left;
+    font-weight: var(--font-semibold);
+  }
+
+  .comparison-table td {
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Trends List */
+  .trends-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  .trend {
+    display: flex;
+    gap: var(--space-4);
+    background: var(--color-background-alt);
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+  }
+
+  .trend-marker {
+    width: 36px;
+    height: 36px;
+    background: var(--color-primary);
+    color: var(--color-background);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-bold);
+    flex-shrink: 0;
+  }
+
+  .trend-content h3 {
+    font-size: var(--text-lg);
+    margin: 0 0 var(--space-2) 0;
+  }
+
+  .trend-content p {
+    font-size: var(--text-base) !important;
+    margin: 0 !important;
+  }
+
+  /* CTA Box */
+  .cta-box {
+    background: var(--color-primary-50);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    margin-top: var(--space-16);
+  }
+
+  .cta-box h2 {
+    margin-top: 0;
+  }
+
+  .cta-box p {
+    margin-bottom: var(--space-6);
+  }
+
+  @media (max-width: 768px) {
+    .players-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .player-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-2);
+    }
+
+    .trend {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+  }
+
+  .study-card h3 a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .study-card h3 a:hover {
+    text-decoration: underline;
+  }
+
+  .study-detail {
+    font-size: var(--text-sm) !important;
+    color: var(--color-text-light) !important;
+    margin-top: var(--space-2) !important;
+    margin-bottom: 0 !important;
+  }
+
+  .player-valuation {
+    font-size: var(--text-sm) !important;
+    color: var(--color-text-light) !important;
+    margin-bottom: var(--space-2) !important;
+  }
+
+  .player-mittelstand {
+    font-size: var(--text-sm) !important;
+    background: var(--color-primary-50);
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    margin-top: var(--space-3) !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Sources */
+  .sources {
+    margin-top: var(--space-12);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .sources h2 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-4);
+  }
+
+  .sources ol {
+    padding-left: var(--space-6);
+    margin: 0;
+  }
+
+  .sources li {
+    font-size: var(--text-sm) !important;
+    margin-bottom: var(--space-2);
+  }
+
+  .sources a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .sources a:hover {
+    text-decoration: underline;
+  }
+</style>

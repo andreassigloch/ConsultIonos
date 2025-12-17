@@ -7,6 +7,7 @@ image: '/images/1756817824312.png'
 tags: ['Vibe Coding', 'KI', 'Claude Code', 'Systems Engineering', 'NoCode']
 series: 'Vibe Coding'
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## Zwei Motivationen

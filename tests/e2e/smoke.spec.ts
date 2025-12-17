@@ -1,8 +1,8 @@
 /**
- * Smoke Tests - CR-001 Website Redesign v2.0
+ * Smoke Tests - Website v2.0
  * @author andreas@siglochconsulting.de
  *
- * Basic E2E tests for all new pages
+ * Basic E2E tests for all pages
  */
 
 import { test, expect } from '@playwright/test';
@@ -70,24 +70,27 @@ test.describe('Homepage v2.0', () => {
 });
 
 test.describe('Navigation', () => {
-  test('should have all new nav items', async ({ page }) => {
+  test('should have all nav items', async ({ page }) => {
     await page.goto('/');
 
     const nav = page.locator('[data-testid="nav-menu"]');
     await expect(nav).toContainText('Mein Ansatz');
     await expect(nav).toContainText('Projekte');
-    await expect(nav).toContainText('Beiträge');
-    await expect(nav).toContainText('Hintergrund');
+    await expect(nav).toContainText('Publikationen');
     await expect(nav).toContainText('Kontakt');
   });
 });
 
 test.describe('Mein Ansatz Page', () => {
-  test('should display 7 stages table', async ({ page }) => {
+  test('should display hero and stages table', async ({ page }) => {
     await page.goto('/mein-ansatz');
 
-    await expect(page.locator('main h1').first()).toContainText('Mein Ansatz');
+    // Check hero
+    const heroSection = page.locator('[data-testid="approach-hero"]');
+    await expect(heroSection).toBeVisible();
+    await expect(heroSection.locator('h1')).toContainText('Mein Ansatz');
 
+    // Check stages table
     const stagesTable = page.locator('[data-testid="stages-table"]');
     await expect(stagesTable).toBeVisible();
 
@@ -105,6 +108,18 @@ test.describe('Mein Ansatz Page', () => {
     await expect(fitSection).toContainText('Passt gut, wenn');
     await expect(fitSection).toContainText('Passt nicht, wenn');
   });
+
+  test('should display hintergrund articles', async ({ page }) => {
+    await page.goto('/mein-ansatz');
+
+    const hintergrundSection = page.locator('[data-testid="hintergrund-section"]');
+    await expect(hintergrundSection).toBeVisible();
+
+    // Check for 4 article cards
+    for (let i = 0; i < 4; i++) {
+      await expect(page.locator(`[data-testid="hintergrund-${i}"]`)).toBeVisible();
+    }
+  });
 });
 
 test.describe('Projekte Page', () => {
@@ -113,52 +128,28 @@ test.describe('Projekte Page', () => {
 
     await expect(page.locator('h1')).toContainText('Projekte');
 
-    const projectCard = page.locator('[data-testid="project-card-0"]');
+    // First project in PropTech category
+    const projectCard = page.locator('[data-testid="project-proptech-0"]');
     await expect(projectCard).toBeVisible();
   });
 });
 
-test.describe('Beiträge Page', () => {
-  test('should display article cards', async ({ page }) => {
-    await page.goto('/beitraege');
+test.describe('Publikationen Page', () => {
+  test('should display publications sections', async ({ page }) => {
+    await page.goto('/publikationen');
 
-    await expect(page.locator('h1')).toContainText('Beiträge');
+    // Check hero
+    const heroSection = page.locator('[data-testid="publications-hero"]');
+    await expect(heroSection).toBeVisible();
+    await expect(heroSection.locator('h1')).toContainText('Publikationen');
 
-    const beitragCard = page.locator('[data-testid="beitrag-card-0"]');
-    await expect(beitragCard).toBeVisible();
-  });
-});
+    // Check for blog section
+    const blogSection = page.locator('[data-testid="blog-section"]');
+    await expect(blogSection).toBeVisible();
 
-test.describe('Hintergrund Section', () => {
-  test('should display index page with all articles', async ({ page }) => {
-    await page.goto('/hintergrund');
-
-    await expect(page.locator('h1')).toContainText('Hintergrund');
-
-    // Check for all 4 article cards
-    for (let i = 0; i < 4; i++) {
-      await expect(page.locator(`[data-testid="article-card-${i}"]`)).toBeVisible();
-    }
-  });
-
-  test('should navigate to struktur-vor-ki', async ({ page }) => {
-    await page.goto('/hintergrund/struktur-vor-ki');
-    await expect(page.locator('h1')).toContainText('Struktur vor KI');
-  });
-
-  test('should navigate to 7-fragen', async ({ page }) => {
-    await page.goto('/hintergrund/7-fragen');
-    await expect(page.locator('h1')).toContainText('7 Fragen');
-  });
-
-  test('should navigate to branchen', async ({ page }) => {
-    await page.goto('/hintergrund/branchen');
-    await expect(page.locator('h1')).toContainText('Branchen');
-  });
-
-  test('should navigate to technik', async ({ page }) => {
-    await page.goto('/hintergrund/technik');
-    await expect(page.locator('h1')).toContainText('Technischer Stack');
+    // Check for conference section
+    const conferenceSection = page.locator('[data-testid="conference-section"]');
+    await expect(conferenceSection).toBeVisible();
   });
 });
 
@@ -187,8 +178,7 @@ test.describe('Accessibility', () => {
       '/',
       '/mein-ansatz',
       '/projekte',
-      '/beitraege',
-      '/hintergrund',
+      '/publikationen',
       '/kontakt'
     ];
 

@@ -1,0 +1,543 @@
+---
+/**
+ * Hintergrund: Struktur vor KI (Level 1-5)
+ * @author andreas@siglochconsulting.de
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const sources = [
+  {
+    id: 1,
+    text: "McKinsey State of AI 2025",
+    url: "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai"
+  },
+  {
+    id: 2,
+    text: "IMD AI Maturity Index 2025",
+    url: "https://www.imd.org/ibyimd/white-papers/ai-strategies-that-are-working/"
+  },
+  {
+    id: 3,
+    text: "TDWI: Structured vs. Unstructured Data",
+    url: "https://tdwi.org/blogs/data-101/2025/09/structured-vs-unstructured-data.aspx"
+  },
+  {
+    id: 4,
+    text: "Palantir AIP Documentation",
+    url: "https://www.palantir.com/docs/foundry/aip/overview"
+  }
+];
+---
+
+<BaseLayout
+  title="Struktur vor KI - Level 1-5: 70% Business Value ohne KI | Sigloch Consulting"
+  description="Warum 70-80% Business Value aus Struktur und Regeln kommen, nicht aus KI. Der Palantir-Ansatz: LLM nur als Interface auf modellierten Daten."
+>
+  <Header />
+
+  <main>
+    <article class="article" data-testid="article-struktur-vor-ki">
+      <header class="article-header">
+        <div class="container">
+          <a href="/mein-ansatz" class="back-link">← Mein Ansatz</a>
+          <h1>Struktur vor KI</h1>
+          <p class="article-subtitle">
+            Level 1-5: Warum 70% Business Value aus Struktur kommt
+          </p>
+        </div>
+      </header>
+
+      <div class="container article-content">
+        <section>
+          <h2>Das Missverständnis</h2>
+          <p>
+            „Mit KI lösen wir das Problem." Dieser Satz fällt in vielen Unternehmen,
+            wenn es um Datenprobleme geht. Die Hoffnung: Ein intelligentes System,
+            das aus dem Chaos Ordnung macht.
+          </p>
+          <p>
+            Die Realität ist ernüchternd: Laut McKinsey State of AI 2025 scheitern
+            <strong>70% aller AI-Projekte an Datenqualität</strong> – nicht an Algorithmen.<sup>[1]</sup>
+            Die IMD-Studie bestätigt: Top-Performer fokussieren auf Dateninfrastruktur
+            <em>vor</em> KI-Modellen.<sup>[2]</sup>
+          </p>
+          <p>
+            TDWI-Analysen zeigen: Strukturierte Daten liefern <strong>3x höheren ROI</strong>
+            als unstrukturierte AI-Ansätze.<sup>[3]</sup> Der Schluss: 70-80% des Business Value
+            kommen aus Struktur und Regeln – nicht aus KI.
+          </p>
+        </section>
+
+        <section>
+          <h2>Die 5 Stufen bis zum Fundament</h2>
+          <div class="level-cards">
+            <div class="level-card">
+              <span class="level-number">1</span>
+              <h3>Unstrukturierte Quellen</h3>
+              <p class="level-example">
+                <strong>Automotive:</strong> PDF-Spezifikationen stapeln sich auf SharePoint.
+                Wer welche Version nutzt, weiß niemand.
+              </p>
+              <p>Keine Verbindungen, manuelle Suche, Wissen in Köpfen.</p>
+              <div class="level-stats">
+                <span class="stat">0% Business Value</span>
+                <span class="stat">0% KI im Betrieb</span>
+              </div>
+            </div>
+            <div class="level-card">
+              <span class="level-number">2</span>
+              <h3>Embeddings/RAG</h3>
+              <p class="level-example">
+                <strong>Automotive:</strong> Teilesuche über Volltextindex.
+                „Zeige alle Bauteile mit Temperaturanforderung &gt;85°C."
+              </p>
+              <p>Tags, erste Metadaten, semantische Suche. Aber: keine Beziehungen.</p>
+              <div class="level-stats">
+                <span class="stat">10-20% Business Value</span>
+                <span class="stat">10% KI im Betrieb</span>
+              </div>
+            </div>
+            <div class="level-card">
+              <span class="level-number">3</span>
+              <h3>Ontologie + Graph</h3>
+              <p class="level-example">
+                <strong>Automotive:</strong> Supplier-Links im Graph.
+                „Welche Tier-2-Lieferanten sind von Chip-Engpass betroffen?"
+              </p>
+              <p>Beziehungen zwischen Objekten, Impact-Analysen, Traceability.</p>
+              <div class="level-stats">
+                <span class="stat">30-40% Business Value</span>
+                <span class="stat">5% KI im Betrieb</span>
+              </div>
+              <p class="level-tech">Tech: Neo4j, PuppyGraph</p>
+            </div>
+            <div class="level-card">
+              <span class="level-number">4</span>
+              <h3>Logische Regeln</h3>
+              <p class="level-example">
+                <strong>Automotive:</strong> Kompatibilitäts-Check automatisiert.
+                „Warnung: Bauteil X nicht freigegeben für Temperaturbereich Y."
+              </p>
+              <p>Geschäftsregeln als ausführbare Validierung. 100% deterministisch.</p>
+              <div class="level-stats">
+                <span class="stat">50-60% Business Value</span>
+                <span class="stat">0% KI im Betrieb</span>
+              </div>
+              <p class="level-tech">Tech: SHACL, Datalog in Neo4j</p>
+            </div>
+            <div class="level-card highlight">
+              <span class="level-number">5</span>
+              <h3>Quantifizierbare Scores ★</h3>
+              <p class="level-example">
+                <strong>Automotive:</strong> Architektur-Score für jedes Modul.
+                „Variante A: 78 Punkte, Variante B: 62 Punkte – Empfehlung klar."
+              </p>
+              <p>Objektive Metriken statt Bauchgefühl. I-Score/K-Score für KG-Qualität.</p>
+              <div class="level-stats">
+                <span class="stat">70-80% Business Value</span>
+                <span class="stat">5% KI im Betrieb</span>
+              </div>
+              <p class="level-tech">Tech: TigerGraph Vector-Scoring, I-Score/K-Score</p>
+              <p class="level-note">Der „100%-Nullpunkt" – Grundlage für effizienten KI-Einsatz</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Der Palantir-Beweis</h2>
+          <p>
+            Palantir (Foundry/Gotham/AIP) – bewertet mit über $50 Mrd. – operiert
+            genau in diesem Bereich: Level 3-7. Ihr Erfolgsrezept zeigt, wie
+            Enterprise AI wirklich funktioniert:<sup>[4]</sup>
+          </p>
+
+          <div class="aip-features">
+            <div class="aip-feature">
+              <h4>Ontology-Driven AI</h4>
+              <p>
+                Daten werden als <strong>semantisches Modell</strong> strukturiert
+                (Entitäten + Beziehungen). LLMs können diese Ontologie mit natürlicher
+                Sprache abfragen – für präzise, nachvollziehbare Antworten.
+              </p>
+            </div>
+            <div class="aip-feature">
+              <h4>AIP Logic</h4>
+              <p>
+                No-Code-Tool für Regeln, Workflows und <strong>quantifizierbare Scores</strong>.
+                Automatisierte Business-Logik ohne Coding – 100% deterministisch.
+              </p>
+            </div>
+            <div class="aip-feature">
+              <h4>AIP Assist</h4>
+              <p>
+                LLM-Interface mit <strong>Guardrails</strong>: Access Control, Audit-Trails,
+                Output-Schemas. Verhindert Halluzinationen durch Daten-Verankerung.
+              </p>
+            </div>
+            <div class="aip-feature">
+              <h4>Agenten & Automation</h4>
+              <p>
+                Selbstoptimierende Agenten (Level 7-8), die mit klassischen Modellen
+                hybrid arbeiten und operative Aktionen triggern.
+              </p>
+            </div>
+          </div>
+
+          <div class="key-insight">
+            <strong>Der entscheidende Punkt:</strong> LLM-Anteil im Betrieb nur 20-40%.
+            90% der Effizienz kommen aus Ontologie + Regeln. LLMs sind Interface,
+            nicht Fundament.
+          </div>
+        </section>
+
+        <section>
+          <h2>Drei Vorteile strukturierter Systeme</h2>
+
+          <h3>Reproduzierbarkeit</h3>
+          <p>
+            Ein deterministisches System liefert bei gleichen Eingaben immer die
+            gleichen Ergebnisse. Fundamental für Qualitätssicherung und Audits.
+            LLMs sind probabilistisch – die gleiche Frage kann unterschiedliche
+            Antworten liefern.
+          </p>
+
+          <h3>Nachvollziehbarkeit</h3>
+          <p>
+            Bei regelbasierten Systemen ist jeder Schritt transparent.
+            Bei Black-Box-KI bleibt oft unklar, wie das Ergebnis zustande kam.
+            Für MDR, ISO 26262 oder A-SPICE ist Traceability Pflicht.
+          </p>
+
+          <h3>Planbare Kosten & CO₂</h3>
+          <p>
+            Cloud-KI kostet pro Anfrage und verbraucht erheblich Energie.
+            Lokale, deterministische Systeme haben fixe Infrastrukturkosten,
+            keine laufenden API-Gebühren – und einen Bruchteil des CO₂-Footprints.
+          </p>
+        </section>
+
+        <section>
+          <h2>Wann KI sinnvoll ist</h2>
+          <p>
+            KI hat ihren Platz – aber als Werkzeug, nicht als Fundament:
+          </p>
+          <ul>
+            <li><strong>In der Entwicklungsphase:</strong> Muster erkennen, Prototypen bauen, Ideen validieren</li>
+            <li><strong>Als Interface:</strong> Natürlichsprachliche Abfragen auf strukturierten Daten</li>
+            <li><strong>Für Klassifikation:</strong> Ähnlichkeiten finden, Kategorien vorschlagen</li>
+          </ul>
+          <p>
+            Im laufenden Betrieb sollten kritische Entscheidungen auf
+            deterministischen Regeln basieren – KI nur dort, wo Regeln nicht ausreichen.
+          </p>
+        </section>
+
+        <section class="cta-box">
+          <h2>Nächster Schritt</h2>
+          <p>
+            Möchten Sie verstehen, wo Ihr Unternehmen auf der Datenreife-Skala steht?
+          </p>
+          <a href="/kontakt" class="button button-primary">Gespräch vereinbaren</a>
+        </section>
+
+        <section class="sources">
+          <h2>Quellen</h2>
+          <ol>
+            {sources.map((source) => (
+              <li id={`source-${source.id}`}>
+                <a href={source.url} target="_blank" rel="noopener noreferrer">
+                  {source.text}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .article-header {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-50) 0%,
+      var(--color-background) 100%
+    );
+    padding: var(--space-16) 0;
+  }
+
+  .back-link {
+    display: inline-block;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-medium);
+    margin-bottom: var(--space-4);
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  .article-header h1 {
+    margin-bottom: var(--space-4);
+  }
+
+  .article-subtitle {
+    font-size: var(--text-xl);
+    color: var(--color-text-secondary);
+  }
+
+  .article-content {
+    max-width: 750px;
+    padding: var(--space-12) var(--container-padding);
+  }
+
+  .article-content section {
+    margin-bottom: var(--space-12);
+  }
+
+  .article-content h2 {
+    margin-bottom: var(--space-6);
+    margin-top: var(--space-8);
+  }
+
+  .article-content h3 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  .article-content p {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-4);
+  }
+
+  .article-content ul,
+  .article-content ol {
+    margin-bottom: var(--space-6);
+    padding-left: var(--space-6);
+  }
+
+  .article-content li {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-3);
+  }
+
+  .numbered-list {
+    list-style: none;
+    counter-reset: step;
+    padding-left: 0;
+  }
+
+  .numbered-list li {
+    counter-increment: step;
+    padding-left: var(--space-10);
+    position: relative;
+  }
+
+  .numbered-list li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 32px;
+    height: 32px;
+    background: var(--color-primary);
+    color: var(--color-background);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-bold);
+    font-size: var(--text-sm);
+  }
+
+  .cta-box {
+    background: var(--color-primary-50);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    margin-top: var(--space-16);
+  }
+
+  .cta-box h2 {
+    margin-top: 0;
+  }
+
+  .cta-box p {
+    margin-bottom: var(--space-6);
+  }
+
+  /* Level Cards */
+  .level-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  .level-card {
+    background: var(--color-background-alt);
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--color-border);
+    position: relative;
+    padding-left: var(--space-12);
+  }
+
+  .level-card.highlight {
+    background: var(--color-primary-50);
+    border-left-color: var(--color-primary);
+  }
+
+  .level-number {
+    position: absolute;
+    left: var(--space-4);
+    top: var(--space-5);
+    width: 32px;
+    height: 32px;
+    background: var(--color-primary);
+    color: var(--color-background);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-bold);
+    font-size: var(--text-sm);
+  }
+
+  .level-card h3 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-2);
+    margin-top: 0;
+  }
+
+  .level-card > p {
+    font-size: var(--text-base) !important;
+    margin-bottom: var(--space-3) !important;
+  }
+
+  .level-stats {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .level-stats .stat {
+    font-size: var(--text-sm);
+    color: var(--color-primary);
+    font-weight: var(--font-semibold);
+    background: var(--color-background);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-sm);
+  }
+
+  .level-note {
+    font-size: var(--text-sm) !important;
+    color: var(--color-primary) !important;
+    font-weight: var(--font-semibold);
+    margin-top: var(--space-3) !important;
+    margin-bottom: 0 !important;
+  }
+
+  .level-example {
+    font-size: var(--text-sm) !important;
+    background: var(--color-background);
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-2) !important;
+    border-left: 3px solid var(--color-primary);
+  }
+
+  .level-tech {
+    font-size: var(--text-xs) !important;
+    color: var(--color-text-light) !important;
+    margin-top: var(--space-2) !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* AIP Features */
+  .aip-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-4);
+    margin: var(--space-6) 0;
+  }
+
+  .aip-feature {
+    background: var(--color-background-alt);
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    border-top: 3px solid var(--color-primary);
+  }
+
+  .aip-feature h4 {
+    font-size: var(--text-base);
+    color: var(--color-primary);
+    margin: 0 0 var(--space-2) 0;
+  }
+
+  .aip-feature p {
+    font-size: var(--text-sm) !important;
+    margin: 0 !important;
+  }
+
+  .key-insight {
+    background: var(--color-primary-50);
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    font-size: var(--text-base);
+    border-left: 4px solid var(--color-primary);
+  }
+
+  /* Sources */
+  .sources {
+    margin-top: var(--space-12);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .sources h2 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-4);
+  }
+
+  .sources ol {
+    padding-left: var(--space-6);
+    margin: 0;
+  }
+
+  .sources li {
+    font-size: var(--text-sm) !important;
+    margin-bottom: var(--space-2);
+  }
+
+  .sources a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .sources a:hover {
+    text-decoration: underline;
+  }
+
+  sup {
+    font-size: var(--text-xs);
+    color: var(--color-primary);
+  }
+
+  sup a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+</style>

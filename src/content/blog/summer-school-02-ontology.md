@@ -7,6 +7,7 @@ image: '/images/1723390289485.jpeg'
 tags: ['Summer School', 'KI', 'Ontology', 'Systems Engineering']
 series: 'Summer School'
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## Die Erkenntnis

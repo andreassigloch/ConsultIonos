@@ -79,25 +79,12 @@ const formattedDate = new Intl.DateTimeFormat('de-DE', {
                 </svg>
                 LinkedIn
               </a>
-              <a
-                href={`https://twitter.com/intent/tweet?url=${Astro.url.href}&text=${encodeURIComponent(title)}`}
-                target="_blank"
-                rel="noopener"
-                class="share-button twitter"
-                aria-label="Auf Twitter teilen"
-                data-testid="share-twitter"
-              >
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-                Twitter
-              </a>
             </div>
           </div>
 
           <div class="back-link">
-            <a href="/wissenswertes" class="button button-secondary" data-testid="back-to-blog">
-              ← Zurück zu Wissenswertes
+            <a href="/publikationen" class="button button-secondary" data-testid="back-to-blog">
+              ← Zurück zu Publikationen
             </a>
           </div>
         </footer>
@@ -280,23 +267,12 @@ const formattedDate = new Intl.DateTimeFormat('de-DE', {
   }
 
   .share-button.linkedin {
-    background: #0077b5;
+    background: var(--color-linkedin);
     color: white;
   }
 
   .share-button.linkedin:hover {
-    background: #006399;
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-  }
-
-  .share-button.twitter {
-    background: #1da1f2;
-    color: white;
-  }
-
-  .share-button.twitter:hover {
-    background: #1a8cd8;
+    background: var(--color-linkedin-dark);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
   }

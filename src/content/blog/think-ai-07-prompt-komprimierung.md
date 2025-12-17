@@ -7,6 +7,7 @@ image: '/images/1764087578874.png'
 tags: ['Think AI', 'KI', 'Prompt Engineering', 'Effizienz', 'GenAI']
 series: 'Think AI'
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## Das Wachstum hat Grenzen

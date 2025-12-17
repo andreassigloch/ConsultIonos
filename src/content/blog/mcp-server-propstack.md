@@ -6,6 +6,7 @@ author: 'Andreas Sigloch'
 image: '/images/1763139762463.jpeg'
 tags: ['KI', 'MCP', 'Propstack', 'Integration', 'Coding Agent']
 draft: false
+linkedinStatus: 'published'
 ---
 
 ## Beraten ist gut - Machen ist besser

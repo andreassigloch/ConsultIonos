@@ -1,66 +1,95 @@
 ---
 /**
- * Mein Ansatz - 7-Stufen Datenreife-Modell
+ * Mein Ansatz - 7+ Stufen Datenreife-Modell
  * @author andreas@siglochconsulting.de
  *
  * "Welches Tool brauchen wir?" ist die falsche Frage.
  * "Welche Struktur haben unsere Daten?" ist die richtige.
  */
 
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { siteConfig } from '@lib/config';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
 
 const stages = [
   {
     level: 1,
-    name: "Unstrukturierte Ablage",
+    name: "Unstrukturierte Quellen",
     description: "Dokumente in Ordnern, keine Verbindungen, manuelle Suche",
-    aiShare: "0%",
+    businessValue: "0%",
+    aiOps: "0%",
     highlight: false
   },
   {
     level: 2,
-    name: "Durchsuchbare Inhalte",
-    description: "Volltextsuche, Tags, erste Metadaten",
-    aiShare: "10-20%",
+    name: "Embeddings/RAG",
+    description: "Volltextsuche, Tags, erste Metadaten, Teilesuche",
+    businessValue: "10-20%",
+    aiOps: "10%",
     highlight: false
   },
   {
     level: 3,
-    name: "Vernetzte Daten",
-    description: "Beziehungen zwischen Objekten, Impact-Analysen möglich",
-    aiShare: "10-30%",
+    name: "Ontologie + Graph",
+    description: "Beziehungen zwischen Objekten, Supplier-Links, Impact-Analysen",
+    businessValue: "30-40%",
+    aiOps: "5%",
     highlight: false
   },
   {
     level: 4,
-    name: "Automatische Prüfung",
-    description: "Geschäftsregeln als ausführbare Validierung, Fehler früher erkennen",
-    aiShare: "5-10%",
+    name: "Logische Regeln",
+    description: "Geschäftsregeln als ausführbare Validierung, Kompatibilitäts-Check",
+    businessValue: "50-60%",
+    aiOps: "0%",
     highlight: false
   },
   {
     level: 5,
-    name: "Messbare Qualität",
-    description: "Objektive Scores statt Bauchgefühl, Trends erkennbar",
-    aiShare: "20-30%",
+    name: "Quantifizierbare Scores",
+    description: "Objektive Scores statt Bauchgefühl, Architektur-Score, Trends erkennbar",
+    businessValue: "70-80%",
+    aiOps: "5%",
     highlight: true
   },
   {
     level: 6,
-    name: "Vorhersagen",
-    description: "Proaktive Warnungen, Risiko-Prognosen",
-    aiShare: "15-25%",
+    name: "Data Prediction",
+    description: "Proaktive Warnungen, Lieferengpässe, Risiko-Prognosen",
+    businessValue: "85-90%",
+    aiOps: "20%",
     highlight: false
   },
   {
-    level: 7,
+    level: "7+",
     name: "Lernende Systeme",
-    description: "Kontinuierliche Optimierung, selbstanpassende Regeln",
-    aiShare: "30-50%",
+    description: "Feedback-Loops, Selbstoptimierung, föderiertes Lernen",
+    businessValue: "90-100%",
+    aiOps: "40-60%",
     highlight: false
+  }
+];
+
+const hintergrundArticles = [
+  {
+    title: "Struktur vor KI",
+    description: "Level 1-5: Warum 70% Business Value aus Struktur kommt",
+    href: "/mein-ansatz/struktur-vor-ki"
+  },
+  {
+    title: "Ausblick",
+    description: "Level 6-13: Lernende Systeme und darüber hinaus",
+    href: "/mein-ansatz/ausblick"
+  },
+  {
+    title: "Markt & Trends",
+    description: "Wo stehen Google, Palantir & Co auf der Leiter?",
+    href: "/mein-ansatz/markt-trends"
+  },
+  {
+    title: "Technischer Stack",
+    description: "Neo4j, TigerGraph, SHACL, Ollama für Level 3-7",
+    href: "/mein-ansatz/technik"
   }
 ];
 
@@ -68,21 +97,19 @@ const passstGut = [
   "Informationen in verschiedenen Systemen sind nicht verbunden",
   "Erfahrungswissen steckt in Köpfen einzelner Mitarbeiter",
   "Audit-Anforderungen wachsen (MDR, ISO, Automotive)",
-  "Entscheidungen sind schwer nachvollziehbar",
   "Neue Mitarbeiter brauchen Monate zur Einarbeitung"
 ];
 
 const passtNicht = [
   "Sie suchen ein fertiges Produkt zum Selbst-Installieren",
-  "Die Herausforderung ist primär Marketing oder Vertrieb",
-  "Weniger als 20 Mitarbeiter mit überschaubarer Komplexität",
-  "Keine Bereitschaft für initiale Strukturierungsarbeit"
+  "Keine Bereitschaft für initiale Strukturierungsarbeit",
+  "Die Herausforderung ist primär Marketing oder Vertrieb"
 ];
 ---
 
 <BaseLayout
-  title="Mein Ansatz - 7 Stufen zur Datenreife | Sigloch Consulting"
-  description="Struktur vor KI: Das 7-Stufen-Modell zur Datenreife. Warum der Wert bis Stufe 5 aus Struktur und Regeln kommt, nicht aus künstlicher Intelligenz."
+  title="Mein Ansatz - 7+ Stufen zur Datenreife | Sigloch Consulting"
+  description="Struktur vor KI: Das 7+ Stufen-Modell zur Datenreife. Warum der Wert bis Stufe 5 aus Struktur und Regeln kommt, nicht aus künstlicher Intelligenz."
 >
   <Header />
 
@@ -92,8 +119,8 @@ const passtNicht = [
       <div class="container">
         <h1>Mein Ansatz</h1>
         <p class="hero-quote">
-          "Welches Tool brauchen wir?" ist die falsche Frage.<br/>
-          "Welche Struktur haben unsere Daten?" ist die richtige.
+          "Wir wollen KI nutzen, welches Tool brauchen wir?" ist die falsche Frage.<br/>
+          "Welche Struktur haben unsere Daten und welchen Mehrwert kann ich mit KI-Unterstützung daraus generieren?" ist die richtige.
         </p>
       </div>
     </section>
@@ -120,24 +147,24 @@ const passtNicht = [
               <h3>Betrieb</h3>
             </div>
             <p>
-              Das System läuft ohne KI: klare Regeln, deterministische Algorithmen,
-              nachvollziehbare Ergebnisse. Keine laufenden API-Kosten, volle Kontrolle.
+              Das System läuft weitestgehend mit klassischen Berechnungen, aber auf Basis definierter Strukturen und Regeln
+              kann Ihnen KI einen echten Mehrwert liefern.
             </p>
           </div>
         </div>
         <div class="phases-result">
-          <p><strong>Ergebnis:</strong> Planbare Kosten, keine API-Abhängigkeit, volle Nachvollziehbarkeit.</p>
+          <p><strong>Ergebnis:</strong> Schlankere Prozesse, Erschliessung der Potentiale zur Automatisierung und Vorrausschau.</p>
         </div>
       </div>
     </section>
 
-    <!-- 7 Stages Section -->
+    <!-- 7+ Stages Section -->
     <section class="stages-section" data-testid="stages-section">
       <div class="container">
-        <h2>Die 7 Stufen der Datenreife</h2>
+        <h2>Die 7+ Stufen der Datenreife</h2>
         <p class="stages-intro">
-          Von unstrukturierter Ablage bis zu lernenden Systemen –
-          ein klarer Pfad mit messbarem Fortschritt.
+          Von unstrukturierten Quellen bis zu lernenden Systemen –
+          ein klarer Pfad mit steigendem Business Value.
         </p>
 
         <div class="stages-table-wrapper">
@@ -147,7 +174,8 @@ const passtNicht = [
                 <th>Stufe</th>
                 <th>Name</th>
                 <th>Was sich ändert</th>
-                <th>KI-Anteil</th>
+                <th>Business Value</th>
+                <th>KI im Betrieb</th>
               </tr>
             </thead>
             <tbody>
@@ -156,10 +184,11 @@ const passtNicht = [
                   <td class="stage-level">{stage.level}</td>
                   <td class="stage-name">
                     {stage.name}
-                    {stage.highlight && <span class="stage-star" title="Typisches Ziel">★</span>}
+                    {stage.highlight && <span class="stage-star" title="Typisches Ziel / 100%-Nullpunkt">★</span>}
                   </td>
                   <td class="stage-description">{stage.description}</td>
-                  <td class="stage-ai">{stage.aiShare}</td>
+                  <td class="stage-value">{stage.businessValue}</td>
+                  <td class="stage-ai">{stage.aiOps}</td>
                 </tr>
               ))}
             </tbody>
@@ -168,10 +197,31 @@ const passtNicht = [
 
         <div class="key-insight">
           <p>
-            <strong>Key Insight:</strong> Bis Stufe 5 kommt der Wert überwiegend aus
-            Struktur und Regeln, nicht aus KI. Die KI-Anteile beziehen sich auf die
-            Entwicklungsphase – im Betrieb laufen die Systeme deterministisch.
+            <strong>Key Insight:</strong> Bis Stufe 5 kommt der Wert aus
+            Struktur und Regeln – im Betrieb laufen diese Systeme deterministisch mit
+            minimalem KI-Aufwand. Erst ab Stufe 6 wird KI operativ relevant.
+            <strong>Stufe 5 ist die Grundlage für effizienten KI-Einsatz.
           </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hintergrund Section -->
+    <section class="hintergrund-section" data-testid="hintergrund-section">
+      <div class="container">
+        <h2>Hintergrund & Vertiefung</h2>
+        <p class="hintergrund-intro">
+          Detaillierte Artikel für Entscheider und Techniker
+        </p>
+
+        <div class="hintergrund-grid">
+          {hintergrundArticles.map((article, index) => (
+            <a href={article.href} class="hintergrund-card" data-testid={`hintergrund-${index}`}>
+              <h3>{article.title}</h3>
+              <p>{article.description}</p>
+              <span class="read-more">Weiterlesen →</span>
+            </a>
+          ))}
         </div>
       </div>
     </section>
@@ -402,6 +452,7 @@ const passtNicht = [
     color: var(--color-text-secondary);
   }
 
+  .stage-value,
   .stage-ai {
     text-align: center;
     font-weight: var(--font-medium);
@@ -423,10 +474,69 @@ const passtNicht = [
     line-height: var(--leading-relaxed);
   }
 
+  /* Hintergrund Section */
+  .hintergrund-section {
+    padding: var(--space-16) 0;
+    background: var(--color-background);
+  }
+
+  .hintergrund-section h2 {
+    text-align: center;
+    margin-bottom: var(--space-4);
+  }
+
+  .hintergrund-intro {
+    text-align: center;
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-10);
+  }
+
+  .hintergrund-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .hintergrund-card {
+    background: var(--color-background-alt);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--color-primary);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .hintergrund-card:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .hintergrund-card h3 {
+    font-size: var(--text-xl);
+    color: var(--color-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .hintergrund-card p {
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+    flex-grow: 1;
+    margin-bottom: var(--space-3);
+  }
+
+  .read-more {
+    color: var(--color-primary);
+    font-weight: var(--font-semibold);
+    font-size: var(--text-sm);
+  }
+
   /* Fit Section */
   .fit-section {
     padding: var(--space-16) 0;
-    background: var(--color-background);
+    background: var(--color-background-alt);
   }
 
   .fit-section h2 {
@@ -568,6 +678,10 @@ const passtNicht = [
 
     .stage-level {
       font-size: var(--text-lg);
+    }
+
+    .hintergrund-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
