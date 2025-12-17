@@ -12,4 +12,14 @@ echo ""
 # Run code quality agent (non-blocking)
 npx tsx scripts/code-quality-agent.ts 2>/dev/null || true
 
+# LinkedIn-Reminder: Prüfe auf offene Posts
+BLOG_DIR="src/content/blog"
+COUNT=$(grep -l "linkedinStatus: 'planned'" "$BLOG_DIR"/*.md 2>/dev/null | wc -l | tr -d ' ')
+
+if [ "$COUNT" -gt 0 ]; then
+  echo ""
+  echo "📢 LinkedIn-Reminder: $COUNT Artikel warten auf Posting"
+  echo "   → npm run linkedin:prepare"
+fi
+
 echo ""

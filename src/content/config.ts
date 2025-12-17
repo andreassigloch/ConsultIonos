@@ -22,6 +22,7 @@ const blogCollection = defineCollection({
     // Content category: theory (Fachbeitrag) vs practice (Praxisbeitrag)
     category: z.enum(['theory', 'practice']).optional(),
     linkedinStatus: z.enum(['draft', 'planned', 'published']).optional(),
+    linkedinPostDate: z.date().optional(),
     linkedinUrl: z.string().optional(),
     series: z.string().optional(),
     // Suggested hashtags for LinkedIn posting

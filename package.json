@@ -24,7 +24,10 @@
     "lint:design": "tsx scripts/design-token-lint.ts",
     "validate:schema": "tsx scripts/schema-org-validator.ts",
     "security:audit": "tsx scripts/security-audit.ts",
-    "validate:all": "npm run compliance && npm run lint:design && npm run validate:schema && npm run security:audit"
+    "validate:all": "npm run compliance && npm run lint:design && npm run validate:schema && npm run security:audit",
+    "linkedin:prepare": "tsx scripts/linkedin/prepare.ts",
+    "linkedin:post": "tsx scripts/linkedin/generate-post.ts",
+    "linkedin:image": "tsx scripts/linkedin/generate-image.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",
@@ -38,6 +41,7 @@
     "@types/node": "^24.10.0",
     "@vitest/coverage-v8": "^4.0.8",
     "dotenv": "^17.2.3",
+    "gray-matter": "^4.0.3",
     "jsdom": "^27.1.0",
     "lightningcss": "^1.30.2",
     "tsx": "^4.20.6",
