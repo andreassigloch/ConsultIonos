@@ -17,6 +17,15 @@ const blogCollection = defineCollection({
     image: z.string().optional(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
+    // Publication type and status
+    type: z.enum(['blog', 'linkedin', 'conference']).default('blog'),
+    // Content category: theory (Fachbeitrag) vs practice (Praxisbeitrag)
+    category: z.enum(['theory', 'practice']).optional(),
+    linkedinStatus: z.enum(['draft', 'planned', 'published']).optional(),
+    linkedinUrl: z.string().optional(),
+    series: z.string().optional(),
+    // Suggested hashtags for LinkedIn posting
+    hashtags: z.array(z.string()).optional(),
   }),
 });
 
