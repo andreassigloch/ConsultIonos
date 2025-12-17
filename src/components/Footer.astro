@@ -25,7 +25,7 @@ import { siteConfig } from '@lib/config';
         <li><a href="/" data-testid="footer-link-home">Startseite</a></li>
         <li><a href="/mein-ansatz" data-testid="footer-link-approach">Mein Ansatz</a></li>
         <li><a href="/projekte" data-testid="footer-link-projects">Projekte</a></li>
-        <li><a href="/beitraege" data-testid="footer-link-articles">Beiträge</a></li>
+        <li><a href="/publikationen" data-testid="footer-link-articles">Publikationen</a></li>
         <li><a href="/kontakt" data-testid="footer-link-contact">Kontakt</a></li>
       </ul>
     </div>
@@ -91,15 +91,6 @@ import { siteConfig } from '@lib/config';
       var(--color-primary-700) 75%,
       var(--color-primary-800) 100%
     );
-    /* Diagonal stripe pattern */
-    background-image:
-      repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 35px,
-        rgba(255, 255, 255, 0.03) 35px,
-        rgba(255, 255, 255, 0.03) 70px
-      );
   }
 
   .footer-content {
@@ -123,9 +114,18 @@ import { siteConfig } from '@lib/config';
   }
 
   .footer-text {
-    color: var(--color-primary-100);
+    color: var(--color-background);
     line-height: var(--leading-relaxed);
     margin-bottom: 0;
+  }
+
+  .footer-text a {
+    color: var(--color-background);
+    text-decoration: none;
+  }
+
+  .footer-text a:hover {
+    text-decoration: underline;
   }
 
   .footer-links {
@@ -139,13 +139,14 @@ import { siteConfig } from '@lib/config';
   }
 
   .footer-links a {
-    color: var(--color-primary-100);
+    color: var(--color-background);
     text-decoration: none;
-    transition: color var(--transition-fast);
+    transition: opacity var(--transition-fast);
+    opacity: 0.85;
   }
 
   .footer-links a:hover {
-    color: var(--color-background);
+    opacity: 1;
   }
 
   .footer-contact {
@@ -179,9 +180,10 @@ import { siteConfig } from '@lib/config';
   }
 
   .footer-bottom p {
-    color: var(--color-primary-100);
+    color: var(--color-background);
     font-size: var(--text-sm);
     margin: 0;
+    opacity: 0.85;
   }
 
   @media (max-width: 768px) {
