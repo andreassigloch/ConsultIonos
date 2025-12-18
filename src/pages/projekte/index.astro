@@ -6,9 +6,9 @@
  * Kategorien: PropTech, Systems Engineering, Sonstiges
  */
 
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
 
 interface Project {
   name: string;
@@ -138,6 +138,21 @@ const categories: Category[] = [
     title: "Sonstiges",
     id: "sonstiges",
     projects: [
+      {
+        name: "Projektprozess",
+        status: "Aktiv",
+        language: "Methodik",
+        description: "6 Schritte zur strukturierten Datenreife.",
+        goal: "Vom Status-Check bis zur KI-Aktivierung – strukturiert zum Business Value.",
+        features: [
+          "Status-Check: Wo stehen Sie auf der Datenreife-Leiter?",
+          "Struktur vor KI: 70-80% des Werts aus Regeln",
+          "Reproduzierbare, auditierbare Ergebnisse"
+        ],
+        links: [
+          { label: "Details", url: "/projekte/projektablauf" }
+        ]
+      },
       {
         name: "PitchTrainer",
         status: "Aktiv",

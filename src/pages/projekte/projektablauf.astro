@@ -1,0 +1,353 @@
+---
+/**
+ * Projektablauf - 6 Schritte zur strukturierten Datenreife
+ * @author andreas@siglochconsulting.de
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+interface Step {
+  number: number;
+  title: string;
+  description: string;
+  input: string;
+  output: string;
+}
+
+const steps: Step[] = [
+  {
+    number: 1,
+    title: "Status-Check",
+    description: "Wo stehen Sie auf der Datenreife-Leiter? Bestehende Strukturen und Datenquellen analysieren.",
+    input: "Gespräch, Zugang zu Systemen",
+    output: "Standortbestimmung (Level 1-7)"
+  },
+  {
+    number: 2,
+    title: "Ziel definieren",
+    description: "Welcher Business Value ist erreichbar? Passenden Ziel-Level festlegen.",
+    input: "Status-Check, Ihre Anforderungen",
+    output: "Ziel-Level, erwarteter Nutzen"
+  },
+  {
+    number: 3,
+    title: "Daten verknüpfen",
+    description: "Informationen verbinden, Beziehungen sichtbar machen.",
+    input: "Datenquellen, Domänenwissen",
+    output: "Graph-Datenmodell, Ontologie"
+  },
+  {
+    number: 4,
+    title: "Regeln automatisieren",
+    description: "Geschäftslogik als ausführbare Validierung implementieren.",
+    input: "Geschäftsregeln, Compliance-Vorgaben",
+    output: "Automatische Prüfungen"
+  },
+  {
+    number: 5,
+    title: "Qualität messen",
+    description: "Objektive Scores statt Bauchgefühl. Fortschritt nachweisbar machen.",
+    input: "Laufendes System",
+    output: "KPIs, Trend-Reports"
+  },
+  {
+    number: 6,
+    title: "KI aktivieren",
+    description: "Wo sinnvoll: natürliche Sprache, Vorschläge, Vorhersagen.",
+    input: "Strukturiertes Fundament",
+    output: "KI-gestützte Abfragen"
+  }
+];
+---
+
+<BaseLayout
+  title="Beispiel Projektablauf | Sigloch Consulting"
+  description="Strukturierter Ablauf von der Analyse bis zur KI-Aktivierung. Status-Check, Zieldefinition, Datenverknüpfung, Regeln, Qualitätsmessung."
+>
+  <Header />
+
+  <main>
+    <article class="article" data-testid="article-projektablauf">
+      <header class="article-header">
+        <div class="container">
+          <a href="/projekte" class="back-link">← Projekte</a>
+          <h1>Beispiel Projektablauf</h1>
+          <p class="article-subtitle">
+            6 Schritte zu Ihrem Ziel
+          </p>
+        </div>
+      </header>
+
+      <div class="container article-content">
+        <section class="principle-box">
+          <h2>Kernprinzip</h2>
+          <blockquote>
+            <strong>Struktur vor KI:</strong> 70-80% des Business Value kommt aus
+            Struktur und Regeln – nicht aus künstlicher Intelligenz.
+          </blockquote>
+        </section>
+
+        <section>
+          <h2>Die 6 Schritte</h2>
+
+          <div class="steps-container">
+            {steps.map((step) => (
+              <div class="step-card" data-testid={`step-${step.number}`}>
+                <div class="step-number">{step.number}</div>
+                <div class="step-content">
+                  <h3>{step.title}</h3>
+                  <p class="step-description">{step.description}</p>
+                  <div class="step-io">
+                    <div class="io-item">
+                      <span class="io-label">Input:</span>
+                      <span class="io-value">{step.input}</span>
+                    </div>
+                    <div class="io-item">
+                      <span class="io-label">Output:</span>
+                      <span class="io-value">{step.output}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2>Ergebnis nach Abschluss</h2>
+          <ul class="results-list">
+            <li>
+              <strong>Verlässliche Ergebnisse:</strong>
+              Reproduzierbar, keine Black Box
+            </li>
+            <li>
+              <strong>Nachvollziehbare Entscheidungen:</strong>
+              Wichtig für Audits und Compliance
+            </li>
+            <li>
+              <strong>Planbare Kosten:</strong>
+              Keine laufenden API-Gebühren
+            </li>
+            <li>
+              <strong>KI-Fundament:</strong>
+              Basis für effizienten KI-Einsatz, wenn benötigt
+            </li>
+          </ul>
+        </section>
+
+        <section class="cta-box">
+          <h2>Wo steht Ihr Unternehmen?</h2>
+          <p>
+            Lassen Sie uns gemeinsam Ihren Status-Check durchführen und
+            das passende Ziel-Level definieren.
+          </p>
+          <a href="/kontakt" class="button button-primary" data-testid="cta-contact">
+            Gespräch vereinbaren
+          </a>
+        </section>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .article-header {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-50) 0%,
+      var(--color-background) 100%
+    );
+    padding: var(--space-16) 0;
+  }
+
+  .back-link {
+    display: inline-block;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-medium);
+    margin-bottom: var(--space-4);
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  .article-header h1 {
+    margin-bottom: var(--space-4);
+  }
+
+  .article-subtitle {
+    font-size: var(--text-xl);
+    color: var(--color-text-secondary);
+  }
+
+  .article-content {
+    max-width: 800px;
+    padding: var(--space-12) var(--container-padding);
+  }
+
+  .article-content section {
+    margin-bottom: var(--space-12);
+  }
+
+  .article-content h2 {
+    margin-bottom: var(--space-6);
+    margin-top: var(--space-8);
+  }
+
+  /* Principle Box */
+  .principle-box {
+    background: var(--color-primary-50);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .principle-box h2 {
+    margin-top: 0;
+    margin-bottom: var(--space-4);
+    color: var(--color-primary);
+  }
+
+  .principle-box blockquote {
+    margin: 0;
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text);
+  }
+
+  /* Steps Container */
+  .steps-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .step-card {
+    display: flex;
+    gap: var(--space-6);
+    background: var(--color-background-alt);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .step-card:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .step-number {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: var(--color-primary);
+    color: var(--color-background);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+  }
+
+  .step-content {
+    flex: 1;
+  }
+
+  .step-content h3 {
+    font-size: var(--text-xl);
+    color: var(--color-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .step-description {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-4);
+  }
+
+  .step-io {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+
+  .io-item {
+    background: var(--color-background);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+  }
+
+  .io-label {
+    color: var(--color-primary);
+    font-weight: var(--font-semibold);
+  }
+
+  .io-value {
+    color: var(--color-text-secondary);
+  }
+
+  /* Results List */
+  .results-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .results-list li {
+    padding: var(--space-4);
+    margin-bottom: var(--space-3);
+    background: var(--color-background-alt);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .results-list li strong {
+    color: var(--color-primary);
+  }
+
+  /* CTA Box */
+  .cta-box {
+    background: var(--color-primary-50);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    margin-top: var(--space-16);
+  }
+
+  .cta-box h2 {
+    margin-top: 0;
+  }
+
+  .cta-box p {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-6);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .step-card {
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      font-size: var(--text-lg);
+    }
+
+    .step-io {
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+  }
+</style>
