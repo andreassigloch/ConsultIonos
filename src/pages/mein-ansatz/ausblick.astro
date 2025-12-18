@@ -7,140 +7,61 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import ArticleNavigation from '../../components/ArticleNavigation.astro';
 
-const sources = [
-  {
-    id: 1,
-    text: "TigerGraph: Unleashing AI's Potential with Graph Databases",
-    url: "https://www.tigergraph.com/blog/unleashing-ais-potential-why-graph-databases-are-the-secret-weapon/"
-  },
-  {
-    id: 2,
-    text: "PowerDrill: Self-Improving Data Agents",
-    url: "https://powerdrill.ai/blog/self-improving-data-agents"
-  },
-  {
-    id: 3,
-    text: "FedR: Federated Learning on Knowledge Graphs (ACL 2022)",
-    url: "https://aclanthology.org/2022.findings-emnlp.43/"
-  },
-  {
-    id: 4,
-    text: "Blockchain Ontology Taxonomies (WSEAS 2023)",
-    url: "https://wseas.com/journals/cr/2023/a085118-002(2023).pdf"
-  },
-  {
-    id: 5,
-    text: "AgentaNet: Trustless Agent Swarms (OpenReview)",
-    url: "https://openreview.net/forum?id=uQsxYDKmoQ"
-  },
-  {
-    id: 6,
-    text: "NVIDIA Cosmos World Foundation Models (arXiv 2025)",
-    url: "https://arxiv.org/html/2501.03575v3"
-  },
-  {
-    id: 7,
-    text: "High-AGI Ontologies: Conceptual Taxonomy (arXiv 2025)",
-    url: "https://arxiv.org/pdf/2510.12809.pdf"
-  }
-];
 
 const advancedLevels = [
   {
     level: 6,
-    name: "Data Prediction",
-    businessValue: "85-90%",
-    aiOps: "20%",
-    description: "Proaktive Warnungen, Lieferengpässe, Risiko-Prognosen",
-    techStack: "Time-Series + Graph (80%) + LLM (20%)",
-    solutions: "TigerGraph GNNs, PuppyGraph Analytics",
-    sourceRef: 1,
-    example: "Automotive: 3 Wochen vor Engpass warnen statt reagieren"
+    name: "Vorausschauende Analyse",
+    yourBenefit: "Probleme lösen bevor sie entstehen",
+    description: "Das System erkennt Muster und warnt frühzeitig",
+    example: "3 Wochen vor einem Lieferengpass gewarnt werden – nicht erst wenn die Produktion steht"
   },
   {
     level: 7,
     name: "Lernen aus Feedback",
-    businessValue: "90-95%",
-    aiOps: "40%",
-    description: "Anforderungs-Extraktion, kontinuierliche Verbesserung",
-    techStack: "RLHF (60%) + Rule-Learning (40%)",
-    solutions: "PowerDrill Self-Improving Agents",
-    sourceRef: 2,
-    example: "Agenten lernen aus Nutzer-Korrekturen automatisch"
+    yourBenefit: "Jeden Tag ein bisschen besser",
+    description: "Das System verbessert sich durch Ihre tägliche Nutzung",
+    example: "Mitarbeiter-Korrekturen fließen automatisch in bessere Vorschläge"
   },
   {
     level: 8,
     name: "Selbstoptimierung",
-    businessValue: "95-97%",
-    aiOps: "50%",
-    description: "Graph-Fix, automatische Regelanpassung",
-    techStack: "Reflexions-Agent (LLM 70%) + Auto-Rule",
-    solutions: "AlphaZero-Style Agents, Gödel Agent",
-    sourceRef: 2,
-    example: "System erkennt und behebt eigene Fehler autonom"
-  },
+    yourBenefit: "Das System verbessert sich selbst",
+    description: "Automatische Korrektur und Optimierung ohne manuellen Eingriff",
+    example: "Fehler im Datenmodell werden erkannt und repariert – bevor jemand nachfragt"
+  }
+];
+
+const collaborationLevels = [
   {
     level: 9,
     name: "Föderiertes Lernen",
-    businessValue: "97-98%",
-    aiOps: "30%",
-    description: "Cross-Supplier-Modelle, Privacy-preserving",
-    techStack: "Federated Algos (80%) + LLM-Meta (20%)",
-    solutions: "FedR (KG-Federated Learning)",
-    sourceRef: 3,
-    example: "Tier-1-Supplier lernen gemeinsam ohne Daten zu teilen"
+    yourBenefit: "Gemeinsam lernen, Daten behalten",
+    description: "Mehrere Standorte oder Partner lernen gemeinsam – ohne Daten zu teilen",
+    example: "Drei Werke optimieren gemeinsam ihre Qualitätsprozesse. Jeder profitiert, keiner sieht die Produktionsdaten der anderen."
   },
   {
     level: 10,
     name: "Ontologie-Konsens",
-    businessValue: "98-99%",
-    aiOps: "20%",
-    description: "Spezifikations-Voting, dezentrale Taxonomien",
-    techStack: "Blockchain/ZKP (90%) + LLM (10%)",
-    solutions: "Blockchain Ontology Taxonomies (Aptos PoS)",
-    sourceRef: 4,
-    example: "Branchen-weite Taxonomie per Konsens-Mechanismus"
+    yourBenefit: "Gemeinsame Sprache, dezentrale Kontrolle",
+    description: "Branchenweite Standards entstehen durch Abstimmung – nicht durch Diktat",
+    example: "Zulieferer und OEM einigen sich auf Datenformate automatisch – Änderungen werden transparent abgestimmt."
   },
   {
-    level: 11,
+    level: "11+",
     name: "Trustless Kollaboration",
-    businessValue: "99%",
-    aiOps: "30%",
-    description: "Agent-Verhandlungen ohne zentrale Autorität",
-    techStack: "Smart Contracts (70%) + LLM-Dialog (30%)",
-    solutions: "AgentaNet (Trustless Agent Swarms)",
-    sourceRef: 5,
-    example: "Agenten verhandeln Preise/Kapazitäten autonom"
-  },
-  {
-    level: 12,
-    name: "World Model Federation",
-    businessValue: "99.5%",
-    aiOps: "40%",
-    description: "Branchen-Ontologie, simulierte Welten",
-    techStack: "Distributed Graph (85%) + LLM-Fusion (15%)",
-    solutions: "Cosmos World Foundation Models",
-    sourceRef: 6,
-    example: "Physik-Simulation für Robotik, autonomes Fahren"
-  },
-  {
-    level: 13,
-    name: "Domänen-Souveränität",
-    businessValue: "100%+",
-    aiOps: "50%",
-    description: "Emergente Systeme, AGI-Supply-Chain",
-    techStack: "Emergente Hybride (LLM 20-40%)",
-    solutions: "High-AGI Ontologies (Forschung)",
-    sourceRef: 7,
-    example: "Vollständig autonome Lieferketten-Steuerung"
+    yourBenefit: "Zusammenarbeit ohne blindes Vertrauen",
+    description: "Agenten verhandeln automatisch – mit kryptographisch garantierter Fairness",
+    example: "Automatische Vertragsverhandlungen zwischen Unternehmen – jeder kann die Einhaltung verifizieren."
   }
 ];
 ---
 
 <BaseLayout
-  title="Ausblick Level 6-13: Lernende Systeme & darüber hinaus | Sigloch Consulting"
-  description="Von Data Prediction bis World Model Federation: Was nach dem Fundament kommt. GNNs, Federated Learning, Blockchain-Konsens und die Zukunft der Datenreife."
+  title="Ausblick: Level 6-11+ | Sigloch Consulting"
+  description="Von vorausschauender Analyse bis firmenübergreifender Zusammenarbeit. Die höheren Stufen der Datenreife – und Ihr konkreter Mehrwert auf jeder Stufe."
 >
   <Header />
 
@@ -151,7 +72,7 @@ const advancedLevels = [
           <a href="/mein-ansatz" class="back-link">← Mein Ansatz</a>
           <h1>Ausblick</h1>
           <p class="article-subtitle">
-            Level 6-13: Lernende Systeme und darüber hinaus
+            Level 6-11+: Von intelligenten Systemen zu firmenübergreifender Zusammenarbeit
           </p>
         </div>
       </header>
@@ -160,142 +81,99 @@ const advancedLevels = [
         <section>
           <h2>Jenseits des Fundaments</h2>
           <p>
-            Mit Level 5 (Quantifizierbare Scores) ist das Fundament gelegt: 70-80% Business Value
-            durch Struktur und Regeln. Ab hier beginnt das Terrain, in dem KI operativ
-            relevant wird – aber auf Basis der geschaffenen Struktur.
+            Mit Level 5 (Messbare Qualität) ist das Fundament gelegt: 70-80% Business Value
+            durch Struktur und Regeln. Ab hier wird KI operativ relevant –
+            aber auf Basis der geschaffenen Struktur.
           </p>
           <p>
-            Die folgenden Level sind keine Zukunftsmusik. Für jeden existieren
-            bereits konkrete Tools und Forschung (Stand 2025).
+            Die folgenden Stufen sind keine Zukunftsmusik. Für jede existieren
+            bereits konkrete Lösungen (Stand 2025).
           </p>
         </section>
 
         <section>
-          <h2>Die erweiterte Leiter</h2>
+          <h2>Level 6-8: Intelligente Systeme</h2>
+          <p>
+            Ab hier wird KI operativ relevant – aber auf Basis des strukturellen Fundaments.
+          </p>
           <div class="advanced-levels">
             {advancedLevels.map((level) => (
               <div class="level-card" data-testid={`level-${level.level}`}>
                 <div class="level-header">
                   <span class="level-number">{level.level}</span>
-                  <div class="level-title">
-                    <h3>{level.name}<sup>[{level.sourceRef}]</sup></h3>
-                    <div class="level-stats">
-                      <span class="stat value">{level.businessValue} Value</span>
-                      <span class="stat ai">{level.aiOps} KI</span>
-                    </div>
-                  </div>
+                  <h3>{level.name}</h3>
                 </div>
+                <p class="your-benefit"><strong>Ihr Mehrwert:</strong> {level.yourBenefit}</p>
                 <p class="level-description">{level.description}</p>
-                <p class="level-example">{level.example}</p>
-                <div class="level-tech">
-                  <div class="tech-row">
-                    <span class="tech-label">Stack:</span>
-                    <span class="tech-value">{level.techStack}</span>
-                  </div>
-                  <div class="tech-row">
-                    <span class="tech-label">Lösungen:</span>
-                    <span class="tech-value solutions">{level.solutions}</span>
-                  </div>
-                </div>
+                <p class="level-example"><strong>Beispiel:</strong> {level.example}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section>
-          <h2>Drei Phasen des Fortschritts</h2>
+          <h2>Level 9-11+: Firmenübergreifende Zusammenarbeit</h2>
+          <p>
+            Ab Level 9 wird es spannend: Das System optimiert nicht mehr nur intern,
+            sondern kann von externem Wissen profitieren – <strong>ohne Ihre Daten preiszugeben</strong>.
+          </p>
 
-          <div class="phase-box">
-            <h3>Phase 1: Prediction (Level 6-7)</h3>
+          <div class="context-box">
+            <h3>Warum das wichtig ist</h3>
             <p>
-              <strong>Was passiert:</strong> Das System lernt aus Daten und Feedback.
-              Nicht mehr nur reaktiv, sondern proaktiv.
+              Jedes Unternehmen löst dieselben Probleme isoliert. Ihre Lieferanten,
+              Partner und sogar Wettbewerber haben ähnliche Herausforderungen –
+              aber niemand teilt Lösungen, weil das Geschäftsgeheimnisse gefährden würde.
             </p>
-            <ul>
-              <li>
-                <strong>TigerGraph GNNs:</strong> Graph Neural Networks für prädiktive Analytics.
-                Sub-second Queries auf großen Graphen. Time-Series + Graph kombiniert.<sup>[1]</sup>
-              </li>
-              <li>
-                <strong>PowerDrill Agents:</strong> Self-Improving durch RLHF.
-                Autonome Experimente, Evaluation Suites für Qualitätssicherung.<sup>[2]</sup>
-              </li>
-            </ul>
-            <p class="phase-note">
-              <strong>Praxisreif für:</strong> Lieferketten-Optimierung, Risiko-Früherkennung, Anforderungs-Extraktion
+            <p>
+              <strong>Die Lösung:</strong> Moderne Architekturen ermöglichen es,
+              Erkenntnisse zu teilen ohne Daten zu teilen.
             </p>
           </div>
 
-          <div class="phase-box">
-            <h3>Phase 2: Federation (Level 8-10)</h3>
-            <p>
-              <strong>Was passiert:</strong> Systeme lernen übergreifend – ohne Daten zu teilen.
-              Dezentrale Konsensbildung über Ontologien.
-            </p>
-            <ul>
-              <li>
-                <strong>FedR:</strong> Privacy-preserving Federated Learning auf Knowledge Graphs.
-                58 Zitationen. Daten bleiben lokal, nur Gradienten werden geteilt.<sup>[3]</sup>
-              </li>
-              <li>
-                <strong>Blockchain-Ontologien:</strong> Aptos PoS für dezentrale Taxonomie-Abstimmung.
-                Unveränderliche, nachvollziehbare Konsenshistorie.<sup>[4]</sup>
-              </li>
-            </ul>
-            <p class="phase-note">
-              <strong>Relevant für:</strong> Cross-Company Collaboration, Branchen-Standards, Regulatory Compliance
-            </p>
-          </div>
-
-          <div class="phase-box">
-            <h3>Phase 3: Emergence (Level 11-13)</h3>
-            <p>
-              <strong>Was passiert:</strong> Agenten verhandeln autonom. Weltmodelle simulieren
-              komplexe Systeme. Emergente Eigenschaften entstehen.
-            </p>
-            <ul>
-              <li>
-                <strong>AgentaNet:</strong> Trustless Agent Swarms für dezentrale Ökonomien.
-                Smart Contracts orchestrieren Multi-Agent-Verhandlungen.<sup>[5]</sup>
-              </li>
-              <li>
-                <strong>Cosmos WFMs:</strong> NVIDIA World Foundation Models für physische AI-Simulation.
-                Trainiert auf massiven Video-Datensätzen für physikalisch korrekte Prognosen.<sup>[6]</sup>
-              </li>
-            </ul>
-            <p class="phase-note">
-              <strong>Forschungsstand:</strong> Aktiv in Entwicklung bei Google, NVIDIA, akademischen Instituten
-            </p>
+          <div class="advanced-levels">
+            {collaborationLevels.map((level) => (
+              <div class="level-card collaboration" data-testid={`level-${level.level}`}>
+                <div class="level-header">
+                  <span class="level-number">{level.level}</span>
+                  <h3>{level.name}</h3>
+                </div>
+                <p class="your-benefit"><strong>Ihr Mehrwert:</strong> {level.yourBenefit}</p>
+                <p class="level-description">{level.description}</p>
+                <p class="level-example"><strong>Beispiel:</strong> {level.example}</p>
+              </div>
+            ))}
           </div>
         </section>
 
         <section>
-          <h2>Der rote Faden: KI-Anteil</h2>
+          <h2>Der wichtige Punkt</h2>
           <p>
-            Bemerkenswert: Selbst auf Level 13 bleibt der KI-Anteil bei 20-50%.
-            Der Großteil der Arbeit wird von klassischen Algorithmen erledigt:
-            Graph-Traversierung, Constraint-Solving, kryptographische Verifikation.
-          </p>
-          <p>
-            <strong>Die Lektion:</strong> KI ist Beschleuniger, nicht Ersatz.
-            Je weiter man auf der Leiter steigt, desto wichtiger wird die Grundstruktur.
-          </p>
-        </section>
-
-        <section>
-          <h2>Wo stehen Sie?</h2>
-          <p>
-            Die meisten Unternehmen befinden sich zwischen Level 1 und 3.
-            Der Sprung auf Level 5 bringt bereits 70-80% des möglichen Werts.
-            Alles darüber hinaus ist Optimierung – lohnend, aber nicht zwingend.
+            Auch auf den höchsten Stufen bleibt das strukturelle Fundament entscheidend.
+            KI ist der Beschleuniger – nicht der Ersatz für solide Grundlagen.
           </p>
           <p>
             <strong>Empfehlung:</strong> Erst das Fundament (Level 5), dann den Ausblick.
+            Die meisten Unternehmen unterschätzen, wie viel Wert bereits in den
+            ersten Stufen steckt.
+          </p>
+        </section>
+
+        <section>
+          <h2>Wo wollen Sie hin?</h2>
+          <p>
+            Level 5 als Basis für die gute KI-Anwendung liefert bereits einen hohen Nutzen.
+            Level 6-8 ist an vielen Stellen schon Stand der Technik 
+          </p>
+          <p>
+            Und auch wenn sich Level 9+ wie Science-Fiction liest: Die Eintrittswahrscheinlichkeit ist hoch.
+            Der potentielle Impact auf Ihr Business ebenfalls.
+            Also besser heute schon die Chancen und Risiken evaluieren.
           </p>
         </section>
 
         <section class="cta-box">
-          <h2>Fundament zuerst</h2>
+          <h2>Fundament zuerst - Zukunft im Blick</h2>
           <p>
             Lassen Sie uns klären, wo Sie auf der Leiter stehen –
             und welcher nächste Schritt den größten Hebel hat.
@@ -303,18 +181,7 @@ const advancedLevels = [
           <a href="/kontakt" class="button button-primary">Gespräch vereinbaren</a>
         </section>
 
-        <section class="sources">
-          <h2>Quellen</h2>
-          <ol>
-            {sources.map((source) => (
-              <li id={`source-${source.id}`}>
-                <a href={source.url} target="_blank" rel="noopener noreferrer">
-                  {source.text}
-                </a>
-              </li>
-            ))}
-          </ol>
-        </section>
+        <ArticleNavigation currentPath="/mein-ansatz/ausblick" />
       </div>
     </article>
   </main>
@@ -354,7 +221,7 @@ const advancedLevels = [
   }
 
   .article-content {
-    max-width: 850px;
+    max-width: 750px;
     padding: var(--space-12) var(--container-padding);
   }
 
@@ -380,18 +247,6 @@ const advancedLevels = [
     margin-bottom: var(--space-4);
   }
 
-  .article-content ul {
-    margin-bottom: var(--space-6);
-    padding-left: var(--space-6);
-  }
-
-  .article-content li {
-    font-size: var(--text-lg);
-    line-height: var(--leading-relaxed);
-    color: var(--color-text-secondary);
-    margin-bottom: var(--space-3);
-  }
-
   /* Advanced Levels */
   .advanced-levels {
     display: flex;
@@ -409,7 +264,7 @@ const advancedLevels = [
 
   .level-header {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: var(--space-4);
     margin-bottom: var(--space-3);
   }
@@ -430,101 +285,105 @@ const advancedLevels = [
 
   .level-title {
     flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .level-title h3 {
     font-size: var(--text-lg);
-    margin: 0 0 var(--space-2) 0;
+    margin: 0;
   }
 
-  .level-stats {
-    display: flex;
-    gap: var(--space-3);
-    flex-wrap: wrap;
-  }
-
-  .level-stats .stat {
+  .stat.value {
     font-size: var(--text-xs);
     font-weight: var(--font-semibold);
     padding: var(--space-1) var(--space-2);
     border-radius: var(--radius-sm);
-  }
-
-  .stat.value {
     background: var(--color-success-bg);
     color: var(--color-success-text);
   }
 
-  .stat.ai {
-    background: var(--color-info-bg);
-    color: var(--color-info-text);
-  }
-
   .level-description {
     font-size: var(--text-base) !important;
-    margin-bottom: var(--space-3) !important;
+    margin-bottom: var(--space-2) !important;
   }
 
-  .level-tech {
+  .level-example {
+    font-size: var(--text-sm) !important;
     background: var(--color-background);
     padding: var(--space-3);
     border-radius: var(--radius-md);
-    font-size: var(--text-sm);
+    margin-bottom: 0 !important;
+    border-left: 3px solid var(--color-primary);
   }
 
-  .tech-row {
-    display: flex;
-    gap: var(--space-2);
-    margin-bottom: var(--space-1);
-  }
-
-  .tech-row:last-child {
-    margin-bottom: 0;
-  }
-
-  .tech-label {
-    color: var(--color-text-light);
+  .your-benefit {
+    font-size: var(--text-base) !important;
+    color: var(--color-success-text) !important;
     font-weight: var(--font-medium);
-    min-width: 70px;
+    margin-bottom: var(--space-2) !important;
   }
 
-  .tech-value {
-    color: var(--color-text-secondary);
+  .level-card.collaboration {
+    border-left-color: var(--color-accent, var(--color-primary));
+    background: linear-gradient(
+      135deg,
+      var(--color-background-alt) 0%,
+      var(--color-primary-50) 100%
+    );
   }
 
-  .tech-value.solutions {
+  /* Context Box */
+  .context-box {
+    background: var(--color-background-alt);
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .context-box h3 {
+    font-size: var(--text-lg);
     color: var(--color-primary);
-    font-weight: var(--font-medium);
+    margin: 0 0 var(--space-3) 0;
   }
 
-  /* Phase Boxes */
-  .phase-box {
+  .context-box p {
+    font-size: var(--text-base) !important;
+    margin-bottom: var(--space-2) !important;
+  }
+
+  .context-box p:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* Benefit Boxes */
+  .benefit-box {
     background: var(--color-background-alt);
     padding: var(--space-6);
     border-radius: var(--radius-lg);
     margin-bottom: var(--space-6);
+    border-top: 4px solid var(--color-primary);
   }
 
-  .phase-box h3 {
+  .benefit-box h3 {
     color: var(--color-primary);
     margin-top: 0;
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-3);
   }
 
-  .phase-box ul {
-    margin-bottom: var(--space-4);
+  .benefit-box p {
+    font-size: var(--text-base) !important;
   }
 
-  .phase-box li {
-    font-size: var(--text-base);
-  }
-
-  .phase-note {
+  .benefit-example {
     font-size: var(--text-sm) !important;
-    background: var(--color-primary-50);
-    padding: var(--space-3) var(--space-4);
+    background: var(--color-background);
+    padding: var(--space-3);
     border-radius: var(--radius-md);
     margin-bottom: 0 !important;
+    border-left: 3px solid var(--color-primary);
   }
 
   /* CTA Box */
@@ -547,6 +406,13 @@ const advancedLevels = [
   @media (max-width: 768px) {
     .level-header {
       flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-2);
+    }
+
+    .level-title {
+      flex-direction: column;
+      align-items: flex-start;
       gap: var(--space-2);
     }
 
@@ -554,60 +420,5 @@ const advancedLevels = [
       width: 32px;
       height: 32px;
     }
-
-    .tech-row {
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .tech-label {
-      min-width: auto;
-    }
-  }
-
-  .level-example {
-    font-size: var(--text-sm) !important;
-    font-style: italic;
-    color: var(--color-text-light) !important;
-    background: var(--color-background);
-    padding: var(--space-2) var(--space-3);
-    border-radius: var(--radius-sm);
-    margin-bottom: var(--space-3) !important;
-  }
-
-  /* Sources */
-  .sources {
-    margin-top: var(--space-12);
-    padding-top: var(--space-8);
-    border-top: 1px solid var(--color-border);
-  }
-
-  .sources h2 {
-    font-size: var(--text-lg);
-    margin-bottom: var(--space-4);
-  }
-
-  .sources ol {
-    padding-left: var(--space-6);
-    margin: 0;
-  }
-
-  .sources li {
-    font-size: var(--text-sm) !important;
-    margin-bottom: var(--space-2);
-  }
-
-  .sources a {
-    color: var(--color-primary);
-    text-decoration: none;
-  }
-
-  .sources a:hover {
-    text-decoration: underline;
-  }
-
-  sup {
-    font-size: var(--text-xs);
-    color: var(--color-primary);
   }
 </style>

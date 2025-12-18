@@ -73,22 +73,22 @@ const stages = [
 const hintergrundArticles = [
   {
     title: "Struktur vor KI",
-    description: "Level 1-5: Warum 70% Business Value aus Struktur kommt",
+    description: "Warum die meisten KI-Projekte scheitern – und wie es besser geht",
     href: "/mein-ansatz/struktur-vor-ki"
   },
   {
     title: "Ausblick",
-    description: "Level 6-13: Lernende Systeme und darüber hinaus",
+    description: "Was nach dem Fundament kommt: Vorausschau und lernende Systeme",
     href: "/mein-ansatz/ausblick"
   },
   {
     title: "Markt & Trends",
-    description: "Wo stehen Google, Palantir & Co auf der Leiter?",
+    description: "Was erfolgreiche Unternehmen anders machen",
     href: "/mein-ansatz/markt-trends"
   },
   {
     title: "Technischer Stack",
-    description: "Neo4j, TigerGraph, SHACL, Ollama für Level 3-7",
+    description: "Für CTOs: Wie der Ansatz technisch umgesetzt wird",
     href: "/mein-ansatz/technik"
   }
 ];
@@ -198,10 +198,10 @@ const passtNicht = [
         <div class="key-insight">
           <p>
             <strong>Key Insight:</strong> Bis Stufe 5 kommt der Wert aus
-            Struktur und Regeln – im Betrieb laufen diese Systeme deterministisch mit
-            minimalem KI-Aufwand. Erst ab Stufe 6 wird KI operativ relevant.
-            <strong>Stufe 5 ist die Grundlage für effizienten KI-Einsatz.
+            Struktur und Regeln – im Betrieb laufen die Abläufe regelbasiert mit
+            minimalem KI-Einsatz. Erst ab Stufe 6 wird KI operativ relevant.
           </p>
+          <p class="key-insight-highlight">Stufe 5 ist die Grundlage für effiziente KI-Anwendung.</p>
         </div>
       </div>
     </section>
@@ -472,6 +472,13 @@ const passtNicht = [
     margin: 0;
     font-size: var(--text-lg);
     line-height: var(--leading-relaxed);
+  }
+
+  .key-insight-highlight {
+    text-align: center;
+    font-weight: var(--font-bold);
+    font-size: var(--text-xl);
+    margin-top: var(--space-4);
   }
 
   /* Hintergrund Section */

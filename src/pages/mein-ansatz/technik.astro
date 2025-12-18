@@ -7,6 +7,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import ArticleNavigation from '../../components/ArticleNavigation.astro';
 
 const sources = [
   {
@@ -58,8 +59,8 @@ const sources = [
 ---
 
 <BaseLayout
-  title="Technischer Stack für Level 3-7 | Sigloch Consulting"
-  description="Neo4j, TigerGraph, PuppyGraph, SHACL, Ollama, MCP: Der Open-Source-Stack für quantifizierbare Datenreife. I-Score/K-Score für messbare KG-Qualität."
+  title="Technischer Stack - Für CTOs und IT-Entscheider | Sigloch Consulting"
+  description="Open-Source-Stack für strukturierte Datenreife: Graph-Datenbanken, Validierung, lokale KI. Keine Cloud-Abhängigkeit, planbare Kosten."
 >
   <Header />
 
@@ -70,7 +71,7 @@ const sources = [
           <a href="/mein-ansatz" class="back-link">← Mein Ansatz</a>
           <h1>Technischer Stack</h1>
           <p class="article-subtitle">
-            Open Source für Level 3-7: Graph, Regeln, Scores, Prediction
+            Für CTOs und IT-Entscheider: Wie der Ansatz technisch umgesetzt wird
           </p>
         </div>
       </header>
@@ -353,7 +354,7 @@ const sources = [
         <section class="cta-box">
           <h2>Technische Fragen?</h2>
           <p>
-            Lassen Sie uns über die passende Architektur für Ihre Anforderungen sprechen.
+            Lassen Sie uns über die Anforderungen an Ihre IT-Architektur sprechen.
           </p>
           <a href="/kontakt" class="button button-primary">Gespräch vereinbaren</a>
         </section>
@@ -370,6 +371,8 @@ const sources = [
             ))}
           </ol>
         </section>
+
+        <ArticleNavigation currentPath="/mein-ansatz/technik" />
       </div>
     </article>
   </main>

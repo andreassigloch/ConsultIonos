@@ -1,0 +1,123 @@
+---
+/**
+ * Navigation zwischen Mein-Ansatz-Artikeln
+ * @author andreas@siglochconsulting.de
+ */
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const articles = [
+  { title: "Struktur vor KI", href: "/mein-ansatz/struktur-vor-ki" },
+  { title: "Ausblick", href: "/mein-ansatz/ausblick" },
+  { title: "Markt & Trends", href: "/mein-ansatz/markt-trends" },
+  { title: "Technischer Stack", href: "/mein-ansatz/technik" }
+];
+
+const currentIndex = articles.findIndex(a => a.href === currentPath);
+const prevArticle = currentIndex > 0 ? articles[currentIndex - 1] : null;
+const nextArticle = currentIndex < articles.length - 1 ? articles[currentIndex + 1] : null;
+---
+
+<nav class="article-navigation" aria-label="Artikel-Navigation">
+  <div class="nav-links">
+    {prevArticle ? (
+      <a href={prevArticle.href} class="nav-link prev">
+        <span class="nav-direction">← Vorheriger</span>
+        <span class="nav-title">{prevArticle.title}</span>
+      </a>
+    ) : (
+      <div class="nav-link placeholder"></div>
+    )}
+
+    {nextArticle ? (
+      <a href={nextArticle.href} class="nav-link next">
+        <span class="nav-direction">Nächster →</span>
+        <span class="nav-title">{nextArticle.title}</span>
+      </a>
+    ) : (
+      <div class="nav-link placeholder"></div>
+    )}
+  </div>
+</nav>
+
+<style>
+  .article-navigation {
+    margin-top: var(--space-12);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .nav-links {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    min-width: 0;
+    flex: 1;
+    max-width: 45%;
+  }
+
+  .nav-link.placeholder {
+    visibility: hidden;
+  }
+
+  .nav-link.prev {
+    align-items: flex-start;
+  }
+
+  .nav-link.next {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .nav-link:hover {
+    background: var(--color-background-alt);
+  }
+
+  .nav-direction {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .nav-title {
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    color: var(--color-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  @media (max-width: 640px) {
+    .nav-links {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .nav-link {
+      max-width: 100%;
+    }
+
+    .nav-link.next {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .nav-link.placeholder {
+      display: none;
+    }
+  }
+</style>
