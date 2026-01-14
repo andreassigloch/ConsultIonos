@@ -191,6 +191,55 @@ demo-requirements-traceability/
 └── ausblick-folien/        # Konzept-Folien für Stufe 6-7
 ```
 
+## Sicherheitskonzept
+
+Der MCP-Server implementiert mehrere Sicherheitsmaßnahmen, um versehentliche Änderungen an falschen Datenbanken zu verhindern:
+
+### 1. Database Fingerprint Verification
+
+Beim Start prüft der MCP-Server, ob die verbundene Datenbank die Demo-Datenbank ist:
+
+| Check | Erwartung | Abbruch wenn... |
+|-------|-----------|-----------------|
+| Marker Node | STK-001 mit "Abbiegeabsicht" | Node fehlt oder falsche Daten |
+| Labels | StakeholderReq, SystemReq, SoftwareReq, TestCase | Labels fehlen |
+| Node Count | < 1000 Nodes | Zu viele Nodes (Production?) |
+
+**Bei Fehlschlag:** MCP-Server startet nicht, Fehlermeldung in Logs.
+
+### 2. Query Sanitization
+
+Das `query`-Tool erlaubt nur lesende Operationen:
+
+**Verboten:**
+- `DELETE`, `DETACH DELETE`, `REMOVE`
+- `DROP`, `CREATE INDEX`, `CREATE CONSTRAINT`
+- `MERGE`, `SET`
+- `CALL dbms.*`, `CALL apoc.periodic.*`, `CALL apoc.trigger.*`
+
+**Erlaubt:**
+- Queries die mit `MATCH`, `RETURN`, `WITH`, `UNWIND` starten
+- `CALL db.labels()`, `CALL db.relationshipTypes()`, `CALL db.propertyKeys()`
+
+### 3. Write-Only Tools
+
+Nur `add_rule` und `toggle_rule` können schreiben - und nur `:Regel` Knoten:
+- Keine Möglichkeit, Requirements, Tests oder Komponenten zu ändern
+- Regeln sind Demo-spezifisch und werden bei DB-Reset gelöscht
+
+### Logs prüfen
+
+```bash
+# MCP-Server Logs in Claude Desktop
+Settings > Developer > neo4j-requirements > Logs
+
+# Erwartete Ausgabe bei korrekter DB:
+✅ SECURITY: Database fingerprint verified
+   - Marker node STK-001: found
+   - Required labels: all present
+   - Node count: 26 (within demo range)
+```
+
 ## Abnahmekriterien
 
 - [x] Neo4j startet mit `docker-compose up`
@@ -199,3 +248,4 @@ demo-requirements-traceability/
 - [x] Demo-Script für 20-Min Präsentation
 - [x] Demo-PDFs für Stufe 1-2
 - [x] Ausblick-Folien für Stufe 6-7
+- [x] Sicherheitskonzept (DB-Fingerprint, Query-Sanitization)
