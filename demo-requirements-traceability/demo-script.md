@@ -3,6 +3,7 @@
 **Dauer:** 20 Minuten
 **Zielgruppe:** Engineering-Teams, PLM-Verantwortliche, Quality Manager
 **Setting:** Live-Demo mit Claude Desktop + Neo4j
+**Beispiel:** Automotive Außenlichtsystem (Blinker, Bremslicht, Warnblinker)
 
 ---
 
@@ -13,50 +14,61 @@
 - [ ] **Docker Desktop** gestartet und running
 - [ ] **Neo4j Container** läuft:
   ```bash
-  docker ps | grep neo4j
-  # Falls nicht: docker start neo4j-demo
+  cd demo-requirements-traceability
+  docker-compose up -d
+  docker ps | grep req-traceability-neo4j
   ```
 - [ ] **Neo4j Browser** geöffnet: http://localhost:7484
   - Login: neo4j / demo-password
-  - Testquery: `MATCH (n) RETURN count(n)` - sollte Nodes zurückgeben
+  - Testquery: `MATCH (n) RETURN count(n)` → sollte ~26 Knoten zeigen
 - [ ] **Claude Desktop** geöffnet
-  - MCP-Status prüfen: Einstellungen > MCP > "neo4j" muss grün sein
-  - Test: "Liste alle verfügbaren MCP-Tools" eingeben
-- [ ] **PDF-Dokumente** griffbereit in Ordner:
-  - `ASPICE_PAM_31.pdf`
-  - `FMEA_Handbook_2019.pdf`
-  - `ISO26262_Part8.pdf`
-  - `OEM_Lastenheft_Bremssystem_v2.3.pdf`
+  - MCP-Status prüfen: Settings > Developer > "neo4j-requirements" muss grün sein
+  - Falls rot: Claude Desktop mit Cmd+Q beenden, neu starten
+- [ ] **Demo-PDFs** griffbereit im Ordner `demo-pdfs/`:
+  - `lastenheft-aussenlicht.md`
+  - `a-spice-auszug.md`
+  - `iso-26262-auszug.md`
+  - `can-interface-spec.md`
 - [ ] **Zweiter Monitor** für Neo4j Browser (falls verfügbar)
-- [ ] **Backup-Slides** geladen (falls technische Probleme)
 
 ### Schnelltest (2 Min)
 
+**⚠️ MCP MUSS AKTIV SEIN für diesen Test!**
+
 ```
-Claude: "Verbinde dich mit der Neo4j-Datenbank und zeige die Anzahl der Requirements"
+Claude: "Zeige alle SystemReqs aus der Neo4j Datenbank"
 ```
 
-Erwartete Antwort: "Verbunden. Aktuell X Requirements in der Datenbank."
+Erwartete Antwort: Liste mit SYS-001 bis SYS-007 (Blinker, Bremslicht, etc.)
 
 ---
 
 ## Demo-Ablauf
 
+### Phase 0: Setup-Hinweis (0:00)
+
+> **An Publikum:** "Ich zeige Ihnen jetzt eine Live-Demo. Wir starten mit PDFs - so wie Sie es kennen. Dann schalten wir den Knowledge Graph ein und Sie sehen den Unterschied."
+
+---
+
 ### Stufe 1: Unstrukturierte Quellen (0:00 - 2:00)
 
-#### Aktion
-PDFs auf dem Bildschirm zeigen - Finder/Explorer öffnen, durch die 4 Dokumente scrollen.
+**🔌 MCP: AUS (noch nicht einschalten!)**
 
-#### Claude-Befehl
-```
-Keine Eingabe - nur visuelle Demonstration der Ausgangslage
-```
+#### Aktion
+PDFs auf dem Bildschirm zeigen - Finder öffnen, durch die 4 Dokumente scrollen.
+
+#### Dokumente zeigen
+1. `lastenheft-aussenlicht.md` - "So sieht Ihr Lastenheft aus"
+2. `a-spice-auszug.md` - "Der Standard als PDF"
+3. `iso-26262-auszug.md` - "Safety-Normen als Text"
+4. `can-interface-spec.md` - "Interface-Spec vom anderen Team"
 
 #### Talking Points
 
-> "Das kennen Sie alle: Vier verschiedene Quellen - OEM-Lastenheft als Word-Export, A-SPICE als PDF, FMEA-Handbuch, ISO 26262. Jedes Team hat seine eigene Ablage. Der Requirements Engineer sucht manuell nach Zusammenhängen."
+> "Das kennen Sie alle: Vier verschiedene Quellen - Lastenheft, A-SPICE, ISO 26262, CAN-Spezifikation vom Fahrwerk-Team. Jedes Team hat seine eigene Ablage."
 
-> "Frage ans Publikum: Wie lange dauert es bei Ihnen, alle Anforderungen zu einem Subsystem zusammenzutragen? Die ehrliche Antwort: Oft Stunden, manchmal Tage."
+> "Frage ans Publikum: Wie lange dauert es bei Ihnen, alle Anforderungen für das Außenlichtsystem zusammenzutragen? Ehrliche Antwort: Stunden, manchmal Tage."
 
 #### Erwartetes Ergebnis
 Publikum nickt - Wiedererkennung des Problems.
@@ -65,291 +77,228 @@ Publikum nickt - Wiedererkennung des Problems.
 
 ### Stufe 2: RAG-Grenze demonstrieren (2:00 - 4:00)
 
+**🔌 MCP: AUS (PDFs in Claude laden)**
+
 #### Aktion
-Claude Desktop öffnen, RAG-Suche durchführen.
+Claude Desktop öffnen, PDFs per Drag&Drop laden.
 
 #### Claude-Befehl 1 (funktioniert)
 ```
-Durchsuche das OEM-Lastenheft nach allen Anforderungen zum Thema "Bremsdruck"
+Durchsuche das Lastenheft nach allen Anforderungen zum Thema "Bremslicht"
 ```
 
 #### Erwartetes Ergebnis
-Claude findet 3-4 Requirements:
-- REQ-BRK-001: Maximaler Bremsdruck
-- REQ-BRK-002: Druckaufbauzeit
-- REQ-BRK-003: Druckabbauzeit
+Claude findet Requirements aus dem Text:
+- STK-002: Bremsvorgang erkennbar
+- SYS-003: Bremslicht <50ms
+- SYS-004: Bremslicht 80-300cd
 
 #### Claude-Befehl 2 (scheitert - WOW-Moment)
 ```
-Welche A-SPICE Work Products sind erforderlich, um REQ-BRK-001 normkonform nachzuweisen?
+Erfüllt unser Außenlichtsystem die A-SPICE Traceability-Anforderungen?
 ```
 
 #### Erwartetes Ergebnis
-Claude antwortet vage oder falsch:
-- "Ich kann in den Dokumenten keine direkte Verknüpfung finden..."
-- Oder: Generische Antwort ohne konkrete Work Products
+Claude antwortet vage:
+- "Ich kann aus den Dokumenten nicht direkt ableiten..."
+- Oder: Generische Antwort ohne konkrete Prüfung
 
 #### Talking Points
 
-> "Sehen Sie das Problem? RAG findet Text-Passagen, aber keine Beziehungen. Die Frage 'Welche Nachweise brauche ich?' erfordert Wissen über ZUSAMMENHÄNGE - welches Requirement zu welchem Work Product, welcher Test, welche Freigabe."
+> "Sehen Sie das Problem? RAG findet Text-Passagen, aber keine BEZIEHUNGEN. Die Frage 'Erfüllen wir A-SPICE?' erfordert Wissen über ZUSAMMENHÄNGE - welches Requirement zu welchem Test, welche Traceability fehlt."
 
 > "Genau hier beginnt der Knowledge Graph."
 
 ---
 
-### Stufe 3: Graph-Visualisierung (5:00 - 7:00)
+### Stufe 3: Graph-Visualisierung (4:00 - 7:00)
+
+**🔌 MCP: JETZT EINSCHALTEN!**
+
+> **An Publikum:** "Jetzt schalten wir den Knowledge Graph ein."
 
 #### Aktion
-Neo4j Browser zeigen, Requirement-Hierarchie visualisieren.
+Neo4j Browser auf zweitem Monitor zeigen.
 
 #### Claude-Befehl
 ```
-Zeige die Requirement-Hierarchie für das Bremssystem im Neo4j Graph.
-Starte bei der System-Ebene und gehe runter bis zu den Komponenten-Requirements.
+Zeige die Requirement-Hierarchie für das Außenlichtsystem.
+Nutze das query-Tool.
 ```
 
 #### Erwartetes Ergebnis
-Claude führt Cypher-Query aus und beschreibt die Struktur:
+Claude führt Cypher-Query aus:
 ```
-System-Requirement: SYS-BRK-001 "Autonome Notbremsung"
-├── Subsystem: SUB-BRK-001 "Bremsdruckmodulation"
-│   ├── Component: REQ-BRK-001 "Max. Bremsdruck 180 bar"
-│   ├── Component: REQ-BRK-002 "Druckaufbau < 150ms"
-│   └── Component: REQ-BRK-003 "Druckabbau < 200ms"
-└── Subsystem: SUB-BRK-002 "Sensorik"
-    ├── Component: REQ-SEN-001 "Raddrehzahl-Erfassung"
-    └── Component: REQ-SEN-002 "Drucksensor-Genauigkeit"
+STK-001 (Abbiegeabsicht) → SYS-001 (Blinker <100ms) → SW-001 (Timer 333ms)
+STK-002 (Bremsvorgang)   → SYS-003 (Bremslicht <50ms) → SW-002 (Schwellwert)
+STK-004 (Warnblinker)    → SYS-006 (synchron) → SW-003 (Override)
+                         → SYS-007 (ohne Zündung) → SW-004 (Watchdog)
 ```
 
 #### Neo4j Browser Query (parallel zeigen)
 ```cypher
-MATCH path = (sys:Requirement {level: 'System'})-[:DERIVES_TO*1..3]->(comp:Requirement)
-WHERE sys.domain = 'Brake'
+MATCH path = (stk:StakeholderReq)-[:TRACED_TO*1..3]->(sw:SoftwareReq)
 RETURN path
-LIMIT 50
 ```
 
 #### Talking Points
 
-> "Das ist der Paradigmenwechsel: Statt Text-Suche sehen wir STRUKTUR. Jeder Knoten ist ein Requirement, jede Kante eine Beziehung - derives_to, verifies, satisfies."
+> "Das ist der Paradigmenwechsel: Statt Text-Suche sehen wir STRUKTUR. Jeder Knoten ein Requirement, jede Kante eine Beziehung."
 
-> "Und jetzt kommt das Entscheidende: Diese Struktur können wir gegen Regeln prüfen."
+> "Und jetzt das Entscheidende: Diese Struktur können wir gegen Regeln prüfen."
 
 ---
 
-### Stufe 4: Regel-Extraktion aus PDF (7:00 - 11:00)
+### Stufe 4: Regeln erstellen & validieren (7:00 - 11:00)
+
+**🔌 MCP: AKTIV**
 
 #### Aktion
-Live Regel-Erstellung aus A-SPICE Dokument.
+Live Regel-Erstellung aus A-SPICE Wissen.
 
-#### Claude-Befehl 1 (Regel-Erstellung)
+#### Claude-Befehl 1 (Regel erstellen)
 ```
-Analysiere das A-SPICE PAM 3.1 PDF und extrahiere daraus Compliance-Regeln für Requirements Engineering.
-Speichere die Regeln als Cypher-Constraints in der Neo4j-Datenbank.
+Erstelle eine A-SPICE Traceability-Regel:
+"Jedes SoftwareReq muss einen Test haben"
+Nutze das add_rule Tool.
 ```
 
 #### Erwartetes Ergebnis
-Claude analysiert PDF und erstellt Regeln:
 ```
-Regel 1 (SWE.1.BP1): Jedes Software-Requirement muss eine eindeutige ID haben
-→ CONSTRAINT: (r:Requirement {type: 'Software'}) MUST HAVE r.id IS NOT NULL
-
-Regel 2 (SWE.1.BP3): Jedes Software-Requirement muss zu einem System-Requirement nachverfolgbar sein
-→ CONSTRAINT: (sw:Requirement {type: 'Software'}) MUST HAVE path TO (sys:Requirement {type: 'System'})
-
-Regel 3 (SWE.1.BP5): Konsistenz zwischen Anforderungen muss gewährleistet sein
-→ CONSTRAINT: NO (r1:Requirement)-[:CONFLICTS_WITH]->(r2:Requirement) WHERE r1.status = 'approved'
-
-3 Regeln aus A-SPICE extrahiert und gespeichert.
+Regel erstellt: R001
+- Name: Software-Req braucht Test
+- Typ: verifikation
+- Standard: A-SPICE SWE.4
+- Cypher: MATCH (sw:SoftwareReq) WHERE NOT (sw)-[:VERIFIED_BY]->(:TestCase) RETURN sw
 ```
 
 #### Claude-Befehl 2 (Validierung - WOW-Moment)
 ```
-Validiere alle Bremssystem-Requirements gegen die A-SPICE Regeln.
-Zeige Violations mit Kontext.
+Prüfe alle aktiven Regeln. Nutze das validate Tool.
 ```
 
 #### Erwartetes Ergebnis
 ```
-VALIDIERUNG ABGESCHLOSSEN
+VALIDIERUNG:
+- Regeln geprüft: 1
+- Violations: 1
 
-Geprüft: 47 Requirements
-Bestanden: 44 Requirements
-Violations: 3 Requirements
-
-VIOLATIONS:
-1. REQ-BRK-017 "Temperaturbereich"
-   - Regel: SWE.1.BP3 (Rückverfolgbarkeit)
-   - Problem: Keine Verbindung zu System-Requirement
-   - Empfehlung: Link zu SYS-BRK-001 oder SYS-ENV-003 erstellen
-
-2. REQ-SEN-004 "Sensor-Kalibrierung"
-   - Regel: SWE.1.BP5 (Konsistenz)
-   - Problem: Konflikt mit REQ-SEN-002 (unterschiedliche Toleranzwerte)
-   - Empfehlung: Werte abstimmen mit Sensorik-Team
-
-3. REQ-BRK-023 "Notfall-Override"
-   - Regel: SWE.1.BP1 (Eindeutige ID)
-   - Problem: Duplikat-ID mit REQ-BRK-008
-   - Empfehlung: ID korrigieren zu REQ-BRK-024
+SW-003 "Warnblinker Override" hat KEINEN zugeordneten Test!
+→ TC-005 fehlt
 ```
 
 #### Talking Points
 
-> "Das haben Sie gerade gesehen: Claude hat ein 200-Seiten PDF analysiert, die relevanten Regeln extrahiert und als ausführbare Constraints gespeichert. In unter einer Minute."
+> "Das haben Sie gerade gesehen: Eine Regel erstellt, sofort validiert. Der Graph WEISS, welche Beziehungen fehlen."
 
-> "Und dann: Automatische Validierung. Keine manuelle Review-Checkliste mehr. Der Graph WEISS, welche Beziehungen fehlen."
-
-> "Frage ans Publikum: Wie lange dauert bei Ihnen ein manuelles Requirements Review? Hier: Sekunden."
+> "SW-003 - der Warnblinker Override - hat keinen Test. Das wäre im Audit ein Finding."
 
 ---
 
-### Stufe 5: Compliance Score & Impact Analysis (11:00 - 17:00)
+### Stufe 5: Compliance Score & Impact (11:00 - 17:00)
 
-#### Aktion
-Compliance-Score berechnen, dann Regel verschärfen.
+**🔌 MCP: AKTIV**
 
-#### Claude-Befehl 1 (Score anzeigen)
+#### Claude-Befehl 1 (Score)
 ```
-Berechne den A-SPICE Compliance Score für das Bremssystem.
-Zeige den Score nach Prozess-Bereichen aufgeschlüsselt.
+Berechne den Compliance-Score. Nutze das compliance_score Tool.
 ```
 
 #### Erwartetes Ergebnis
 ```
-A-SPICE COMPLIANCE SCORE: BREMSSYSTEM
+COMPLIANCE SCORE:
+- ECE R6: 85% (5 von 6 Requirements compliant)
+- ECE R7: 100% (2 von 2 Requirements compliant)
+- Overall: ~85%
 
-Gesamt-Score: 87.2% (Ziel: 90%)
-
-Nach Prozess-Bereich:
-├── SWE.1 Requirements: 91% ████████████░
-├── SWE.2 Architecture:  85% ████████████
-├── SWE.3 Design:        88% ████████████░
-├── SWE.4 Unit Test:     82% ████████████
-└── SWE.6 Integration:   89% ████████████░
-
-Kritische Lücken:
-- SWE.4 Unit Test: 3 Requirements ohne verlinkte Tests
-- SWE.1 Requirements: 3 Traceability-Violations (siehe oben)
+Lücke: SYS-003, SYS-007 ohne vollständige Verifikation
 ```
 
 #### Claude-Befehl 2 (Regel verschärfen)
 ```
-Verschärfe die Traceability-Regel:
-Jedes Requirement muss nicht nur zu einem System-Requirement verlinkt sein,
-sondern auch zu mindestens einem Test-Case UND einem Review-Record.
+Füge eine strengere Regel hinzu:
+"ASIL-C Requirements brauchen mindestens 2 Tests"
+Standard: ISO 26262-8
 ```
 
-#### Erwartetes Ergebnis (Score-Änderung - WOW-Moment)
+#### Erwartetes Ergebnis (Score-Änderung)
 ```
-REGEL AKTUALISIERT
+Neue Regel erstellt.
+Validierung: 2 neue Violations!
 
-Alte Regel (SWE.1.BP3):
-  Requirement → System-Requirement ✓
+- SYS-003 (ASIL-C): nur 1 Test statt 2
+- SYS-007 (ASIL-C): nur 1 Test statt 2
 
-Neue Regel (SWE.1.BP3 enhanced):
-  Requirement → System-Requirement ✓
-  Requirement → Test-Case ✓
-  Requirement → Review-Record ✓
-
-IMPACT:
-Vorher: 44/47 Requirements compliant (93.6%)
-Nachher: 31/47 Requirements compliant (66.0%)
-
-Neue Violations: 13 Requirements
-├── 8 ohne Test-Case-Link
-└── 5 ohne Review-Record-Link
-
-Score-Änderung: 87.2% → 71.4%
+Score sinkt von 85% auf ~65%
 ```
 
 #### Talking Points
 
-> "Mit EINER Regel-Änderung sehen wir sofort den Impact. Der Score fällt von 87% auf 71%. Das ist kein Bug - das ist Realität. Die strengere Regel zeigt Lücken auf, die vorher unsichtbar waren."
-
-> "Stellen Sie sich vor: Ihr Kunde verschärft die Anforderungen im Audit. Sie können in Sekunden zeigen, welche Maßnahmen nötig sind."
+> "Mit EINER Regel-Änderung sehen wir sofort den Impact. Der Score fällt. Das ist kein Bug - das ist Realität. Die strengere Regel zeigt Lücken auf."
 
 ---
 
 #### Claude-Befehl 3 (Externe Abhängigkeit - HIGHLIGHT)
 ```
-Simuliere folgende Änderung vom Fahrwerk-Team:
-"CAN-Message 0x123 wird von 100ms auf 50ms Zykluszeit geändert"
-
-Analysiere den Impact auf das Bremssystem.
+Was ist betroffen wenn das Fahrwerk-Team die CAN-Message EXT-001 ändert?
+Nutze das impact_analysis Tool mit requirementId "EXT-001".
 ```
 
 #### Erwartetes Ergebnis (WOW-Moment)
 ```
-IMPACT ANALYSE: CAN-Message 0x123 Änderung
+IMPACT ANALYSE: EXT-001 (CAN BrakePedalForce)
 
 Quelle: Fahrwerk-Team
-Änderung: Zykluszeit 100ms → 50ms
+Änderung würde betreffen:
 
-BETROFFENE REQUIREMENTS IM BREMSSYSTEM:
+1. SYS-003 "Bremslicht <50ms"
+   → Reaktionszeit abhängig von CAN-Zykluszeit
 
-1. REQ-BRK-002 "Druckaufbau < 150ms"
-   Impact: KRITISCH
-   Grund: Timing-Budget basiert auf 100ms CAN-Zyklus
-   → Neue Berechnung erforderlich
+2. SW-002 "Bremslicht-Schwellwert"
+   → Schwellwert abhängig von CAN-Resolution 0.1N
 
-2. REQ-SEN-001 "Raddrehzahl-Erfassung"
-   Impact: MITTEL
-   Grund: Sensor-Fusion nutzt CAN-Daten
-   → Algorithmus-Anpassung prüfen
-
-3. REQ-BRK-019 "Datenkonsistenz"
-   Impact: NIEDRIG
-   Grund: Buffer-Größe anpassen
-
-ABHÄNGIGKEITSKETTE:
-CAN-0x123 ←[uses]─ REQ-BRK-002 ←[derives]─ SYS-BRK-001 ←[satisfies]─ FMEA-Item-17
-
-EMPFEHLUNG:
-- Sofortige Abstimmung mit Fahrwerk-Team
-- Timing-Review für REQ-BRK-002
-- FMEA-Update erforderlich
+WARNUNG: Das Außenlicht-Team wurde vermutlich NICHT informiert!
 ```
 
 #### Talking Points
 
-> "Das ist der Moment, in dem es spannend wird. Eine Änderung vom Fahrwerk-Team - und wir sehen SOFORT, welche unserer Requirements betroffen sind."
+> "Das ist der Moment. Eine Änderung vom Fahrwerk-Team - und wir sehen SOFORT, welche Requirements betroffen sind."
 
-> "Frage ans Publikum: Wusste Ihr Bremssystem-Team von dieser Änderung? In der Realität: Oft nein. Die Information geht unter in E-Mails, Meetings, Confluence-Seiten."
+> "Frage ans Publikum: Wusste Ihr Außenlicht-Team von dieser CAN-Änderung? In der Realität: Oft nein."
 
-> "Mit dem Knowledge Graph: Automatische Benachrichtigung. Der Graph WEISS, dass diese Abhängigkeit existiert."
+> "Mit dem Knowledge Graph: Der Graph WEISS, dass diese Abhängigkeit existiert."
 
 ---
 
 ### Ausblick: Stufe 6-7 (18:00 - 20:00)
 
 #### Aktion
-Konzept-Folien zeigen (2-3 Slides).
+Datei `ausblick-folien/stufe-6-7-ausblick.md` zeigen.
 
 #### Talking Points
 
-> "Was Sie gesehen haben, ist Stufe 1-5. Das Fundament. Und jetzt der Ausblick:"
+> "Was Sie gesehen haben ist Stufe 3-5. Das Fundament."
 
-> "Stufe 6: Der Agent wird proaktiv. Er MERKT, wenn ein neues Requirement inkonsistent ist - BEVOR es committed wird. Wie ein Senior Engineer, der über die Schulter schaut."
+> "Stufe 6: Prediction - 'SYS-003 hat 73% Wahrscheinlichkeit für Änderung'"
 
-> "Stufe 7: Der Agent schlägt Optimierungen vor. 'Diese 3 Requirements könnten zu einem konsolidiert werden.' 'Dieser Test deckt 4 Requirements ab - sehr effizient.' 'Hier fehlt ein Safety-Requirement laut ISO 26262.'"
+> "Stufe 7: Lernende Systeme - 'Diese Formulierung führt oft zu Rückfragen'"
 
-> "Und das Beste: Die Regeln lernt das System aus IHREN Dokumenten. Ihre A-SPICE-Interpretation, Ihre OEM-Richtlinien, Ihre Best Practices."
+> "70-80% des Business Value kommt aus Struktur und Regeln - NICHT aus KI. KI ist der Turbo, nicht das Fundament."
 
 ---
 
 ## Exakte Claude-Befehle (Kurzreferenz)
 
-| Minute | Befehl |
-|--------|--------|
-| 2:00 | `Durchsuche das OEM-Lastenheft nach allen Anforderungen zum Thema "Bremsdruck"` |
-| 3:00 | `Welche A-SPICE Work Products sind erforderlich, um REQ-BRK-001 normkonform nachzuweisen?` |
-| 5:00 | `Zeige die Requirement-Hierarchie für das Bremssystem im Neo4j Graph` |
-| 7:00 | `Analysiere das A-SPICE PAM 3.1 PDF und extrahiere daraus Compliance-Regeln` |
-| 9:00 | `Validiere alle Bremssystem-Requirements gegen die A-SPICE Regeln` |
-| 11:00 | `Berechne den A-SPICE Compliance Score für das Bremssystem` |
-| 13:00 | `Verschärfe die Traceability-Regel: Requirement → System + Test + Review` |
-| 15:00 | `Simuliere CAN-Message 0x123 Änderung, analysiere Impact auf Bremssystem` |
+| Minute | Phase | MCP | Befehl |
+|--------|-------|-----|--------|
+| 2:00 | PDF | AUS | `Durchsuche das Lastenheft nach Anforderungen zum Thema Bremslicht` |
+| 3:00 | PDF | AUS | `Erfüllt unser Außenlichtsystem die A-SPICE Traceability-Anforderungen?` |
+| 5:00 | Graph | **AN** | `Zeige die Requirement-Hierarchie für das Außenlichtsystem` |
+| 8:00 | Regel | AN | `Erstelle Regel: Jedes SoftwareReq muss einen Test haben` |
+| 9:00 | Valid | AN | `Prüfe alle aktiven Regeln` |
+| 11:00 | Score | AN | `Berechne den Compliance-Score` |
+| 13:00 | Regel | AN | `Füge Regel hinzu: ASIL-C braucht 2 Tests` |
+| 15:00 | Impact | AN | `Was ist betroffen wenn EXT-001 sich ändert?` |
 
 ---
 
@@ -357,79 +306,54 @@ Konzept-Folien zeigen (2-3 Slides).
 
 | Minute | Wow-Moment | Emotionale Wirkung |
 |--------|------------|-------------------|
-| 3:30 | RAG scheitert an Beziehungsfrage | "Aha, DAS ist das Problem" |
-| 9:30 | Regel-Extraktion aus 200-Seiten-PDF in Sekunden | "Das spart Wochen!" |
-| 14:00 | Score fällt von 87% auf 71% durch eine Regel | "So sieht Realität aus" |
-| 16:00 | Externe Abhängigkeit zeigt Impact-Kette | "Wusste das Team davon?" |
+| 3:30 | RAG scheitert an "Erfüllen wir A-SPICE?" | "Aha, DAS ist das Problem" |
+| 9:30 | SW-003 ohne Test gefunden | "Das wäre ein Audit-Finding!" |
+| 14:00 | Score fällt von 85% auf 65% | "So sieht Realität aus" |
+| 16:00 | EXT-001 Impact-Kette | "Wusste das Team davon?" - Stille |
 
 ---
 
 ## Troubleshooting
 
+### Problem: MCP-Server nicht verbunden
+
+**Symptom:** "neo4j-requirements" ist rot in Settings > Developer
+
+**Lösung:**
+1. Prüfen ob Neo4j läuft: `docker ps | grep req-traceability`
+2. Falls nicht: `cd demo-requirements-traceability && docker-compose up -d`
+3. Claude Desktop komplett beenden (Cmd+Q), neu starten
+4. Logs prüfen: Settings > Developer > neo4j-requirements > Logs
+
 ### Problem: Neo4j-Verbindung schlägt fehl
 
-**Symptom:** "Kann nicht mit Neo4j verbinden"
+**Symptom:** "The client is unauthorized" im Log
 
 **Lösung:**
 ```bash
-# Container neu starten
-docker restart neo4j-demo
-
-# Logs prüfen
-docker logs neo4j-demo
-
-# Port-Konflikt prüfen
-lsof -i :7474
-lsof -i :7687
+# Container neu starten mit frischen Daten
+docker-compose down -v
+docker-compose up -d
+# Seed-Daten laden
+docker exec -i req-traceability-neo4j cypher-shell -u neo4j -p demo-password < seed-data.cypher
 ```
 
-**Fallback:** Browser-Tab mit vorbereiteten Screenshots zeigen.
+### Problem: Falsche/keine Daten
 
----
-
-### Problem: MCP-Tool nicht verfügbar
-
-**Symptom:** Claude sagt "Ich habe keinen Zugriff auf Neo4j"
+**Symptom:** "0 Requirements gefunden"
 
 **Lösung:**
-1. Claude Desktop neu starten
-2. Einstellungen > MCP > "neo4j" deaktivieren und aktivieren
-3. `/mcp status` eingeben
+```bash
+# Seed-Daten neu laden
+docker exec req-traceability-neo4j cypher-shell -u neo4j -p demo-password "MATCH (n) DETACH DELETE n"
+docker exec -i req-traceability-neo4j cypher-shell -u neo4j -p demo-password < seed-data.cypher
+```
 
-**Fallback:** Cypher-Queries manuell im Neo4j Browser ausführen, Claude nur zur Erklärung nutzen.
+### Fallback bei komplettem Ausfall
 
----
-
-### Problem: Langsame Antworten
-
-**Symptom:** Claude braucht > 30 Sekunden
-
-**Lösung:**
-- Kürzere Queries verwenden
-- `LIMIT 20` bei Graph-Visualisierungen
-
-**Fallback:** "Das System verarbeitet gerade eine komplexe Anfrage - bei 10.000+ Requirements dauert das einen Moment."
-
----
-
-### Problem: Unerwartete Ergebnisse
-
-**Symptom:** Andere Zahlen als erwartet
-
-**Lösung:**
-- Ergebnisse als "Live-Demo, Daten können variieren" einordnen
-- Auf das PRINZIP fokussieren, nicht auf exakte Zahlen
-
-**Fallback:** "Die konkreten Werte hängen vom Datenstand ab - wichtig ist der PROZESS."
-
----
-
-### Problem: Komplette Technik-Ausfälle
-
-**Fallback-Plan:**
-1. Vorbereitete Screenshots zeigen (im Ordner `demo-backup/`)
-2. Konzept-Folien vortragen
-3. "Live-Demo beim nächsten Termin, heute Konzept-Präsentation"
+1. Neo4j Browser direkt nutzen (http://localhost:7484)
+2. Cypher-Queries manuell ausführen
+3. Konzept-Folien zeigen: `ausblick-folien/stufe-6-7-ausblick.md`
 
 ---
 
@@ -443,93 +367,22 @@ lsof -i :7687
    > "Pilot in 4-6 Wochen mit einem Subsystem. Vollständiger Rollout je nach Scope 3-6 Monate."
 
 2. **"Wer pflegt die Regeln?"**
-   > "Initiale Extraktion automatisch. Anpassungen durch Quality-Team oder Requirements Engineers. Claude schlägt Updates vor."
+   > "Initiale Extraktion aus Standards. Anpassungen durch Quality-Team. Claude schlägt Updates vor."
 
-3. **"Integration mit bestehenden Tools?"**
-   > "APIs zu DOORS, Polarion, Jama. Export als ReqIF. Import aus Excel, Word, PDF."
+3. **"Integration mit DOORS/Polarion?"**
+   > "APIs verfügbar. Export als ReqIF. Import aus Excel, Word, PDF."
 
-4. **"Kosten?"**
-   > "Individuelles Angebot nach Scope. ROI typischerweise im ersten Audit-Zyklus."
-
-5. **"Datenschutz / On-Premise?"**
-   > "Komplett On-Premise möglich. Keine Daten verlassen Ihr Netzwerk. Claude läuft lokal."
+4. **"On-Premise möglich?"**
+   > "Ja, komplett. Neo4j On-Premise, Claude API oder lokales LLM."
 
 ### Follow-up
 
 - [ ] Demo-Recording teilen (falls aufgezeichnet)
 - [ ] Kontaktdaten austauschen
-- [ ] Termin für Deep-Dive oder Pilot-Gespräch anbieten
+- [ ] Termin für Pilot-Gespräch anbieten
 
 ---
 
-## Anhang: Demo-Daten Setup
-
-### Minimale Testdaten für Neo4j
-
-```cypher
-// System-Requirement
-CREATE (sys:Requirement {
-  id: 'SYS-BRK-001',
-  title: 'Autonome Notbremsung',
-  type: 'System',
-  level: 'System',
-  domain: 'Brake',
-  status: 'approved'
-})
-
-// Subsystem-Requirements
-CREATE (sub1:Requirement {
-  id: 'SUB-BRK-001',
-  title: 'Bremsdruckmodulation',
-  type: 'Subsystem',
-  level: 'Subsystem',
-  domain: 'Brake',
-  status: 'approved'
-})
-
-// Component-Requirements
-CREATE (comp1:Requirement {
-  id: 'REQ-BRK-001',
-  title: 'Max. Bremsdruck 180 bar',
-  type: 'Software',
-  level: 'Component',
-  domain: 'Brake',
-  status: 'approved'
-})
-
-CREATE (comp2:Requirement {
-  id: 'REQ-BRK-002',
-  title: 'Druckaufbau < 150ms',
-  type: 'Software',
-  level: 'Component',
-  domain: 'Brake',
-  status: 'approved'
-})
-
-// Beziehungen
-MATCH (sys:Requirement {id: 'SYS-BRK-001'})
-MATCH (sub1:Requirement {id: 'SUB-BRK-001'})
-MATCH (comp1:Requirement {id: 'REQ-BRK-001'})
-MATCH (comp2:Requirement {id: 'REQ-BRK-002'})
-CREATE (sys)-[:DERIVES_TO]->(sub1)
-CREATE (sub1)-[:DERIVES_TO]->(comp1)
-CREATE (sub1)-[:DERIVES_TO]->(comp2)
-
-// CAN-Interface (für Impact-Analyse)
-CREATE (can:Interface {
-  id: 'CAN-0x123',
-  type: 'CAN-Message',
-  cycle_time: '100ms',
-  source: 'Fahrwerk'
-})
-
-MATCH (comp2:Requirement {id: 'REQ-BRK-002'})
-MATCH (can:Interface {id: 'CAN-0x123'})
-CREATE (comp2)-[:USES]->(can)
-```
-
----
-
-**Erstellt:** 2025-01-13
+**Erstellt:** 2025-01-14
 **Autor:** andreas@siglochconsulting.de
-**Version:** 1.0
+**Version:** 2.0 - Außenlichtsystem
