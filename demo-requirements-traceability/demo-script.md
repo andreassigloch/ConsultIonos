@@ -7,6 +7,20 @@
 
 ---
 
+## ⚠️ Wichtig: MCP kann nicht ein/ausgeschaltet werden!
+
+Claude Desktop erlaubt kein temporäres Deaktivieren von MCP-Servern - nur Löschen.
+
+**Lösung für die Demo:**
+- **Stufe 1-2 (RAG-Limitation):** Neue Conversation starten, PDFs laden, Fragen stellen. MCP ist zwar aktiv, aber wir nutzen ihn bewusst NICHT.
+- **Stufe 3-5 (Knowledge Graph):** In DERSELBEN oder neuer Conversation die MCP-Tools explizit aufrufen.
+
+**Narrativ anpassen:**
+> "Zuerst zeige ich, wie es OHNE strukturierte Daten aussieht - nur mit Dokumenten."
+> "Jetzt aktivieren wir den Knowledge Graph..." (= wir rufen die MCP-Tools auf)
+
+---
+
 ## Pre-Demo Checkliste
 
 ### 10 Minuten vor Demo-Start
@@ -53,7 +67,7 @@ Erwartete Antwort: Liste mit SYS-001 bis SYS-007 (Blinker, Bremslicht, etc.)
 
 ### Stufe 1: Unstrukturierte Quellen (0:00 - 2:00)
 
-**🔌 MCP: AUS (noch nicht einschalten!)**
+**📄 MODUS: Nur PDFs (MCP-Tools NICHT nutzen)**
 
 #### Aktion
 PDFs auf dem Bildschirm zeigen - Finder öffnen, durch die 4 Dokumente scrollen.
@@ -77,10 +91,10 @@ Publikum nickt - Wiedererkennung des Problems.
 
 ### Stufe 2: RAG-Grenze demonstrieren (2:00 - 4:00)
 
-**🔌 MCP: AUS (PDFs in Claude laden)**
+**📄 MODUS: Nur PDFs (MCP-Tools NICHT nutzen)**
 
 #### Aktion
-Claude Desktop öffnen, PDFs per Drag&Drop laden.
+Neue Claude Desktop Conversation öffnen, PDFs per Drag&Drop laden.
 
 #### Claude-Befehl 1 (funktioniert)
 ```
@@ -113,9 +127,9 @@ Claude antwortet vage:
 
 ### Stufe 3: Graph-Visualisierung (4:00 - 7:00)
 
-**🔌 MCP: JETZT EINSCHALTEN!**
+**🔗 MODUS: Knowledge Graph (MCP-Tools JETZT nutzen!)**
 
-> **An Publikum:** "Jetzt schalten wir den Knowledge Graph ein."
+> **An Publikum:** "Jetzt aktivieren wir den Knowledge Graph. Die gleichen Daten - aber strukturiert."
 
 #### Aktion
 Neo4j Browser auf zweitem Monitor zeigen.
@@ -151,7 +165,7 @@ RETURN path
 
 ### Stufe 4: Regeln erstellen & validieren (7:00 - 11:00)
 
-**🔌 MCP: AKTIV**
+**🔗 MODUS: Knowledge Graph (MCP-Tools nutzen)**
 
 #### Aktion
 Live Regel-Erstellung aus A-SPICE Wissen.
@@ -197,7 +211,7 @@ SW-003 "Warnblinker Override" hat KEINEN zugeordneten Test!
 
 ### Stufe 5: Compliance Score & Impact (11:00 - 17:00)
 
-**🔌 MCP: AKTIV**
+**🔗 MODUS: Knowledge Graph (MCP-Tools nutzen)**
 
 #### Claude-Befehl 1 (Score)
 ```
@@ -289,16 +303,16 @@ Datei `ausblick-folien/stufe-6-7-ausblick.md` zeigen.
 
 ## Exakte Claude-Befehle (Kurzreferenz)
 
-| Minute | Phase | MCP | Befehl |
-|--------|-------|-----|--------|
-| 2:00 | PDF | AUS | `Durchsuche das Lastenheft nach Anforderungen zum Thema Bremslicht` |
-| 3:00 | PDF | AUS | `Erfüllt unser Außenlichtsystem die A-SPICE Traceability-Anforderungen?` |
-| 5:00 | Graph | **AN** | `Zeige die Requirement-Hierarchie für das Außenlichtsystem` |
-| 8:00 | Regel | AN | `Erstelle Regel: Jedes SoftwareReq muss einen Test haben` |
-| 9:00 | Valid | AN | `Prüfe alle aktiven Regeln` |
-| 11:00 | Score | AN | `Berechne den Compliance-Score` |
-| 13:00 | Regel | AN | `Füge Regel hinzu: ASIL-C braucht 2 Tests` |
-| 15:00 | Impact | AN | `Was ist betroffen wenn EXT-001 sich ändert?` |
+| Minute | Phase | Modus | Befehl |
+|--------|-------|-------|--------|
+| 2:00 | PDF | 📄 Nur PDFs | `Durchsuche das Lastenheft nach Anforderungen zum Thema Bremslicht` |
+| 3:00 | PDF | 📄 Nur PDFs | `Erfüllt unser Außenlichtsystem die A-SPICE Traceability-Anforderungen?` |
+| 5:00 | Graph | 🔗 **MCP nutzen** | `Zeige die Requirement-Hierarchie für das Außenlichtsystem. Nutze query.` |
+| 8:00 | Regel | 🔗 MCP nutzen | `Erstelle Regel: Jedes SoftwareReq muss einen Test haben. Nutze add_rule.` |
+| 9:00 | Valid | 🔗 MCP nutzen | `Prüfe alle aktiven Regeln. Nutze validate.` |
+| 11:00 | Score | 🔗 MCP nutzen | `Berechne den Compliance-Score. Nutze compliance_score.` |
+| 13:00 | Regel | 🔗 MCP nutzen | `Füge Regel hinzu: ASIL-C braucht 2 Tests. Nutze add_rule.` |
+| 15:00 | Impact | 🔗 MCP nutzen | `Was ist betroffen wenn EXT-001 sich ändert? Nutze impact_analysis.` |
 
 ---
 
@@ -385,4 +399,4 @@ docker exec -i req-traceability-neo4j cypher-shell -u neo4j -p demo-password < s
 
 **Erstellt:** 2025-01-14
 **Autor:** andreas@siglochconsulting.de
-**Version:** 2.0 - Außenlichtsystem
+**Version:** 2.1 - MCP kann nicht deaktiviert werden (nur nicht nutzen)
