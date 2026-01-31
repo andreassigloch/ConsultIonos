@@ -1,7 +1,7 @@
 ---
-title: 'Datenreife #4: Der Open-Source-Stack für Level 3-7'
+title: 'Datenreife #4: Der Open-Source-Stack für Stufe 3-7'
 description: 'Neo4j, SHACL, TigerGraph, Ollama, MCP: Konkrete Tools für quantifizierbare Datenreife. Kostenvergleich Cloud vs. Lokal.'
-pubDate: 2026-01-10
+pubDate: 2026-02-22
 author: 'Andreas Sigloch'
 image: '/images/1756817824312.png'
 tags: ['Datenreife', 'Neo4j', 'SHACL', 'Ollama', 'Open Source', 'Tech Stack']
@@ -20,9 +20,9 @@ Bevor wir in die Tools einsteigen, vier Prinzipien für die Auswahl:
 - **Deterministisch:** Reproduzierbare Ergebnisse bei gleichen Eingaben.
 - **CO₂-optimiert:** Klassische Algorithmen wo möglich, KI nur wo nötig.
 
-## Stack nach Level
+## Stack nach Stufe
 
-### Level 3: Ontologie + Graph
+### Stufe 3: Ontologie + Graph
 
 **Neo4j Community Edition** - Graph-Datenbank (Open Source)
 
@@ -38,7 +38,7 @@ Speichert Daten und ihre Beziehungen als Graph. Ideal für Requirements Traceabi
 
 Läuft direkt auf Parquet, Delta Lake, PostgreSQL. Zero-ETL Graph Analytics ohne Datenmigration.
 
-### Level 4: Logische Regeln
+### Stufe 4: Logische Regeln
 
 **SHACL (W3C Standard)** - Validierung
 
@@ -54,7 +54,7 @@ Definiert Geschäftsregeln als ausführbare Constraints. 100% deterministisch - 
 
 Prolog-ähnliche Regeln direkt in der Graph-Datenbank. Rekursive Abfragen, Compliance-Checks.
 
-### Level 5: Quantifizierbare Scores ★
+### Stufe 5: Quantifizierbare Scores ★
 
 **I-Score / K-Score** (AAAI 2023)
 
@@ -70,7 +70,7 @@ Informationstheoretische Messung der KG-Qualität. Objektive Scores statt Bauchg
 
 Vektoren als Attribute auf Graph-Knoten. Kombiniert semantische Ähnlichkeit mit struktureller Analyse.
 
-### Level 6-7: Prediction & Feedback
+### Stufe 6-7: Prediction & Feedback
 
 **TigerGraph GNNs** - Graph Neural Networks
 

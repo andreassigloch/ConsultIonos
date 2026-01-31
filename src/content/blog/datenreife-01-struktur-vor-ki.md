@@ -1,9 +1,9 @@
 ---
 title: 'Datenreife #1: Struktur vor KI - Warum 70% Business Value ohne KI entstehen'
-description: '70% aller AI-Projekte scheitern an Datenqualität. Der Palantir-Beweis zeigt: LLMs sind Interface, nicht Fundament. Level 1-5 der Datenreife-Leiter.'
-pubDate: 2025-12-20
+description: '70% aller AI-Projekte scheitern an Datenqualität. Der Palantir-Beweis zeigt: LLMs sind Interface, nicht Fundament. Stufe 1-5 der Datenreife-Leiter.'
+pubDate: 2026-02-01
 author: 'Andreas Sigloch'
-image: '/images/1745407248069.png'
+image: '/images/datenreife-stufe-3.png'
 tags: ['Datenreife', 'KI', 'Strategie', 'Systems Engineering', 'Palantir']
 series: 'Datenreife'
 draft: false
@@ -23,30 +23,30 @@ TDWI-Analysen zeigen: Strukturierte Daten liefern **3x höheren ROI** als unstru
 
 ## Die 5 Stufen bis zum Fundament
 
-### Level 1: Unstrukturierte Quellen (0% Business Value)
+### Stufe 1: Unstrukturierte Quellen (0% Business Value)
 PDF-Spezifikationen stapeln sich auf SharePoint. Wer welche Version nutzt, weiß niemand. Keine Verbindungen, manuelle Suche, Wissen in Köpfen.
 
-### Level 2: Embeddings/RAG (10-20% Business Value)
+### Stufe 2: Embeddings/RAG (10-20% Business Value)
 Volltextsuche, Tags, erste Metadaten. "Zeige alle Bauteile mit Temperaturanforderung >85°C." Aber: keine Beziehungen zwischen Objekten.
 
-### Level 3: Ontologie + Graph (30-40% Business Value)
+### Stufe 3: Ontologie + Graph (30-40% Business Value)
 Beziehungen zwischen Objekten, Supplier-Links, Impact-Analysen. "Welche Tier-2-Lieferanten sind von Chip-Engpass betroffen?"
 
 *Tech: Neo4j, PuppyGraph*
 
-### Level 4: Logische Regeln (50-60% Business Value)
+### Stufe 4: Logische Regeln (50-60% Business Value)
 Geschäftsregeln als ausführbare Validierung. "Warnung: Bauteil X nicht freigegeben für Temperaturbereich Y." 100% deterministisch, keine Black Box.
 
 *Tech: SHACL, Datalog*
 
-### Level 5: Quantifizierbare Scores (70-80% Business Value) ★
+### Stufe 5: Quantifizierbare Scores (70-80% Business Value) ★
 Objektive Metriken statt Bauchgefühl. "Variante A: 78 Punkte, Variante B: 62 Punkte - Empfehlung klar." Der "100%-Nullpunkt" für effizienten KI-Einsatz.
 
 *Tech: TigerGraph Vector-Scoring, I-Score/K-Score*
 
 ## Der Palantir-Beweis
 
-Palantir (Foundry/Gotham/AIP) - bewertet mit über $50 Mrd. - operiert genau in diesem Bereich: Level 3-7. Ihr Erfolgsrezept:
+Palantir (Foundry/Gotham/AIP) - bewertet mit über $50 Mrd. - operiert genau in diesem Bereich: Stufe 3-7. Ihr Erfolgsrezept:
 
 - **Ontology-Driven AI:** Daten als semantisches Modell. LLMs können diese Ontologie mit natürlicher Sprache abfragen.
 - **AIP Logic:** No-Code-Tool für Regeln und quantifizierbare Scores. 100% deterministisch.
@@ -76,6 +76,6 @@ Im laufenden Betrieb sollten kritische Entscheidungen auf deterministischen Rege
 
 *Mehr Details: [Struktur vor KI - die vollständige Analyse](/mein-ansatz/struktur-vor-ki)*
 
-*Nächster Artikel: [Level 6-13: Lernende Systeme und darüber hinaus](/blog/datenreife-02-ausblick)*
+*Nächster Artikel: [Stufe 6-7: Lernende Systeme](/blog/datenreife-02-ausblick)*
 
 *Fragen? [Gespräch vereinbaren](/kontakt)*

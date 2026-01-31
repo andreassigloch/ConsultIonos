@@ -1,9 +1,9 @@
 ---
 title: 'Datenreife #3: Markt & Trends - Wo stehen Google, Palantir & Co?'
-description: 'Google Level 9-10, Palantir Level 3-7: Wie Enterprise-Player die Datenreife-Leiter nutzen. McKinsey, IMD Studien zur AI Maturity 2025.'
-pubDate: 2026-01-03
+description: 'Google Stufe 6-7, Palantir Stufe 3-5: Wie Enterprise-Player die Datenreife-Leiter nutzen. McKinsey, IMD Studien zur AI Maturity 2025.'
+pubDate: 2026-02-15
 author: 'Andreas Sigloch'
-image: '/images/1753030668740.png'
+image: '/images/datenreife-datatalk.png'
 tags: ['Datenreife', 'KI', 'Strategie', 'Palantir', 'Google', 'Marktanalyse']
 series: 'Datenreife'
 draft: false
@@ -36,7 +36,7 @@ Analyse von 500+ Enterprise-Projekten zeigt klaren Struktur-Vorteil.
 
 ## Enterprise-Player auf der Leiter
 
-### Google: Level 9-10
+### Google: Stufe 9-10
 **Fokus:** Plattform & Consumer AI | **Bewertung:** ~$2T
 
 - Massive Data-Pipelines, Knowledge Graph (seit 2012)
@@ -46,11 +46,11 @@ Analyse von 500+ Enterprise-Projekten zeigt klaren Struktur-Vorteil.
 
 **Für Mittelstand:** Nicht direkt übertragbar, aber inspirierend für Federated-Learning-Ansätze in Branchen-Konsortien.
 
-### Palantir: Level 3-7
+### Palantir: Stufe 3-7
 **Fokus:** Enterprise & Regulated | **Bewertung:** ~$50 Mrd.
 
-- Ontology-Driven AI (Foundry/Gotham/AIP) - Level 3-5
-- Quantifizierbare Scores, Szenario-Simulation - Level 5-6
+- Ontology-Driven AI (Foundry/Gotham/AIP) - Stufe 3-5
+- Quantifizierbare Scores, Szenario-Simulation - Stufe 5-6
 - LLM nur als Interface auf strukturierten Daten - 20-40% KI
 - Defense, Healthcare, Automotive - regulierte Branchen
 
@@ -83,8 +83,8 @@ EU AI Act, MDR, ISO 26262: Nachvollziehbarkeit wird Pflicht. Black-Box-KI ohne s
 
 *Mehr Details: [Markt & Trends - die vollständige Analyse](/mein-ansatz/markt-trends)*
 
-*Vorheriger Artikel: [Ausblick - Level 6-13](/blog/datenreife-02-ausblick)*
+*Vorheriger Artikel: [Ausblick - Stufe 6-13](/blog/datenreife-02-ausblick)*
 
-*Nächster Artikel: [Technischer Stack für Level 3-7](/blog/datenreife-04-technik)*
+*Nächster Artikel: [Technischer Stack für Stufe 3-7](/blog/datenreife-04-technik)*
 
 *Fragen? [Gespräch vereinbaren](/kontakt)*
