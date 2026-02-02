@@ -1,6 +1,6 @@
 ---
 title: 'Datenreife #2: Ausblick - Stufe 6-7 und lernende Systeme'
-description: 'Von Data Prediction bis Lernen aus Feedback: Was nach dem Fundament kommt. GNNs, Pattern Recognition - keine Zukunftsmusik.'
+description: 'Von Data Prediction bis Lernen aus Feedback: Was nach dem Fundament kommt. GNNs, Pattern Detection - keine Zukunftsmusik.'
 pubDate: 2026-02-08
 author: 'Andreas Sigloch'
 image: '/images/datenreife-stufe-7.png'
@@ -13,7 +13,7 @@ linkedinStatus: 'planned'
 
 ## Jenseits des Fundaments
 
-Mit Stufe 5 (Quantifizierbare Scores) ist das Fundament gelegt: 70-80% Business Value durch Struktur und Regeln. Ab hier beginnt das Terrain, in dem KI operativ relevant wird - aber auf Basis der geschaffenen Struktur.
+Mit Stufe 5 (Quantifizierbare Kennzahlen) ist das Fundament gelegt: 70-80% Business Value durch Struktur und Regeln. Ab hier beginnt das Terrain, in dem KI operativ relevant wird - **aber auf Basis der geschaffenen Struktur.**
 
 Die folgenden Stufen sind keine Zukunftsmusik. Für jeden existieren bereits konkrete Tools und Forschung (Stand 2025).
 
@@ -27,7 +27,7 @@ Proaktive Warnungen statt Reaktion. "3 Wochen vor Engpass warnen."
 ### Stufe 7: Lernen aus Feedback (90-95% Value, 40% KI)
 Agenten lernen aus Nutzer-Korrekturen automatisch. Kontinuierliche Verbesserung durch RLHF.
 
-*Tech: PowerDrill Self-Improving Agents*
+*Tech: PowerDrill Self-Improving Agents, 4-Layer Detection (Lexical → Semantic → Temporal → Composite)*
 
 ### Stufe 8: Selbstoptimierung (95-97% Value, 50% KI)
 System erkennt und behebt eigene Fehler autonom. Graph-Fix, automatische Regelanpassung.

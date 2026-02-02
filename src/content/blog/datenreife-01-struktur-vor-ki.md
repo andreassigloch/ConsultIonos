@@ -17,7 +17,7 @@ linkedinUrl: 'https://www.linkedin.com/posts/andreas-sigloch-consulting_das-ki-m
 
 "Mit KI lösen wir das Problem." Dieser Satz fällt gerne, wenn es um Datenprobleme geht. Die Hoffnung: Ein intelligentes System, das aus dem Chaos Ordnung macht.
 
-Die Realität ist ernüchternd: Laut **McKinsey State of AI 2025** scheitern **70% aller AI-Projekte** - Ein Grossteil an Softfacts wie Mitarbeiter-Widerstand oder fehlender Management Unterstützung. Nach meiner Erfahrung ist aber auch die mangelnde Daten- oder Prozess-Qualität ein wesentliches Erfolgskriterium: Top-Performer fokussieren auf Dateninfrastruktur *vor* KI-Modellen.
+Die Realität ist ernüchternd: Laut **McKinsey State of AI 2025** nutzen 88% der Unternehmen AI, aber nur **6% erzielen signifikante Erträge** (>5% EBIT). Zwei Drittel stecken noch in der Pilot-Phase. Ein Großteil scheitert an Softfacts wie Mitarbeiter-Widerstand oder fehlender Management-Unterstützung. Nach meiner Erfahrung ist aber auch die mangelnde Daten- oder Prozess-Qualität ein wesentliches Erfolgskriterium: Top-Performer fokussieren auf Dateninfrastruktur *vor* KI-Modellen.
 
 TDWI-Analysen zeigen: Strukturierte Daten liefern **ermöglichen schnellere Entwicklung und niedrigere Kosten** als unstrukturierte AI-Ansätze.
 
@@ -82,6 +82,7 @@ Im laufenden Betrieb sollten kritische Entscheidungen auf deterministischen Rege
 
 *Fragen? [Gespräch vereinbaren](/kontakt)*
 
-Quellen: 
+Quellen:
 
-https://tdwi.org/blogs/data-101/2025/09/structured-vs-unstructured-data.aspx
+- [McKinsey: The State of AI in 2025](https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai)
+- [TDWI: Structured vs Unstructured Data](https://tdwi.org/blogs/data-101/2025/09/structured-vs-unstructured-data.aspx)

@@ -82,6 +82,16 @@ Prädiktive Analytics auf Graph-Strukturen. Sub-second Queries auf Millionen Kno
 
 Agenten, die aus Nutzer-Feedback lernen. RLHF, autonome Experimente.
 
+**Pattern Detection Pipeline** (4-Layer-Architektur)
+
+Für kontinuierliche Optimierung:
+- **Lexical:** Regel-basiert (Keywords, Frustrations-Marker)
+- **Semantic:** Embedding-Ähnlichkeit
+- **Temporal:** Sequenz-Matching über Interaktionen
+- **Composite:** Gewichtete Kombination (40/30/30)
+
+*Performance: <100ms Detection Latency*
+
 ## LLM-Integration (wo nötig)
 
 **Ollama** - Lokale LLMs
