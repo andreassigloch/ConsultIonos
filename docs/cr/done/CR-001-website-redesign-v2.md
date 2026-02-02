@@ -2,7 +2,6 @@
 
 **Status:** ✅ Completed
 **Erstellt:** 2025-12-10
-**Abgeschlossen:** 2025-12-10
 **Autor:** andreas@siglochconsulting.de
 
 ---
@@ -23,28 +22,10 @@ Siehe [requirements.md](../../project/requirements.md#website-redesign-konzept-v
 
 ---
 
-## Implementierte Seiten
+## Quellen
 
-### Neue Struktur
-
-```
-/                    → Home (neu: Problem → Lösung → Anwendung → FAQ → CTA)
-/mein-ansatz         → Methodik + 7-Stufen-Modell + Passt/Passt nicht
-/projekte            → Projekt-Portfolio (6 Projekte)
-/beitraege           → Content Hub (4 Beiträge)
-/hintergrund/        → Index-Seite
-  ├── struktur-vor-ki
-  ├── 7-fragen
-  ├── branchen
-  └── technik
-/kontakt             → Calendly + Formular
-```
-
-### Komponenten
-
-- [x] FAQ.astro - Akkordeon mit Schema.org FAQPage Markup (7 Fragen)
-- [x] Header.astro - Neue Navigation
-- [x] Footer.astro - Aktualisiertes Tagline + Links
+- `files/*.md` - Ausformulierte Seiteninhalte
+- `ki-reife-modell-content.md` - Ältere Version (archivieren nach Migration)
 
 ---
 
@@ -53,11 +34,11 @@ Siehe [requirements.md](../../project/requirements.md#website-redesign-konzept-v
 - [x] Home neu bauen (hero-page.md)
 - [x] /mein-ansatz Seite
 - [x] /projekte/ Portfolio
-- [x] /beitraege/ Content Hub
-- [x] /hintergrund/* (4 Artikel + Index)
+- [x] /publikationen/ Content Hub
+- [x] /mein-ansatz/* (4 Artikel: struktur-vor-ki, ausblick, markt-trends, technik)
 - [x] /kontakt mit Calendly
-- [x] FAQ-Komponente mit Schema.org
-- [ ] Bestehende Blog-Artikel migrieren (bleibt in /blog/)
+- [x] FAQ-Komponente mit Schema.org (→ CR-007)
+- [x] Bestehende Blog-Artikel migriert
 
 ---
 
@@ -65,22 +46,5 @@ Siehe [requirements.md](../../project/requirements.md#website-redesign-konzept-v
 
 - [x] Alle Seiten aus requirements.md implementiert
 - [x] Schema.org FAQPage validiert
-- [ ] Lighthouse Score > 90 (noch zu prüfen nach Deploy)
-- [x] E2E Tests grün (17/17 passed)
-
----
-
-## Technische Details
-
-- **Playwright Config:** playwright.config.ts erstellt
-- **E2E Tests:** tests/e2e/smoke.spec.ts mit 17 Tests
-- **Build:** erfolgreich (19 Seiten)
-
----
-
-## Nächste Schritte (optional)
-
-- Lighthouse Score prüfen
-- Blog-Artikel in /beitraege/ migrieren
-- RSS Feed für /beitraege/
-- Mehr Projekt-/Beitrags-Content hinzufügen
+- [x] Lighthouse Score > 90
+- [x] E2E Tests grün
