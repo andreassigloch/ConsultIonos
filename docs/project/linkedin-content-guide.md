@@ -4,6 +4,62 @@ Template und Stilbeschreibung für Blog-Artikel und LinkedIn-Postings.
 
 ---
 
+## LinkedIn Guidelines 2025/2026 (Recherche)
+
+### Post vs. Artikel - Entscheidungsmatrix
+
+| Kriterium | Post | Artikel |
+|-----------|------|---------|
+| **Zeichenlimit** | 3.000 | ~125.000 |
+| **Optimale Länge** | 1.300-1.600 | 1.500-2.000 Wörter |
+| **Google-Indexiert** | Nein | Ja (SEO-Vorteil) |
+| **Feed-Sichtbarkeit** | Hoch | Niedrig (muss als Post geteilt werden) |
+| **Formatierung** | Keine native Bold/Italic | Headlines, Bold, Italic, Listen |
+| **Personen taggen** | Ja | Nein |
+| **Empfehlung** | Engagement, schnelle Reichweite | Thought Leadership, Langform |
+
+**Wann Post?** Kurze Insights, Fragen, Diskussionen, Ankündigungen
+**Wann Artikel?** Tiefgehende Analysen, Tutorials, Referenz-Content für SEO
+
+### Post-Struktur (optimal)
+
+```
+[HOOK - max 140 Zeichen, vor "See more"]
+
+[BODY - 800-1.200 Zeichen]
+- Kernaussage
+- 2-3 unterstützende Punkte
+- Konkretes Beispiel/Zahl
+
+[CTA - Frage oder Aufforderung]
+
+[HASHTAGS - 3-5, am Ende]
+```
+
+**Wichtig:** Link im **ersten Kommentar** posten, nicht im Post-Text!
+LinkedIn-Algorithmus bestraft externe Links im Hauptpost.
+
+### Bild-Spezifikationen
+
+| Format | Dimensionen | Verwendung |
+|--------|-------------|------------|
+| Landscape | 1200 × 627 px | Standard, Link-Preview |
+| Square | 1080 × 1080 px | Carousel, Mobile-optimiert |
+| Portrait | 1080 × 1350 px | Maximale Feed-Präsenz |
+
+- **Dateityp:** PNG (Grafiken), JPG (Fotos)
+- **Max Größe:** 5 MB
+- **GIF:** Nicht unterstützt (wird statisch)
+- **Anzahl:** 1-9 Bilder pro Post, 1 optimal für Engagement
+
+### Hashtag-Strategie
+
+- **Anzahl:** 3-5 optimal (mehr schadet der Reichweite)
+- **Platzierung:** Am Ende des Posts
+- **Mix:** 1-2 breite (#KI, #AI) + 2-3 spezifische (#Datenreife, #MBSE)
+
+---
+
 ## Beitragstypen
 
 ### Fachbeitrag (Theorie)
@@ -153,9 +209,18 @@ series: 'Serienname'  # Optional
 draft: false
 type: 'blog'  # blog | linkedin | conference
 linkedinStatus: 'planned'  # draft | planned | published
+linkedinType: 'post'  # post | article (default: post)
+linkedinHook: ''  # Optional: Manueller Hook (max 140 Zeichen)
 linkedinUrl: ''  # Nach Veröffentlichung ergänzen
 ---
 ```
+
+### Neue Felder
+
+| Feld | Beschreibung |
+|------|--------------|
+| `linkedinType` | `post` (Standard) oder `article` für Langform |
+| `linkedinHook` | Manueller Override für die ersten 140 Zeichen (vor "See more") |
 
 ### Differenzierung type vs. linkedinStatus
 
