@@ -30,6 +30,7 @@
     "linkedin:image": "tsx scripts/linkedin/generate-image.ts"
   },
   "dependencies": {
+    "@sigloch/quality-checkers": "github:andreassigloch/sigloch-modules#v0.1.0&path=packages/quality-checkers",
     "@astrojs/sitemap": "^3.6.0",
     "@fontsource/poppins": "^5.2.7",
     "astro": "^5.15.4",
