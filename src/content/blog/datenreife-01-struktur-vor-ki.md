@@ -78,7 +78,7 @@ Im laufenden Betrieb sollten kritische Entscheidungen auf deterministischen Rege
 
 *Mehr Details: [Struktur vor KI - die vollständige Analyse](/mein-ansatz/struktur-vor-ki)*
 
-*Nächster Artikel: [Stufe 6-7: Lernende Systeme](/blog/datenreife-02-ausblick)*
+*Nächster Artikel: [Stufe 6-10: Lernende Systeme](/blog/datenreife-02-ausblick)*
 
 *Fragen? [Gespräch vereinbaren](/kontakt)*
 

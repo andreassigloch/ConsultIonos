@@ -1,5 +1,5 @@
 ---
-title: 'Datenreife #2: Ausblick - Stufe 6-7 und lernende Systeme'
+title: 'Datenreife #2: Ausblick - Stufe 6-10 und lernende Systeme'
 description: 'Von Data Prediction bis Lernen aus Feedback: Was nach dem Fundament kommt. GNNs, Pattern Detection - keine Zukunftsmusik.'
 pubDate: 2026-02-08
 author: 'Andreas Sigloch'
