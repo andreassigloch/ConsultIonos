@@ -11,70 +11,45 @@ type: 'blog'
 linkedinStatus: 'planned'
 ---
 
-## Jenseits des Fundaments
+## Das Fundament Rückblick Stufe 1-5
 
-Mit Stufe 5 (Quantifizierbare Kennzahlen) ist das Fundament gelegt: 70-80% Business Value durch Struktur und Regeln. Ab hier beginnt das Terrain, in dem KI operativ relevant wird - **aber auf Basis der geschaffenen Struktur.**
+Im letzten Artikel haben wir den Weg zu einer effizienten Datenhaltung aufgezeigt: Eine Ontologie, die die Elemente, die Beziehungen und Regeln für das Zusammenspiel der Daten-(Elemente) beinhaltet.
 
-Die folgenden Stufen sind keine Zukunftsmusik. Für jeden existieren bereits konkrete Tools und Forschung (Stand 2025).
+Mit Stufe 5 (Quantifizierbare Kennzahlen auf Basis der Ontologie) ist das Fundament gelegt: 70-80% Business Value durch Struktur und Regeln. Ab hier beginnt das Terrain, in dem KI operativ relevant wird - **aber auf Basis der geschaffenen Struktur.**
+
+Die folgenden Stufen sind keine Zukunftsmusik. Für jeden existieren bereits konkrete Tools und Forschung.
 
 ## Die erweiterte Leiter
 
-### Stufe 6: Data Prediction (85-90% Value, 20% KI)
-Proaktive Warnungen statt Reaktion. "3 Wochen vor Engpass warnen."
+### Stufe 6: Prediction (85-90% Value, 20% KI)
+Die Vorhersage von Datenwerten oder Nutzerabsicht, zum Beispiel die Vorbelegung eines Eingabefeldes mit dem nächsten Befehl oder proaktive Warnungen vor Maschinen-Ausfällen.
 
-*Tech: TigerGraph GNNs, Time-Series + Graph kombiniert*
 
 ### Stufe 7: Lernen aus Feedback (90-95% Value, 40% KI)
-Agenten lernen aus Nutzer-Korrekturen automatisch. Kontinuierliche Verbesserung durch RLHF.
+Agenten lernen aus Nutzer-Korrekturen. Am besten implizit durch Erkennung von erfolgreichen oder nicht erfolgreichen Mustern, zum Beispiel durch analyse erfolgreicher vs. gescheiterter Prozessläufe.
 
-*Tech: PowerDrill Self-Improving Agents, 4-Layer Detection (Lexical → Semantic → Temporal → Composite)*
 
 ### Stufe 8: Selbstoptimierung (95-97% Value, 50% KI)
-System erkennt und behebt eigene Fehler autonom. Graph-Fix, automatische Regelanpassung.
+Das System erkennt neue Regeln und wendet sie auch an. Am besten mit einem Optimierungsziel.
 
-*Tech: AlphaZero-Style Agents, Gödel Agent*
 
-### Stufe 9: Föderiertes Lernen (97-98% Value, 30% KI)
-Cross-Supplier-Modelle ohne Daten zu teilen. Privacy-preserving.
+### Stufe 9: Föderiertes Lernen & Ontologie-Konsens (97-98% Value, 30% KI)
+Systeme lernen übergreifend - ohne Daten zu teilen. Gemeinsame Ontologien entstehen per dezentralem Konsens-Mechanismus und bilde die Basis für systemübergreifende Optimierung
 
-*Tech: FedR (KG-Federated Learning) - 58 Zitationen*
 
-### Stufe 10: Ontologie-Konsens (98-99% Value, 20% KI)
-Branchen-weite Taxonomie per Konsens-Mechanismus. Dezentrale Abstimmung.
+### Stufe 10: Emergence (??% Value, 50% KI)
+Agenten verhandeln autonom. Weltmodelle simulieren komplexe Systeme. Emergente, neuartige Eigenschaften entstehen aus dem Zusammenwirken der einzelnen Agenten. Aber: Die Kontrolle zu behalten und Missbrauch zu vermeiden wird ein signifikanter und gegeläufiger Aufwand sein
 
-*Tech: Blockchain Ontology Taxonomies (Aptos PoS)*
-
-### Stufe 11-13: Emergence
-Trustless Agent Swarms, World Foundation Models, vollständig autonome Steuerung.
-
-*Forschungsstand: Aktiv bei Google, NVIDIA, akademischen Instituten*
-
-## Drei Phasen des Fortschritts
-
-### Phase 1: Prediction (Stufe 6-7)
-Das System lernt aus Daten und Feedback. Nicht mehr nur reaktiv, sondern proaktiv.
-
-**Praxisreif für:** Lieferketten-Optimierung, Risiko-Früherkennung, Anforderungs-Extraktion
-
-### Phase 2: Federation (Stufe 8-10)
-Systeme lernen übergreifend - ohne Daten zu teilen. Dezentrale Konsensbildung über Ontologien.
-
-**Relevant für:** Cross-Company Collaboration, Branchen-Standards, Regulatory Compliance
-
-### Phase 3: Emergence (Stufe 11-13)
-Agenten verhandeln autonom. Weltmodelle simulieren komplexe Systeme. Emergente Eigenschaften entstehen.
-
-**Forschungsstand:** Aktiv in Entwicklung
 
 ## Der rote Faden: KI-Anteil
 
-Bemerkenswert: Selbst auf Stufe 13 bleibt der KI-Anteil bei 20-50%. Der Großteil der Arbeit wird von klassischen Algorithmen erledigt: Graph-Traversierung, Constraint-Solving, kryptographische Verifikation.
+Bemerkenswert: Selbst auf Stufe 10 bleibt der KI-Anteil bei 20-50%. Der Großteil der Arbeit wird von klassischen Algorithmen erledigt: Graph-Traversierung, Constraint-Solving, kryptographische Verifikation.
 
-> **Die Lektion:** KI ist Beschleuniger, nicht Ersatz. Je weiter man auf der Leiter steigt, desto wichtiger wird die Grundstruktur.
+> **Die Lektion:** KI ist Beschleuniger, nicht Ersatz. Je weiter man auf der Leiter steigt, desto wichtiger wird die Grundstruktur. Und nur mit der intensiven Nutzung von definierten Strukturen und Regeln, haben Sie eine Chance auf Nachvollziehbarkeit, die KI sich hier selbst zu überlassen erzeugt Black Boxes, die extrem schwierig zu verstehen oder gar zu auditieren sind.
 
 ## Wo stehen Sie?
 
-Die meisten Unternehmen befinden sich zwischen Stufe 1 und 3. Der Sprung auf Stufe 5 bringt bereits 70-80% des möglichen Werts. Alles darüber hinaus ist Optimierung - lohnend, aber nicht zwingend.
+Die meisten Unternehmen befinden sich zwischen Stufe 1 und 3. Der Sprung auf Stufe 5 bringt bereits 70-80% des möglichen Werts. Alles darüber hinaus ist Optimierung - Um konkurrenzfähig zu bleiben, aber sehr schnell zwingend notwendig.
 
 **Empfehlung:** Erst das Fundament (Stufe 5), dann den Ausblick.
 

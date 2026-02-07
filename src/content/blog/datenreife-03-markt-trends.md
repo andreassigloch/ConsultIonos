@@ -83,7 +83,7 @@ EU AI Act, MDR, ISO 26262: Nachvollziehbarkeit wird Pflicht. Black-Box-KI ohne s
 
 *Mehr Details: [Markt & Trends - die vollständige Analyse](/mein-ansatz/markt-trends)*
 
-*Vorheriger Artikel: [Ausblick - Stufe 6-13](/blog/datenreife-02-ausblick)*
+*Vorheriger Artikel: [Ausblick - Stufe 6-10](/blog/datenreife-02-ausblick)*
 
 *Nächster Artikel: [Technischer Stack für Stufe 3-7](/blog/datenreife-04-technik)*
 
