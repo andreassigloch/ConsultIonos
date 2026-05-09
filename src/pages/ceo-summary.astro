@@ -1,0 +1,1043 @@
+---
+/**
+ * CEO Summary - From documents to decisions
+ * Standalone landing page (no global header/footer) combining
+ * the four-stage maturity story with an interactive graph demo.
+ *
+ * @author andreas@siglochconsulting.de
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const stages = [
+  {
+    tag: 'Starting point',
+    title: 'Smart search over documents',
+    sub: 'technical stage: unstructured data',
+    body: 'AI finds passages that look relevant and summarises them. Faster than searching by hand — but it still guesses how the pieces fit together.',
+    accent: 'a',
+    emphasis: 0,
+  },
+  {
+    tag: 'Critical step',
+    title: 'Stops hallucinations',
+    sub: 'technical stage: structured data',
+    body: 'Suppliers, products, contracts and dependencies are captured as a verified network. The AI can only refer to connections that actually exist in your business.',
+    accent: 'b',
+    emphasis: 2,
+  },
+  {
+    tag: 'Trusted output',
+    title: 'Output you can act on',
+    sub: 'technical stage: structured data + rule set',
+    body: 'Compliance, compatibility, pricing rules are written down in a form the system actually applies. Anything the AI produces is checked — and rejected if it breaks a rule.',
+    accent: 'c',
+    emphasis: 1,
+  },
+  {
+    tag: 'The payoff',
+    title: 'Safe autonomous AI in business context',
+    sub: 'technical stage: self-correcting system',
+    body: 'Outcomes flow back into the knowledge map. The system catches its own errors by checking the rules, tunes itself, and runs reliably without a person checking every step.',
+    accent: 'd',
+    emphasis: 0,
+  },
+];
+---
+
+<BaseLayout
+  title="From documents to decisions — Sigloch Consulting"
+  description="Two questions about AI in business: can I trust what it says, and can I trust what it produces? Four stages from chaos to trustworthy AI."
+>
+  <main class="ceo-page">
+
+    <!-- ============ HERO ============ -->
+    <header class="hero">
+      <div class="container">
+        <span class="eyebrow">CEO summary</span>
+        <h1>Stop hallucinating. Start producing.</h1>
+        <p class="lede">
+          Two questions get asked about AI in a business context: can I trust what it
+          says, and can I trust what it produces? These four stages answer both.
+        </p>
+      </div>
+      <div class="hero-glow" aria-hidden="true"></div>
+    </header>
+
+    <!-- ============ FOUR STAGES ============ -->
+    <section class="stages">
+      <div class="container">
+        <ol class="stage-grid">
+          {stages.map((s, i) => (
+            <li class={`stage stage-${s.accent} emphasis-${s.emphasis}`} style={`--stage-delay: ${i * 90}ms`}>
+              <div class="stage-rail" aria-hidden="true"></div>
+              <span class="stage-tag">{s.tag}</span>
+              <h3>{s.title}</h3>
+              <p class="stage-sub">{s.sub}</p>
+              <p class="stage-body">{s.body}</p>
+              <span class="stage-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ TWO CALLOUTS ============ -->
+    <section class="callouts">
+      <div class="container">
+        <div class="callout-grid">
+
+          <article class="callout callout-stop">
+            <span class="callout-tag">Stop hallucinations</span>
+            <h2>AI invents things that sound right — until you give it a verified network.</h2>
+            <p>
+              Most so-called &ldquo;hallucinations&rdquo; are invented relationships:
+              a supplier tied to the wrong product, a clause attributed to the wrong
+              contract, a dependency that doesn&rsquo;t exist. Plain documents give the AI
+              no way to know what&rsquo;s real.
+            </p>
+            <div class="compare">
+              <div class="compare-col bad">
+                <h4>Without this step</h4>
+                <p>Plausible answers, no way to tell which are true. Every output needs a human check.</p>
+              </div>
+              <div class="compare-col good">
+                <h4>With this step</h4>
+                <p>The AI can only reference connections that actually exist. If a link isn&rsquo;t there, it can&rsquo;t be claimed.</p>
+              </div>
+            </div>
+            <p class="callout-foot">Technical answer: structured data — a knowledge map of your business.</p>
+          </article>
+
+          <article class="callout callout-act">
+            <span class="callout-tag">Output you can act on</span>
+            <h2>Plausible isn&rsquo;t the same as valid. Rules close the gap.</h2>
+            <p>
+              To let AI draft offers, configurations, contracts or specs, the result has
+              to satisfy your business reality: regulations, compatibility, pricing logic.
+              Rules turn &ldquo;sounds reasonable&rdquo; into &ldquo;passes validation.&rdquo;
+            </p>
+            <div class="compare">
+              <div class="compare-col bad">
+                <h4>Without this step</h4>
+                <p>AI proposes, a person manually checks. The bottleneck stays human.</p>
+              </div>
+              <div class="compare-col good">
+                <h4>With this step</h4>
+                <p>AI proposes, the system validates, invalid options are blocked at source. Output is ready to use.</p>
+              </div>
+            </div>
+            <p class="callout-foot">Technical answer: structured data + an executable rule set.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INTERACTIVE GRAPH ============ -->
+    <section class="interactive">
+      <div class="container">
+        <header class="section-head">
+          <span class="eyebrow">See it work</span>
+          <h2>From chaos to a trustworthy network</h2>
+          <p>
+            Four stages — watch how scattered objects become connections, and how rules
+            eliminate the connections (and objects) that don&rsquo;t belong.
+          </p>
+        </header>
+
+        <div class="canvas-wrap">
+          <svg id="graph" viewBox="0 0 900 460" preserveAspectRatio="xMidYMid meet" aria-label="Interactive knowledge graph"></svg>
+          <div class="canvas-grid" aria-hidden="true"></div>
+        </div>
+
+        <div class="strip">
+          <div id="caption" class="caption">
+            <span class="stage-num-pill">Stage 1 / 4</span>
+            <span id="caption-text">Unstructured. Objects exist, but the AI can&rsquo;t see how they connect.</span>
+          </div>
+
+          <div class="rules-deck">
+            <div class="rule-card" id="rule1">
+              <div class="rule-tag">Rule for links</div>
+              <div class="rule-body">Every link must follow the business hierarchy. Stale or cross-type connections are removed.</div>
+              <div class="rule-check">catches phantom-supplier links, references to discontinued products, module → contract shortcuts</div>
+            </div>
+            <div class="rule-card" id="rule2">
+              <div class="rule-tag">Rule for objects</div>
+              <div class="rule-body">Every object must reference something real. Phantom or orphan objects are removed.</div>
+              <div class="rule-check">catches suppliers that don&rsquo;t exist, products that have been retired</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stage-bar">
+          <button class="stage-btn active" data-stage="0"><span class="step">Step 1</span>Unconnected objects</button>
+          <button class="stage-btn" data-stage="1"><span class="step">Step 2</span>+ connections</button>
+          <button class="stage-btn" data-stage="2"><span class="step">Step 3</span>Rule on links</button>
+          <button class="stage-btn" data-stage="3"><span class="step">Step 4</span>Rule on objects</button>
+        </div>
+
+        <div class="controls">
+          <span class="progress" id="progress">Auto-playing — 6s per stage</span>
+          <button id="prev" class="ctl">← Back</button>
+          <button id="playpause" class="ctl ctl-primary">Pause</button>
+          <button id="next" class="ctl">Next →</button>
+          <button id="reset" class="ctl">↻ Replay</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TAKEAWAY ============ -->
+    <section class="takeaway">
+      <div class="container">
+        <div class="takeaway-card">
+          <span class="eyebrow eyebrow-light">The bottom line</span>
+          <h2>First, stop the AI from making things up. Then, make its output something you can act on. Once both hold, the AI starts running itself.</h2>
+          <a class="cta" href="/kontakt">Talk it through →</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="page-foot">
+      <div class="container">
+        <span>Sigloch Consulting · CEO summary</span>
+        <span class="dot">·</span>
+        <a href="/">siglochconsulting.de</a>
+      </div>
+    </footer>
+
+  </main>
+</BaseLayout>
+
+<style>
+  /* ========================================================
+     Layout palette — derived from brand olive (#68780E)
+     ======================================================== */
+  .ceo-page {
+    --ceo-ink: #1A1F12;
+    --ceo-muted: #5C6557;
+    --ceo-line: #E4E6DD;
+    --ceo-soft: #F5F6ED;
+    --ceo-card: #FFFFFF;
+    --ceo-bg: #FAFBF6;
+
+    --ceo-a: #B6C083;          /* light olive */
+    --ceo-b: var(--color-primary);    /* brand olive */
+    --ceo-c: var(--color-primary-dark);
+    --ceo-d: #2E3A0E;          /* deep forest */
+
+    --ceo-warn: #C0392B;
+    --ceo-warn-soft: #FBE8E4;
+    --ceo-good: #1F8A4C;
+
+    background: var(--ceo-bg);
+    color: var(--ceo-ink);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+
+  .ceo-page .container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+  }
+
+  .ceo-page :global(*) { box-sizing: border-box; }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: var(--text-xs);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+    background: var(--color-primary-50);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-pill);
+  }
+  .eyebrow-light { background: rgba(255,255,255,0.18); color: #fff; }
+
+  /* ========================================================
+     HERO
+     ======================================================== */
+  .hero {
+    position: relative;
+    padding: var(--space-24) 0 var(--space-16);
+    overflow: hidden;
+  }
+  .hero-glow {
+    position: absolute;
+    inset: -20% -10% auto -10%;
+    height: 600px;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(104,120,14,0.12), transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(46,58,14,0.10), transparent 55%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .hero .container { position: relative; z-index: 1; }
+  .hero h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: var(--font-bold);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ceo-ink);
+    margin: var(--space-4) 0 var(--space-5);
+    max-width: 18ch;
+  }
+  .hero .lede {
+    font-size: var(--text-xl);
+    line-height: var(--leading-relaxed);
+    color: var(--ceo-muted);
+    max-width: 62ch;
+    margin: 0;
+  }
+
+  /* ========================================================
+     STAGES
+     ======================================================== */
+  .stages { padding: var(--space-12) 0 var(--space-16); }
+  .stage-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
+  .stage {
+    position: relative;
+    background: var(--ceo-card);
+    border: 1px solid var(--ceo-line);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8) var(--space-6) var(--space-6);
+    overflow: hidden;
+    box-shadow: 0 1px 0 rgba(15,23,34,0.02);
+    opacity: 0;
+    transform: translateY(14px);
+    animation: stage-in 700ms cubic-bezier(0.22,1,0.36,1) var(--stage-delay,0ms) forwards;
+    transition: transform 400ms ease, box-shadow 400ms ease;
+  }
+  .stage:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+  .stage-rail {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--rail-a), var(--rail-b));
+  }
+  .stage-a { --rail-a: #CFD9A6; --rail-b: #B6C083; }
+  .stage-b { --rail-a: #8a9c3a; --rail-b: var(--color-primary); }
+  .stage-c { --rail-a: var(--color-primary); --rail-b: var(--color-primary-dark); }
+  .stage-d { --rail-a: var(--color-primary-dark); --rail-b: #2E3A0E; }
+
+  .stage-tag {
+    font-size: var(--text-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: var(--font-bold);
+    color: var(--ceo-muted);
+  }
+  .stage h3 {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    color: var(--ceo-ink);
+    margin: var(--space-3) 0 var(--space-1);
+    letter-spacing: -0.01em;
+  }
+  .stage-sub {
+    font-size: var(--text-sm);
+    color: var(--ceo-muted);
+    margin: 0 0 var(--space-4);
+  }
+  .stage-body {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--ceo-ink);
+    opacity: 0.85;
+    margin: 0;
+  }
+  .stage-num {
+    position: absolute;
+    right: var(--space-5);
+    top: var(--space-5);
+    font-family: var(--font-heading);
+    font-size: var(--text-3xl);
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+    opacity: 0.10;
+    letter-spacing: -0.04em;
+  }
+
+  /* Emphasized stages (subtle, no SVG-feel outlines) */
+  .stage.emphasis-1 {
+    box-shadow: 0 1px 0 rgba(15,23,34,0.03), 0 8px 24px rgba(104,120,14,0.10);
+  }
+  .stage.emphasis-2 {
+    box-shadow:
+      0 1px 0 rgba(15,23,34,0.03),
+      0 14px 40px rgba(104,120,14,0.18),
+      0 0 0 1px rgba(104,120,14,0.18);
+    transform: translateY(-6px);
+    background: linear-gradient(180deg, #FFFFFF 0%, #F8F9EE 100%);
+  }
+  .stage.emphasis-2:hover { transform: translateY(-10px); }
+
+  @keyframes stage-in {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ========================================================
+     CALLOUTS
+     ======================================================== */
+  .callouts { padding: var(--space-12) 0; }
+  .callout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+  .callout {
+    background: var(--ceo-card);
+    border: 1px solid var(--ceo-line);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    position: relative;
+    overflow: hidden;
+  }
+  .callout::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: var(--callout-accent, var(--color-primary));
+  }
+  .callout-stop { --callout-accent: var(--ceo-warn); }
+  .callout-act  { --callout-accent: var(--color-primary); }
+
+  .callout-tag {
+    font-size: var(--text-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: var(--font-bold);
+    color: var(--callout-accent);
+  }
+  .callout h2 {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    font-weight: var(--font-bold);
+    color: var(--ceo-ink);
+    line-height: 1.25;
+    margin: var(--space-3) 0 var(--space-4);
+    letter-spacing: -0.01em;
+  }
+  .callout p {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--ceo-muted);
+    margin: 0 0 var(--space-4);
+  }
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+    margin: var(--space-5) 0 var(--space-3);
+  }
+  .compare-col {
+    background: var(--ceo-soft);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+  }
+  .compare-col.bad  { background: #FBEEEB; }
+  .compare-col.good { background: #ECF4E2; }
+  .compare-col h4 {
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: var(--font-bold);
+    margin: 0 0 var(--space-2);
+    color: var(--ceo-muted);
+  }
+  .compare-col p {
+    font-size: var(--text-sm);
+    line-height: 1.5;
+    margin: 0;
+  }
+  .compare-col.bad p  { color: #6B1B12; }
+  .compare-col.good p { color: #1A4A28; }
+
+  .callout-foot {
+    font-size: var(--text-sm);
+    color: var(--ceo-muted);
+    border-top: 1px dashed var(--ceo-line);
+    padding-top: var(--space-3);
+    margin-top: var(--space-2) !important;
+  }
+
+  /* ========================================================
+     INTERACTIVE GRAPH
+     ======================================================== */
+  .interactive { padding: var(--space-16) 0; background: var(--ceo-soft); }
+  .section-head { text-align: center; margin-bottom: var(--space-10); }
+  .section-head h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: var(--font-bold);
+    color: var(--ceo-ink);
+    margin: var(--space-3) 0 var(--space-3);
+    letter-spacing: -0.015em;
+  }
+  .section-head p {
+    color: var(--ceo-muted);
+    max-width: 60ch;
+    margin: 0 auto;
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+  }
+
+  .canvas-wrap {
+    position: relative;
+    background: var(--ceo-card);
+    border: 1px solid var(--ceo-line);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+  .canvas-grid {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle, rgba(104,120,14,0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse at center, #000 50%, transparent 90%);
+  }
+  svg#graph {
+    width: 100%;
+    height: 460px;
+    display: block;
+    position: relative;
+  }
+
+  .strip {
+    margin-top: var(--space-5);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .caption {
+    background: var(--ceo-d);
+    color: #fff;
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-md);
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-height: 56px;
+    transition: background 500ms ease;
+  }
+  .caption.rule { background: var(--ceo-warn); }
+  .stage-num-pill {
+    flex-shrink: 0;
+    font-size: var(--text-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: var(--font-bold);
+    background: rgba(255,255,255,0.18);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-pill);
+  }
+  .rules-deck {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+  }
+  .rule-card {
+    background: var(--ceo-card);
+    border: 1px solid var(--ceo-line);
+    border-left: 3px solid var(--ceo-line);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    transition: all 500ms ease;
+    opacity: 0.55;
+  }
+  .rule-card.active {
+    border-left-color: var(--ceo-warn);
+    box-shadow: 0 6px 22px rgba(192,57,43,0.12);
+    opacity: 1;
+  }
+  .rule-card.applied {
+    border-left-color: var(--ceo-good);
+    opacity: 1;
+  }
+  .rule-tag {
+    font-size: var(--text-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: var(--font-bold);
+    color: var(--ceo-muted);
+    margin-bottom: var(--space-2);
+  }
+  .rule-card.active .rule-tag  { color: var(--ceo-warn); }
+  .rule-card.applied .rule-tag { color: var(--ceo-good); }
+  .rule-body {
+    font-size: var(--text-sm);
+    line-height: 1.5;
+    color: var(--ceo-ink);
+  }
+  .rule-check {
+    font-size: var(--text-xs);
+    color: var(--ceo-muted);
+    margin-top: var(--space-2);
+    line-height: 1.5;
+  }
+
+  .stage-bar {
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-5);
+    flex-wrap: wrap;
+  }
+  .stage-btn {
+    flex: 1 1 160px;
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--ceo-line);
+    background: var(--ceo-card);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--ceo-muted);
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    transition: all var(--transition-base);
+  }
+  .stage-btn:hover { border-color: var(--ceo-ink); color: var(--ceo-ink); transform: translateY(-1px); }
+  .stage-btn.active {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: #fff;
+    box-shadow: 0 6px 18px rgba(104,120,14,0.25);
+  }
+  .stage-btn .step {
+    display: block;
+    font-size: 10px;
+    opacity: 0.75;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    font-weight: var(--font-bold);
+  }
+
+  .controls {
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .progress { flex: 1; font-size: var(--text-xs); color: var(--ceo-muted); }
+  .ctl {
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--ceo-line);
+    background: var(--ceo-card);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--ceo-ink);
+    transition: all var(--transition-fast);
+  }
+  .ctl:hover { border-color: var(--ceo-ink); }
+  .ctl-primary {
+    background: var(--ceo-ink);
+    color: #fff;
+    border-color: var(--ceo-ink);
+  }
+
+  /* ========================================================
+     TAKEAWAY
+     ======================================================== */
+  .takeaway { padding: var(--space-16) 0; }
+  .takeaway-card {
+    background:
+      radial-gradient(circle at 90% 10%, rgba(255,255,255,0.10), transparent 40%),
+      linear-gradient(135deg, var(--color-primary-dark) 0%, var(--ceo-d) 100%);
+    color: #fff;
+    border-radius: var(--radius-xl);
+    padding: var(--space-12);
+    box-shadow: 0 24px 60px rgba(46,58,14,0.30);
+  }
+  .takeaway-card h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+    font-weight: var(--font-semibold);
+    line-height: 1.4;
+    margin: var(--space-4) 0 var(--space-6);
+    color: #fff;
+  }
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: #fff;
+    color: var(--color-primary-dark);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-pill);
+    font-weight: var(--font-semibold);
+    text-decoration: none;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+  .cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+  }
+
+  /* ========================================================
+     PAGE FOOTER
+     ======================================================== */
+  .page-foot {
+    padding: var(--space-8) 0 var(--space-16);
+    text-align: center;
+    color: var(--ceo-muted);
+    font-size: var(--text-sm);
+  }
+  .page-foot a { color: var(--color-primary); text-decoration: none; }
+  .page-foot a:hover { text-decoration: underline; }
+  .page-foot .dot { margin: 0 var(--space-2); opacity: 0.5; }
+
+  /* ========================================================
+     RESPONSIVE
+     ======================================================== */
+  @media (max-width: 980px) {
+    .stage-grid    { grid-template-columns: repeat(2, 1fr); }
+    .callout-grid  { grid-template-columns: 1fr; }
+    .rules-deck    { grid-template-columns: 1fr; }
+    .stage.emphasis-2 { transform: none; }
+    svg#graph { height: 380px; }
+  }
+  @media (max-width: 560px) {
+    .stage-grid    { grid-template-columns: 1fr; }
+    .compare       { grid-template-columns: 1fr; }
+    .takeaway-card { padding: var(--space-8); }
+    svg#graph { height: 320px; }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .stage { animation: none; opacity: 1; transform: none; }
+    .float-wrap, .caption, .rule-card, .stage-btn { transition: none !important; }
+  }
+</style>
+
+<!-- ===========================================================
+     SVG node/edge styles (global so script-injected nodes pick them up)
+     =========================================================== -->
+<style is:global>
+  .ceo-page .node-circle {
+    fill: #FFFFFF;
+    stroke: var(--color-primary);
+    stroke-width: 2.4;
+    transition: fill 600ms ease, stroke 600ms ease, stroke-width 600ms ease, r 600ms ease;
+    filter: drop-shadow(0 2px 6px rgba(46,58,14,0.10));
+  }
+  .ceo-page .node-supplier .node-circle { stroke: #6F7F18; }
+  .ceo-page .node-product  .node-circle { stroke: #4A5809; }
+  .ceo-page .node-contract .node-circle { stroke: #2E3A0E; }
+  .ceo-page .node-module   .node-circle { stroke: #8a9c3a; }
+
+  .ceo-page .node-icon {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 700;
+    fill: var(--ceo-ink, #1A1F12);
+    pointer-events: none;
+  }
+  .ceo-page .node-supplier .node-icon { fill: #6F7F18; }
+  .ceo-page .node-product  .node-icon { fill: #4A5809; }
+  .ceo-page .node-contract .node-icon { fill: #2E3A0E; }
+  .ceo-page .node-module   .node-icon { fill: #8a9c3a; }
+
+  .ceo-page .node-label {
+    font-family: var(--font-body);
+    font-size: 10.5px;
+    font-weight: 600;
+    fill: #5C6557;
+    pointer-events: none;
+  }
+
+  .ceo-page .node {
+    transition: opacity 800ms ease;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .ceo-page .float-wrap { transition: transform 1200ms ease; }
+
+  .ceo-page .node.flashing .node-circle {
+    fill: #FBE8E4;
+    stroke: #C0392B;
+    stroke-width: 3.5;
+    animation: pulse-warn 700ms ease-in-out infinite;
+  }
+  .ceo-page .node.flashing .node-icon { fill: #C0392B; }
+  .ceo-page .node.flashing .node-label { fill: #C0392B; font-weight: 700; }
+  .ceo-page .node.gone { opacity: 0; pointer-events: none; }
+
+  .ceo-page .edge {
+    stroke: #C7CDB6;
+    stroke-width: 1.8;
+    opacity: 0;
+    transition: opacity 700ms ease, stroke 500ms ease, stroke-width 500ms ease;
+    stroke-linecap: round;
+  }
+  .ceo-page .edge.show { opacity: 0.85; }
+  .ceo-page .edge.flashing {
+    stroke: #C0392B;
+    stroke-width: 2.6;
+    stroke-dasharray: 6 4;
+    opacity: 1;
+    animation: dash-march 1.4s linear infinite;
+  }
+  .ceo-page .edge.gone { opacity: 0; }
+
+  @keyframes pulse-warn {
+    0%, 100% { stroke-width: 3.5; }
+    50%      { stroke-width: 4.6; }
+  }
+  @keyframes dash-march {
+    to { stroke-dashoffset: -40; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const NODES = [
+      { id: 'S1', type: 'supplier', label: 'Supplier A',     x: 120, y: 80,  valid: true },
+      { id: 'S2', type: 'supplier', label: 'Supplier B',     x: 300, y: 60,  valid: true },
+      { id: 'S3', type: 'supplier', label: 'Phantom Sup.',   x: 520, y: 75,  valid: false },
+      { id: 'P1', type: 'product',  label: 'Product 1',      x: 200, y: 230, valid: true },
+      { id: 'P2', type: 'product',  label: 'Product 2',      x: 430, y: 240, valid: true },
+      { id: 'P3', type: 'product',  label: 'Discontinued',   x: 580, y: 370, valid: false },
+      { id: 'C1', type: 'contract', label: 'Contract X',     x: 700, y: 130, valid: true },
+      { id: 'C2', type: 'contract', label: 'Contract Y',     x: 680, y: 280, valid: true },
+      { id: 'M1', type: 'module',   label: 'Module α',  x: 90,  y: 370, valid: true },
+      { id: 'M2', type: 'module',   label: 'Module β',  x: 340, y: 390, valid: true },
+    ];
+
+    const EDGES = [
+      { from: 'S1', to: 'P1', valid: true },
+      { from: 'S2', to: 'P2', valid: true },
+      { from: 'P1', to: 'C1', valid: true },
+      { from: 'P2', to: 'C2', valid: true },
+      { from: 'M1', to: 'P1', valid: true },
+      { from: 'M2', to: 'P2', valid: true },
+      { from: 'S1', to: 'P3', valid: false },
+      { from: 'S3', to: 'P1', valid: false },
+      { from: 'M2', to: 'C1', valid: false },
+    ];
+
+    const STAGES = [
+      { num: 1, text: "Unstructured. Objects exist — suppliers, products, contracts, modules — but the AI can't see how they connect.", rule: false },
+      { num: 2, text: "Connected. Relationships emerge between objects. The AI now sees a network — but it can't tell real links from invented ones.", rule: false },
+      { num: 3, text: "Rule for links fires. Stale and cross-type connections are detected and removed. The graph cleans itself of invented edges.", rule: true },
+      { num: 4, text: "Rule for objects fires. Phantom items with no real reference are removed. What remains is a trustworthy network the AI can act on.", rule: true },
+    ];
+
+    const NS  = 'http://www.w3.org/2000/svg';
+    const svg = document.getElementById('graph');
+    if (!svg) return;
+
+    // Defs: subtle gradient for valid edges
+    const defs = document.createElementNS(NS, 'defs');
+    defs.innerHTML =
+      '<linearGradient id="edgeGrad" x1="0" y1="0" x2="1" y2="0">' +
+      '  <stop offset="0%"  stop-color="#B6C083" />' +
+      '  <stop offset="100%" stop-color="#68780E" />' +
+      '</linearGradient>';
+    svg.appendChild(defs);
+
+    const edgeLayer = document.createElementNS(NS, 'g'); svg.appendChild(edgeLayer);
+    const nodeLayer = document.createElementNS(NS, 'g'); svg.appendChild(nodeLayer);
+
+    const nodeMap = {};
+    NODES.forEach(n => {
+      const g = document.createElementNS(NS, 'g');
+      g.setAttribute('class', 'node node-' + n.type + (n.valid ? '' : ' invalid'));
+      g.setAttribute('transform', 'translate(' + n.x + ',' + n.y + ')');
+
+      const wrap = document.createElementNS(NS, 'g');
+      wrap.setAttribute('class', 'float-wrap');
+
+      const circle = document.createElementNS(NS, 'circle');
+      circle.setAttribute('r', 24);
+      circle.setAttribute('class', 'node-circle');
+
+      const icon = document.createElementNS(NS, 'text');
+      icon.setAttribute('class', 'node-icon');
+      icon.setAttribute('y', 5);
+      icon.setAttribute('text-anchor', 'middle');
+      icon.textContent = n.type[0].toUpperCase();
+
+      const label = document.createElementNS(NS, 'text');
+      label.setAttribute('class', 'node-label');
+      label.setAttribute('y', 44);
+      label.setAttribute('text-anchor', 'middle');
+      label.textContent = n.label;
+
+      wrap.appendChild(circle); wrap.appendChild(icon); wrap.appendChild(label);
+      g.appendChild(wrap);
+      nodeLayer.appendChild(g);
+      nodeMap[n.id] = { node: n, group: g };
+    });
+
+    const edgeMap = [];
+    EDGES.forEach(e => {
+      const a = nodeMap[e.from].node, b = nodeMap[e.to].node;
+      const line = document.createElementNS(NS, 'line');
+      line.setAttribute('x1', a.x); line.setAttribute('y1', a.y);
+      line.setAttribute('x2', b.x); line.setAttribute('y2', b.y);
+      line.setAttribute('class', 'edge');
+      if (e.valid) line.setAttribute('stroke', 'url(#edgeGrad)');
+      edgeLayer.appendChild(line);
+      edgeMap.push({ edge: e, line: line });
+    });
+
+    // Continuous gentle motion
+    const motion = {};
+    NODES.forEach(n => {
+      motion[n.id] = {
+        px: Math.random() * Math.PI * 2,
+        py: Math.random() * Math.PI * 2,
+        fx: 0.30 + Math.random() * 0.20,
+        fy: 0.30 + Math.random() * 0.20,
+        ax: 2.4 + Math.random() * 1.6,
+        ay: 2.4 + Math.random() * 1.6,
+        dx: 0, dy: 0,
+      };
+    });
+
+    let prefersReduced = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function animateMotion(t) {
+      if (prefersReduced) return;
+      const time = t / 1000;
+      NODES.forEach(n => {
+        const m = motion[n.id];
+        m.dx = Math.sin(time * m.fx + m.px) * m.ax;
+        m.dy = Math.cos(time * m.fy + m.py) * m.ay;
+        nodeMap[n.id].group.setAttribute(
+          'transform', 'translate(' + (n.x + m.dx) + ',' + (n.y + m.dy) + ')'
+        );
+      });
+      edgeMap.forEach(o => {
+        const a = nodeMap[o.edge.from].node, b = nodeMap[o.edge.to].node;
+        const ma = motion[o.edge.from], mb = motion[o.edge.to];
+        o.line.setAttribute('x1', a.x + ma.dx);
+        o.line.setAttribute('y1', a.y + ma.dy);
+        o.line.setAttribute('x2', b.x + mb.dx);
+        o.line.setAttribute('y2', b.y + mb.dy);
+      });
+      requestAnimationFrame(animateMotion);
+    }
+    if (!prefersReduced) requestAnimationFrame(animateMotion);
+
+    let currentStage = 0;
+    let isPlaying = true;
+    let timer = null;
+    const flashTimers = [];
+
+    function clearFlashes() {
+      flashTimers.forEach(t => clearTimeout(t));
+      flashTimers.length = 0;
+    }
+
+    function applyStage(stage) {
+      clearFlashes();
+
+      document.querySelectorAll('.stage-btn').forEach(b =>
+        b.classList.toggle('active', +b.dataset.stage === stage)
+      );
+
+      const s = STAGES[stage];
+      document.getElementById('caption-text').textContent = s.text;
+      document.querySelector('#caption .stage-num-pill').textContent =
+        'Stage ' + s.num + ' / 4';
+      document.getElementById('caption').classList.toggle('rule', s.rule);
+
+      const r1 = document.getElementById('rule1');
+      const r2 = document.getElementById('rule2');
+      r1.className = 'rule-card' +
+        (stage === 2 ? ' active' : (stage > 2 ? ' applied' : ''));
+      r2.className = 'rule-card' +
+        (stage === 3 ? ' active' : '');
+
+      edgeMap.forEach(o => {
+        o.line.classList.remove('show', 'flashing', 'gone');
+        if (stage >= 1) o.line.classList.add('show');
+        if (!o.edge.valid && stage >= 2) {
+          if (stage === 2) {
+            o.line.classList.add('flashing');
+            flashTimers.push(setTimeout(() => {
+              o.line.classList.remove('flashing');
+              o.line.classList.add('gone');
+            }, 1400));
+          } else {
+            o.line.classList.add('gone');
+          }
+        }
+      });
+
+      NODES.forEach(n => {
+        const grp = nodeMap[n.id].group;
+        grp.classList.remove('flashing', 'gone');
+        if (!n.valid && stage >= 3) {
+          if (stage === 3) {
+            grp.classList.add('flashing');
+            flashTimers.push(setTimeout(() => {
+              grp.classList.remove('flashing');
+              grp.classList.add('gone');
+            }, 1400));
+          } else {
+            grp.classList.add('gone');
+          }
+        }
+      });
+    }
+
+    function go(delta) {
+      currentStage = (currentStage + delta + STAGES.length) % STAGES.length;
+      applyStage(currentStage);
+    }
+
+    function startTimer() {
+      clearInterval(timer);
+      timer = setInterval(() => { if (isPlaying) go(1); }, 6000);
+    }
+
+    document.querySelectorAll('.stage-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentStage = +btn.dataset.stage;
+        applyStage(currentStage);
+        if (isPlaying) startTimer();
+      });
+    });
+
+    document.getElementById('prev').onclick  = () => go(-1);
+    document.getElementById('next').onclick  = () => go(1);
+    document.getElementById('reset').onclick = () => { currentStage = 0; applyStage(0); };
+    document.getElementById('playpause').onclick = (e) => {
+      isPlaying = !isPlaying;
+      e.target.textContent = isPlaying ? 'Pause' : 'Play';
+      document.getElementById('progress').textContent =
+        isPlaying ? 'Auto-playing — 6s per stage' : 'Paused';
+      if (isPlaying) startTimer(); else clearInterval(timer);
+    };
+
+    applyStage(0);
+    startTimer();
+  })();
+</script>

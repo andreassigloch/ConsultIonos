@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>From Documents to Decisions</title>
+<style>
+  :root {
+    --ink: #0F1722;
+    --muted: #5B6573;
+    --line: #E2E6EC;
+    --bg: #F7F8FA;
+    --card: #FFFFFF;
+    --c1: #8FA3C4;
+    --c2: #1A4FB0;
+    --c3: #0B2A6B;
+    --c4: #5B2B8C;
+    --accent: #C0392B;
+    --good: #1F8A4C;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased; }
+  .page { max-width: 1180px; margin: 0 auto; padding: 56px 48px 64px; }
+  header h1 { font-size: 30px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 8px; }
+  header p { font-size: 16px; color: var(--muted); margin: 0; max-width: 800px; line-height: 1.5; }
+  .source { font-size: 12px; color: var(--muted); margin-top: 10px; }
+
+  .stack { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 36px; }
+  .lvl { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px 22px 24px;
+    position: relative; box-shadow: 0 1px 0 rgba(15,23,34,0.02); display: flex; flex-direction: column; }
+  .lvl h3 { font-size: 18px; margin: 14px 0 4px; font-weight: 700; }
+  .lvl .sub { font-size: 13px; color: var(--muted); margin: 0 0 14px; }
+  .lvl .what { font-size: 14px; line-height: 1.5; margin: 0; }
+  .lvl.c1 .bar { background: var(--c1); }
+  .lvl.c2 .bar { background: var(--c2); }
+  .lvl.c3 .bar { background: var(--c3); }
+  .lvl.c4 .bar { background: var(--c4); }
+  .bar { height: 6px; border-radius: 6px 6px 0 0; margin: -22px -22px 16px; }
+
+  .stars-row { display: flex; align-items: center; gap: 8px; min-height: 24px; }
+  .stars { font-size: 18px; letter-spacing: 2px; color: #E5A100; line-height: 1; }
+  .stars-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;
+    color: var(--muted); }
+  .stars-empty { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #C8CCD2; font-weight: 600; }
+
+  /* Single emphasis: outlined + small lift */
+  .lvl.star1 { border-color: transparent; box-shadow: 0 0 0 1.5px var(--ink), 0 6px 18px rgba(15,23,34,0.06); }
+  /* Double emphasis: thicker outline + stronger lift + tinted backdrop ring */
+  .lvl.star2 {
+    border-color: transparent;
+    box-shadow: 0 0 0 3px var(--ink), 0 0 0 8px rgba(26,79,176,0.12), 0 14px 40px rgba(15,23,34,0.12);
+    transform: translateY(-4px);
+  }
+
+  .callouts { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 32px; }
+  .call { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; }
+  .call .tag { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
+  .call.hallu .tag { color: var(--accent); }
+  .call.ground .tag { color: var(--good); }
+  .call h2 { font-size: 19px; margin: 8px 0 12px; font-weight: 700; line-height: 1.3; }
+  .call p { font-size: 14px; line-height: 1.55; margin: 0 0 10px; color: #1F2A3A; }
+  .call .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+  .col { padding: 12px 14px; border-radius: 10px; background: var(--bg); }
+  .col h4 { font-size: 12px; margin: 0 0 6px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--muted); }
+  .col p { font-size: 13px; margin: 0; line-height: 1.45; }
+  .col.bad p { color: #6B1B12; }
+  .col.good p { color: #0E5A33; }
+
+  .takeaway { margin-top: 30px; padding: 22px 26px; border-radius: 14px;
+    background: var(--c3); color: #fff; }
+  .takeaway h2 { font-size: 18px; margin: 0 0 6px; font-weight: 700; }
+  .takeaway p { font-size: 14px; margin: 0; opacity: 0.9; line-height: 1.55; }
+
+  footer { margin-top: 28px; font-size: 12px; color: var(--muted); }
+  @media print { body { background: #fff; } .page { padding: 24px; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <h1>Stop hallucinating. Start producing.</h1>
+    <p>Two questions are asked about implementation of AI in a business context: can I trust what it says, and can I trust what it produces? These four stages answer both.</p>
+    <div class="source">Source: siglochconsulting.de/mein-ansatz</div>
+  </header>
+
+  <section class="stack">
+
+    <div class="lvl c1">
+      <div class="bar"></div>
+      <div class="stars-row"><span class="stars-empty">starting point</span></div>
+      <h3>Smart search over documents</h3>
+      <p class="sub">technical stage: unstructured data</p>
+      <p class="what">AI finds passages that look relevant and summarises them. Faster than searching by hand — but it still guesses how the pieces fit together.</p>
+    </div>
+
+    <div class="lvl c2 star2">
+      <div class="bar"></div>
+      <div class="stars-row"><span class="stars-label" style="color:#1A4FB0;">critical step</span></div>
+      <h3>Stops hallucinations</h3>
+      <p class="sub">technical stage: structured data</p>
+      <p class="what">Suppliers, products, contracts and dependencies are captured as a verified network. The AI can only refer to connections that actually exist in your business.</p>
+    </div>
+
+    <div class="lvl c3 star1">
+      <div class="bar"></div>
+      <div class="stars-row"><span class="stars-label">trusted output</span></div>
+      <h3>Output you can act on</h3>
+      <p class="sub">technical stage: structured data + rule set</p>
+      <p class="what">Compliance, compatibility, pricing rules are written down in a form the system actually applies. Anything the AI produces is checked — and rejected if it breaks a rule.</p>
+    </div>
+
+    <div class="lvl c4">
+      <div class="bar"></div>
+      <div class="stars-row"><span class="stars-empty">the payoff</span></div>
+      <h3>Safe autonomous AI in business context</h3>
+      <p class="sub">technical stage: self-correcting system</p>
+      <p class="what">Outcomes flow back into the knowledge map. The system catches its own errors by checking the rules, tunes itself, and runs reliably without a person checking every step.</p>
+    </div>
+
+  </section>
+
+  <section class="callouts">
+
+    <div class="call hallu">
+      <span class="tag">Stop hallucinations</span>
+      <h2>AI invents things that sound right — until you give it a verified network.</h2>
+      <p>Most so-called "hallucinations" are invented relationships: a supplier tied to the wrong product, a clause attributed to the wrong contract, a dependency that doesn't exist. Plain documents give the AI no way to know what's real.</p>
+      <div class="row">
+        <div class="col bad"><h4>Without this step</h4>
+          <p>Plausible answers, no way to tell which are true. Every output needs a human check.</p></div>
+        <div class="col good"><h4>With this step</h4>
+          <p>The AI can only reference connections that actually exist. If a link isn't there, it can't be claimed.</p></div>
+      </div>
+      <p style="font-size:12px;color:var(--muted);margin-top:14px;">Technical answer: structured data — a knowledge map of your business.</p>
+    </div>
+
+    <div class="call ground">
+      <span class="tag">Output you can act on</span>
+      <h2>Plausible isn't the same as valid. Rules close the gap.</h2>
+      <p>To let AI draft offers, configurations, contracts or specs, the result has to satisfy your business reality: regulations, compatibility, pricing logic. Rules turn "sounds reasonable" into "passes validation."</p>
+      <div class="row">
+        <div class="col bad"><h4>Without this step</h4>
+          <p>AI proposes, a person manually checks. The bottleneck stays human.</p></div>
+        <div class="col good"><h4>With this step</h4>
+          <p>AI proposes, the system validates, invalid options are blocked at source. Output is ready to use.</p></div>
+      </div>
+      <p style="font-size:12px;color:var(--muted);margin-top:14px;">Technical answer: structured data + an executable rule set.</p>
+    </div>
+
+  </section>
+
+  <section class="takeaway">
+    <h2>The bottom line</h2>
+    <p>First, stop the AI from making things up. Then, make its output something you can act on. Once both hold, the AI starts running itself.</p>
+  </section>
+
+  <footer>Sigloch Consulting · CEO summary</footer>
+</div>
+</body>
+</html>

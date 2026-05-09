@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>From Chaos to Trustworthy AI — interactive</title>
+<style>
+  :root {
+    --ink: #0F1722;
+    --muted: #5B6573;
+    --line: #E2E6EC;
+    --bg: #F7F8FA;
+    --card: #FFFFFF;
+    --accent: #1A4FB0;
+    --good: #1F8A4C;
+    --warn: #C0392B;
+    --warn-soft: #FBE8E4;
+    --supplier: #1A4FB0;
+    --product: #5B2B8C;
+    --contract: #0B2A6B;
+    --module: #117C66;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased; }
+  .page { max-width: 1180px; margin: 0 auto; padding: 48px 40px 56px; }
+  header h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 8px; }
+  header p { font-size: 15px; color: var(--muted); margin: 0; max-width: 760px; line-height: 1.5; }
+
+  .canvas-wrap { position: relative; background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; margin-top: 28px; padding: 16px; box-shadow: 0 1px 0 rgba(15,23,34,0.02); }
+  svg#graph { width: 100%; height: 460px; display: block; }
+
+  /* nodes */
+  .node-circle { fill: var(--card); stroke: var(--accent); stroke-width: 2.5;
+    transition: all 600ms ease; }
+  .node-supplier .node-circle { stroke: var(--supplier); }
+  .node-product  .node-circle { stroke: var(--product); }
+  .node-contract .node-circle { stroke: var(--contract); }
+  .node-module   .node-circle { stroke: var(--module); }
+  .node-icon { font-size: 13px; font-weight: 700; fill: var(--ink); }
+  .node-label { font-size: 10.5px; fill: var(--muted); font-weight: 600; }
+  .node { transition: opacity 800ms ease; transform-box: fill-box; transform-origin: center; }
+  .node-supplier .node-icon { fill: var(--supplier); }
+  .node-product  .node-icon { fill: var(--product); }
+  .node-contract .node-icon { fill: var(--contract); }
+  .node-module   .node-icon { fill: var(--module); }
+
+  .float-wrap { transition: transform 1200ms ease; }
+
+  .node.flashing .node-circle { fill: var(--warn-soft); stroke: var(--warn); stroke-width: 3.5; }
+  .node.flashing .node-icon { fill: var(--warn); }
+  .node.flashing .node-label { fill: var(--warn); font-weight: 700; }
+  .node.gone { opacity: 0; pointer-events: none; }
+
+  /* edges */
+  .edge { stroke: #B8C0CC; stroke-width: 2; opacity: 0; transition: opacity 700ms ease, stroke 500ms ease, stroke-width 500ms ease; }
+  .edge.show { opacity: 0.85; }
+  .edge.flashing { stroke: var(--warn); stroke-width: 3; stroke-dasharray: 6 4; opacity: 1; }
+  .edge.gone { opacity: 0; }
+
+  /* caption + rule strip */
+  .strip { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 16px; }
+  .caption {
+    background: var(--ink); color: white; padding: 14px 18px; border-radius: 10px;
+    font-size: 14px; line-height: 1.45; display: flex; align-items: center; gap: 12px;
+    transition: background 400ms ease; min-height: 52px;
+  }
+  .caption .stage-num {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;
+    background: rgba(255,255,255,0.15); padding: 4px 8px; border-radius: 999px;
+    flex-shrink: 0;
+  }
+  .caption.rule { background: var(--warn); }
+  .caption.rule .stage-num { background: rgba(255,255,255,0.22); }
+
+  .rules-deck { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .rule-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-left: 3px solid var(--line);
+    border-radius: 10px; padding: 12px 14px;
+    transition: all 500ms ease; opacity: 0.5;
+  }
+  .rule-card.active { border-left-color: var(--warn); box-shadow: 0 4px 14px rgba(192,57,43,0.10); opacity: 1; }
+  .rule-card.applied { border-left-color: var(--good); opacity: 1; }
+  .rule-card .tag {
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 700; color: var(--muted); margin-bottom: 4px;
+  }
+  .rule-card.active .tag { color: var(--warn); }
+  .rule-card.applied .tag { color: var(--good); }
+  .rule-card .body { font-size: 13px; line-height: 1.4; color: var(--ink); }
+  .rule-card .check { font-size: 11px; color: var(--muted); margin-top: 6px; }
+
+  /* stage tabs */
+  .stage-bar { display: flex; gap: 8px; margin-top: 18px; }
+  .stage-btn {
+    flex: 1; padding: 11px 10px; border: 1px solid var(--line); background: var(--card);
+    border-radius: 8px; font-size: 13px; font-weight: 600; color: var(--muted);
+    cursor: pointer; transition: all 200ms ease; text-align: left;
+    font-family: inherit;
+  }
+  .stage-btn:hover { border-color: var(--ink); color: var(--ink); }
+  .stage-btn.active { border-color: var(--ink); background: var(--ink); color: white; }
+  .stage-btn .step { display: block; font-size: 10px; opacity: 0.7;
+    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; font-weight: 700; }
+
+  /* controls */
+  .controls { display: flex; gap: 8px; margin-top: 12px; justify-content: flex-end; align-items: center; }
+  .controls .progress { flex: 1; font-size: 12px; color: var(--muted); }
+  .controls button {
+    padding: 8px 14px; border: 1px solid var(--line); background: var(--card);
+    border-radius: 8px; font-size: 13px; cursor: pointer; font-family: inherit;
+    color: var(--ink); transition: all 150ms ease;
+  }
+  .controls button:hover { border-color: var(--ink); }
+  .controls button.primary { background: var(--ink); color: white; border-color: var(--ink); }
+
+  footer { margin-top: 28px; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <h1>From chaos to trustworthy AI</h1>
+    <p>Four stages — watch how scattered objects become connections, and how rules eliminate the connections (and objects) that don't belong.</p>
+  </header>
+
+  <div class="canvas-wrap">
+    <svg id="graph" viewBox="0 0 900 460" preserveAspectRatio="xMidYMid meet"></svg>
+  </div>
+
+  <div class="strip">
+    <div id="caption" class="caption">
+      <span class="stage-num">Stage 1 / 4</span>
+      <span id="caption-text">Unstructured. Objects exist, but the AI can't see how they connect.</span>
+    </div>
+
+    <div class="rules-deck">
+      <div class="rule-card" id="rule1">
+        <div class="tag">Rule for links</div>
+        <div class="body">Every link must follow the business hierarchy. Stale or cross-type connections are removed.</div>
+        <div class="check">↳ catches: phantom-supplier links, references to discontinued products, module → contract shortcuts</div>
+      </div>
+      <div class="rule-card" id="rule2">
+        <div class="tag">Rule for objects</div>
+        <div class="body">Every object must reference something real. Phantom or orphan objects are removed.</div>
+        <div class="check">↳ catches: suppliers that don't exist, products that have been retired</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage-bar">
+    <button class="stage-btn active" data-stage="0"><span class="step">Step 1</span>Unconnected objects</button>
+    <button class="stage-btn" data-stage="1"><span class="step">Step 2</span>+ connections</button>
+    <button class="stage-btn" data-stage="2"><span class="step">Step 3</span>Rule on links</button>
+    <button class="stage-btn" data-stage="3"><span class="step">Step 4</span>Rule on objects</button>
+  </div>
+
+  <div class="controls">
+    <span class="progress" id="progress">Auto-playing — 6s per stage</span>
+    <button id="prev">← Back</button>
+    <button id="playpause" class="primary">Pause</button>
+    <button id="next">Next →</button>
+    <button id="reset">↻ Replay</button>
+  </div>
+
+  <footer>Sigloch Consulting · From documents to decisions</footer>
+</div>
+
+<script>
+const NODES = [
+  {id:'S1', type:'supplier', label:'Supplier A',  x:120, y:80,  valid:true},
+  {id:'S2', type:'supplier', label:'Supplier B',  x:300, y:60,  valid:true},
+  {id:'S3', type:'supplier', label:'Phantom Sup.',x:520, y:75,  valid:false},
+  {id:'P1', type:'product',  label:'Product 1',   x:200, y:230, valid:true},
+  {id:'P2', type:'product',  label:'Product 2',   x:430, y:240, valid:true},
+  {id:'P3', type:'product',  label:'Discontinued',x:580, y:370, valid:false},
+  {id:'C1', type:'contract', label:'Contract X',  x:700, y:130, valid:true},
+  {id:'C2', type:'contract', label:'Contract Y',  x:680, y:280, valid:true},
+  {id:'M1', type:'module',   label:'Module α',    x:90,  y:370, valid:true},
+  {id:'M2', type:'module',   label:'Module β',    x:340, y:390, valid:true},
+];
+
+const EDGES = [
+  {from:'S1', to:'P1', valid:true},
+  {from:'S2', to:'P2', valid:true},
+  {from:'P1', to:'C1', valid:true},
+  {from:'P2', to:'C2', valid:true},
+  {from:'M1', to:'P1', valid:true},
+  {from:'M2', to:'P2', valid:true},
+  {from:'S1', to:'P3', valid:false},
+  {from:'S3', to:'P1', valid:false},
+  {from:'M2', to:'C1', valid:false},
+];
+
+const STAGES = [
+  { num: 1, text: "Unstructured. Objects exist — suppliers, products, contracts, modules — but the AI can't see how they connect.", rule: false },
+  { num: 2, text: "Connected. Relationships emerge between objects. The AI now sees a network — but it can't tell real links from invented ones.", rule: false },
+  { num: 3, text: "Rule for links fires. Stale and cross-type connections are detected and removed. The graph cleans itself of invented edges.", rule: true, ruleIdx: 1 },
+  { num: 4, text: "Rule for objects fires. Phantom items with no real reference are removed. What remains is a trustworthy network the AI can act on.", rule: true, ruleIdx: 2 },
+];
+
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('graph');
+const edgeLayer = document.createElementNS(NS, 'g'); svg.appendChild(edgeLayer);
+const nodeLayer = document.createElementNS(NS, 'g'); svg.appendChild(nodeLayer);
+
+const nodeMap = {};
+NODES.forEach(n => {
+  const g = document.createElementNS(NS, 'g');
+  g.setAttribute('class', 'node node-' + n.type + (n.valid ? '' : ' invalid'));
+  g.setAttribute('transform', `translate(${n.x}, ${n.y})`);
+
+  const wrap = document.createElementNS(NS, 'g');
+  wrap.setAttribute('class', 'float-wrap');
+
+  const circle = document.createElementNS(NS, 'circle');
+  circle.setAttribute('r', 24); circle.setAttribute('class', 'node-circle');
+
+  const icon = document.createElementNS(NS, 'text');
+  icon.setAttribute('class', 'node-icon'); icon.setAttribute('y', 5);
+  icon.setAttribute('text-anchor', 'middle');
+  icon.textContent = n.type[0].toUpperCase();
+
+  const label = document.createElementNS(NS, 'text');
+  label.setAttribute('class', 'node-label'); label.setAttribute('y', 42);
+  label.setAttribute('text-anchor', 'middle');
+  label.textContent = n.label;
+
+  wrap.appendChild(circle); wrap.appendChild(icon); wrap.appendChild(label);
+  g.appendChild(wrap);
+  nodeLayer.appendChild(g);
+  nodeMap[n.id] = { node: n, group: g };
+});
+
+const edgeMap = [];
+EDGES.forEach(e => {
+  const a = nodeMap[e.from].node, b = nodeMap[e.to].node;
+  const line = document.createElementNS(NS, 'line');
+  line.setAttribute('x1', a.x); line.setAttribute('y1', a.y);
+  line.setAttribute('x2', b.x); line.setAttribute('y2', b.y);
+  line.setAttribute('class', 'edge');
+  edgeLayer.appendChild(line);
+  edgeMap.push({ edge: e, line });
+});
+
+// Continuous gentle motion — each node gets its own phase + frequency
+const motion = {};
+NODES.forEach(n => {
+  motion[n.id] = {
+    px: Math.random() * Math.PI * 2,
+    py: Math.random() * Math.PI * 2,
+    fx: 0.35 + Math.random() * 0.25,
+    fy: 0.35 + Math.random() * 0.25,
+    ax: 2.5 + Math.random() * 1.5,
+    ay: 2.5 + Math.random() * 1.5,
+  };
+});
+
+function animateMotion(t) {
+  const time = t / 1000;
+  NODES.forEach(n => {
+    const m = motion[n.id];
+    m.dx = Math.sin(time * m.fx + m.px) * m.ax;
+    m.dy = Math.cos(time * m.fy + m.py) * m.ay;
+    nodeMap[n.id].group.setAttribute('transform', `translate(${n.x + m.dx}, ${n.y + m.dy})`);
+  });
+  edgeMap.forEach(({ edge, line }) => {
+    const a = nodeMap[edge.from].node, b = nodeMap[edge.to].node;
+    const ma = motion[edge.from], mb = motion[edge.to];
+    line.setAttribute('x1', a.x + ma.dx);
+    line.setAttribute('y1', a.y + ma.dy);
+    line.setAttribute('x2', b.x + mb.dx);
+    line.setAttribute('y2', b.y + mb.dy);
+  });
+  requestAnimationFrame(animateMotion);
+}
+requestAnimationFrame(animateMotion);
+
+let currentStage = 0;
+let isPlaying = true;
+let timer = null;
+const flashTimers = [];
+
+function clearFlashes() {
+  flashTimers.forEach(t => clearTimeout(t));
+  flashTimers.length = 0;
+}
+
+function applyStage(stage) {
+  clearFlashes();
+
+  document.querySelectorAll('.stage-btn').forEach(b => b.classList.toggle('active', +b.dataset.stage === stage));
+
+  const s = STAGES[stage];
+  document.getElementById('caption-text').textContent = s.text;
+  document.querySelector('#caption .stage-num').textContent = `Stage ${s.num} / 4`;
+  document.getElementById('caption').classList.toggle('rule', s.rule);
+
+  document.body.classList.remove('s0','s1','s2','s3');
+  document.body.classList.add('s' + stage);
+
+  document.getElementById('rule1').className = 'rule-card' +
+    (stage === 2 ? ' active' : (stage > 2 ? ' applied' : ''));
+  document.getElementById('rule2').className = 'rule-card' +
+    (stage === 3 ? ' active' : '');
+
+  edgeMap.forEach(({ edge, line }) => {
+    line.classList.remove('show', 'flashing', 'gone');
+    if (stage >= 1) line.classList.add('show');
+    if (!edge.valid && stage >= 2) {
+      if (stage === 2) {
+        line.classList.add('flashing');
+        flashTimers.push(setTimeout(() => {
+          line.classList.remove('flashing');
+          line.classList.add('gone');
+        }, 1400));
+      } else {
+        line.classList.add('gone');
+      }
+    }
+  });
+
+  NODES.forEach(n => {
+    const { group } = nodeMap[n.id];
+    group.classList.remove('flashing', 'gone');
+    if (!n.valid && stage >= 3) {
+      if (stage === 3) {
+        group.classList.add('flashing');
+        flashTimers.push(setTimeout(() => {
+          group.classList.remove('flashing');
+          group.classList.add('gone');
+        }, 1400));
+      } else {
+        group.classList.add('gone');
+      }
+    }
+  });
+}
+
+function go(delta) {
+  currentStage = (currentStage + delta + STAGES.length) % STAGES.length;
+  applyStage(currentStage);
+}
+
+function startTimer() {
+  clearInterval(timer);
+  timer = setInterval(() => { if (isPlaying) go(1); }, 6000);
+}
+
+document.querySelectorAll('.stage-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    currentStage = +btn.dataset.stage;
+    applyStage(currentStage);
+    if (isPlaying) startTimer();
+  });
+});
+
+document.getElementById('prev').onclick = () => go(-1);
+document.getElementById('next').onclick = () => go(1);
+document.getElementById('reset').onclick = () => { currentStage = 0; applyStage(0); };
+document.getElementById('playpause').onclick = (e) => {
+  isPlaying = !isPlaying;
+  e.target.textContent = isPlaying ? 'Pause' : 'Play';
+  document.getElementById('progress').textContent = isPlaying ? 'Auto-playing — 6s per stage' : 'Paused';
+  if (isPlaying) startTimer(); else clearInterval(timer);
+};
+
+applyStage(0);
+startTimer();
+</script>
+</body>
+</html>
