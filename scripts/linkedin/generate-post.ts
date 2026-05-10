@@ -21,7 +21,7 @@ import {
   DEFAULT_POST_CONFIG,
   type PostConfig,
   type ValidationResult,
-} from './templates.js';
+} from '@sigloch/linkedin-tools';
 
 const SITE_URL = 'https://siglochconsulting.de';
 const BLOG_DIR = path.join(process.cwd(), 'src/content/blog');

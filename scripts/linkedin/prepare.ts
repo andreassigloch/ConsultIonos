@@ -13,7 +13,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import { findPlannedArticles, processArticle, type LinkedInPost } from './generate-post.js';
 import { generateImageForArticle } from './generate-image.js';
-import { validateImage, formatValidationResult } from './validate-image.js';
+import { validateImage, formatValidationResult } from '@sigloch/linkedin-tools/validate-image';
 
 const OUTPUT_DIR = path.join(process.cwd(), 'docs', 'linkedin-queue');
 

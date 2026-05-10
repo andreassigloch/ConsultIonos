@@ -106,10 +106,23 @@
       "Bash(npm run compliance:*)",
       "Bash(npm run compliance:bfsg:*)",
       "Bash(npm ls:*)",
-      "Bash(npm run lint:design:*)"
+      "Bash(npm run lint:design:*)",
+      "Bash(git remote add:*)",
+      "Bash(git fetch:*)",
+      "Bash(git merge-base:*)",
+      "Bash(git checkout:*)",
+      "Bash(docker ps:*)",
+      "Bash(docker logs:*)",
+      "Bash(docker-compose down:*)",
+      "Bash(docker exec:*)",
+      "Bash(git init:*)",
+      "WebFetch(domain:www.mckinsey.com)"
     ],
     "deny": [],
-    "ask": []
+    "ask": [],
+    "additionalDirectories": [
+      "/Users/andreas/Documents/Projekte/prod/websites/sicon/docs/project/screenshots"
+    ]
   },
   "enabledMcpjsonServers": [
     "claude-flow",
