@@ -81,6 +81,22 @@ const categories: Category[] = [
     id: "systems-engineering",
     projects: [
       {
+        name: "graphcode-Demo: City People Mover",
+        status: "Aktiv",
+        language: "TypeScript",
+        description: "Vollständig modelliertes Beispielsystem — Spezifikation als zusammenhängendes Modell statt Dokumentenordner.",
+        goal: "graphcode zeigen, ohne vorher etwas bauen zu müssen: 219 Einträge, 402 Verknüpfungen, 15 daraus generierte Dokumente.",
+        features: [
+          "Fahrerloser City People Mover, acht Stationen, eine Leitstelle",
+          "Jede Änderung läuft durch dieselbe Prüfung — Mensch wie KI-Agent",
+          "Statusbericht aus dem Modell berechnet, nicht in eine Folie getippt"
+        ],
+        links: [
+          { label: "Statische Demo", url: "/projekte/graphcode-demo" },
+          { label: "npm", url: "https://www.npmjs.com/package/@sigloch/graphcode" }
+        ]
+      },
+      {
         name: "GraphEngine",
         status: "Aktiv",
         language: "TypeScript",
@@ -246,11 +262,19 @@ const statusColors: Record<string, string> = {
 
                 {project.links && project.links.length > 0 && (
                   <div class="project-links">
-                    {project.links.map((link) => (
-                      <a href={link.url} target="_blank" rel="noopener noreferrer" class="project-link">
-                        {link.label} →
-                      </a>
-                    ))}
+                    {project.links.map((link) => {
+                      const isExternal = link.url.startsWith('http');
+                      return (
+                        <a
+                          href={link.url}
+                          target={isExternal ? '_blank' : undefined}
+                          rel={isExternal ? 'noopener noreferrer' : undefined}
+                          class="project-link"
+                        >
+                          {link.label} →
+                        </a>
+                      );
+                    })}
                   </div>
                 )}
               </article>

@@ -1,0 +1,479 @@
+---
+/**
+ * graphcode-Demo (City People Mover) — statische Demo
+ * @author andreas@siglochconsulting.de
+ *
+ * Inhalt und Zahlen stammen aus dem Demo-Repo graphcodedemo:
+ * Modell-Snapshot docs/graph/graphcodedemo.graph.json, Dokumente docs/views/.
+ */
+
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import { demoDocs, demoStats } from '@lib/graphcodeDemo';
+---
+
+<BaseLayout
+  title="graphcode-Demo: City People Mover | Sigloch Consulting"
+  description="Eine Spezifikation als zusammenhängendes Modell statt als Dokumentenordner: 219 Einträge, 402 Verknüpfungen, 15 daraus generierte Dokumente — vollständig einsehbar."
+>
+  <Header />
+
+  <main>
+    <article class="article" data-testid="graphcode-demo">
+      <header class="article-header">
+        <div class="container">
+          <a href="/projekte" class="back-link">← Projekte</a>
+          <h1>graphcode-Demo: City People Mover</h1>
+          <p class="article-subtitle">
+            Eine Spezifikation, die man befragen kann — und die ihren eigenen Stand meldet.
+            {demoStats.elements} Einträge, {demoStats.traces} Verknüpfungen,
+            {demoDocs.length} daraus gedruckte Dokumente. Alles auf dieser Seite kommt
+            aus einem Modell, nichts ist von Hand geschrieben.
+          </p>
+        </div>
+      </header>
+
+      <div class="container article-content">
+        <section class="principle-box">
+          <h2>Kernprinzip</h2>
+          <blockquote>
+            Dokumente lassen sich nicht gegeneinander prüfen — sie driften auseinander,
+            sobald das Projekt sich bewegt. graphcode hält dieselbe Information als
+            <strong>ein zusammenhängendes Modell</strong>: jede Anforderung, jede Funktion,
+            jede Schnittstelle, jeder Test und die Verknüpfungen dazwischen. Nichts kommt
+            ohne Prüfung hinein. Jedes Dokument wird daraus gedruckt.
+          </blockquote>
+        </section>
+
+        <section data-testid="demo-system">
+          <h2>Das Beispielsystem</h2>
+          <p>
+            Ein fahrerloser City People Mover: acht Stationen, Kabinen auf eigener Trasse,
+            eine Leitstelle, Fahrgäste ohne Einweisung. Modelliert wurde er, um graphcode
+            zu zeigen, ohne vorher etwas bauen zu müssen — kein Kundenprojekt, keine
+            geschönten Zahlen.
+          </p>
+
+          <div class="stats-grid">
+            {demoStats.byType.map((item) => (
+              <div class="stat-card">
+                <span class="stat-count">{item.count}</span>
+                <span class="stat-label">{item.label}</span>
+              </div>
+            ))}
+          </div>
+
+          <p class="stat-note">
+            Zusammen {demoStats.elements} Einträge und {demoStats.traces} Verknüpfungen.
+            Unter den {demoStats.byType.find((i) => i.label === 'Anforderungen')?.count} Anforderungen
+            sind {demoStats.risks} Risiken, jedes mit einer Gegenmaßnahme.
+          </p>
+        </section>
+
+        <section data-testid="demo-fchain">
+          <h2>Eine Wirkkette: Türzyklus am Bahnsteig</h2>
+          <p>
+            Der Ablauf, der hinter dem Satz „Kabinentür und Bahnsteigtür öffnen nur
+            gemeinsam, und nur im Stillstand“ steckt: Stillstandsnachweis, Nachweis der
+            Türverriegelung, synchrone Freigabe beider Türen, Hindernisüberwachung.
+            Elf Elemente, achtzehn Verbindungen — gezeichnet aus dem Modell, nicht gemalt.
+          </p>
+
+          <figure class="screenshot screenshot-wide">
+            <a href="/images/graphcode-demo/wirkkette-tuerzyklus.png" target="_blank" rel="noopener noreferrer">
+              <img
+                src="/images/graphcode-demo/wirkkette-tuerzyklus.png"
+                alt="Wirkkette Türzyklus: Funktionen und Datenflüsse vom Stillstandsnachweis bis zur Türfreigabe"
+                width="2472"
+                height="520"
+                loading="lazy"
+              />
+            </a>
+            <figcaption>
+              Wirkkette <code>FCHAIN-door-cycle</code> im graphcode-Viewer. Kästen sind
+              Funktionen und Datenflüsse, Pfeile sind Ein- und Ausgänge.
+              <a href="/images/graphcode-demo/wirkkette-tuerzyklus.png" target="_blank" rel="noopener noreferrer">Bild in Originalgröße öffnen</a>.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section data-testid="demo-status">
+          <h2>Was das Modell über sich selbst sagt</h2>
+          <p>
+            Niemand tippt hier einen Prozentwert in eine Folie: Der Stand wird aus dem
+            Modell berechnet. {demoStats.elementsWithErrors} von {demoStats.elements} Einträgen
+            verletzen eine Regel — und trotzdem sind erst
+            {' '}{demoStats.gatesPassed} von {demoStats.gatesTotal} Reifegrad-Toren bestanden.
+          </p>
+
+          <figure class="screenshot">
+            <img
+              src="/images/graphcode-demo/se-dashboard.png"
+              alt="SE-Dashboard: 100 Prozent Regelkonformität, 0 von 219 Einträgen mit Fehler, 3 von 8 Gates bestanden"
+              width="2560"
+              height="840"
+              loading="lazy"
+            />
+            <figcaption>
+              Statusansicht des Modells. Der Wert links ist Regelkonformität, nicht
+              Fertigstellungsgrad.
+            </figcaption>
+          </figure>
+
+          <p>
+            Das Modell steht bewusst im <strong>Konzeptstand</strong> — entworfen, nicht
+            gebaut. Genau das sagt es auch, ohne Beschönigung:
+          </p>
+
+          <ul class="findings-list">
+            <li>
+              <strong>Kein Test ist gelaufen.</strong> Alle {demoStats.tests} Tests sind als
+              Konzept beschrieben, keiner trägt ein Ergebnis.
+            </li>
+            <li>
+              <strong>Keines der {demoStats.risks} Risiken hat einen bestandenen Nachweis</strong> —
+              darunter Türöffnung während der Fahrt, Auffahrunfall und Fahrgäste, die
+              selbstständig in die Trasse steigen.
+            </li>
+            <li>
+              <strong>0 von 44 Verbindungen zwischen Funktionen sind integrationsgetestet.</strong>
+              Deshalb fällt das Tor vor der Testphase durch, während die drei davor bestehen.
+            </li>
+          </ul>
+
+          <p>
+            Ein Demo-Modell, das sich als fertig ausgibt, würde nichts beweisen. Dieses
+            benennt, was offen ist — und wo es steht.
+          </p>
+        </section>
+
+        <section data-testid="demo-what-it-does">
+          <h2>Was das Modell leistet</h2>
+
+          <div class="cards">
+            <div class="card">
+              <h3>Zusammenhang statt Ordner</h3>
+              <p>
+                Eine Anforderung weiß, welchem Anwendungsfall sie dient, welche Funktionen
+                dafür arbeiten müssen, in welchen Bausteinen die sitzen, welcher Test sie
+                widerlegen würde und welche Daten fließen. Eine Frage, eine Sekunde,
+                fünfzehn zusammenhängende Einträge.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Prüfung beim Schreiben</h3>
+              <p>
+                Eine Anforderung ohne Nachweisidee wird abgelehnt — nicht im Review in drei
+                Monaten, sondern im Moment des Schreibens. Dieselbe Prüfung gilt für den
+                Menschen und für den KI-Agenten; keiner kann sie umgehen.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Dokumente werden gedruckt</h3>
+              <p>
+                Spezifikation, Traceability-Matrix, Schnittstellendokument, Risikoanalyse,
+                Testmatrix, Betriebskonzept: {demoDocs.length} Dokumente, alle aus dem
+                Modell erzeugt, alle in unter einer Sekunde neu. Handarbeit daran wäre eine
+                zweite Wahrheit.
+              </p>
+            </div>
+          </div>
+
+          <p class="limits">
+            <strong>Was es nicht tut:</strong> Es entscheidet nichts. Die Prüfung kann sagen,
+            dass das Modell widerspruchsfrei ist — nicht, dass es das gewünschte System
+            beschreibt. Das bleibt Ihre Aufgabe, ebenso die Antworten auf die Fragen aus
+            Ihrer Domäne. Der Preis ist eine Regel: Wer eine Anforderung schreibt, benennt
+            den Test, der sie widerlegen würde.
+          </p>
+        </section>
+
+        <section data-testid="demo-documents">
+          <h2>Die {demoDocs.length} gedruckten Dokumente</h2>
+          <p>
+            Vollständig einsehbar, so wie sie aus dem Modell fallen. Fachsprache des Modells
+            ist Englisch; die leeren Dokumente sind nicht kaputt, sondern ehrlich — im
+            Konzeptstand gibt es dort noch nichts zu drucken.
+          </p>
+
+          <ul class="doc-list">
+            {demoDocs.map((doc) => (
+              <li>
+                <a href={`/projekte/graphcode-demo/${doc.slug}`} data-testid={`doc-link-${doc.slug}`}>
+                  <span class="doc-title">{doc.title}</span>
+                  <span class="doc-summary">{doc.summary}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <p class="stat-note">
+            Stand: Modell-Snapshot vom {demoStats.snapshotDate}, erzeugt mit
+            {' '}<a href="https://www.npmjs.com/package/@sigloch/graphcode" target="_blank" rel="noopener noreferrer">
+              @sigloch/graphcode
+            </a> {demoStats.graphcodeVersion}.
+          </p>
+        </section>
+
+        <section class="cta-box">
+          <h2>Dieselbe Frage für Ihr System?</h2>
+          <p>
+            Die Demo läuft live in 15 Minuten — mit einer Anforderung aus Ihrer Welt statt
+            mit der Kabinentür.
+          </p>
+          <a href="/kontakt" class="button button-primary" data-testid="cta-contact">
+            Gespräch vereinbaren
+          </a>
+        </section>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .article-header {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-50) 0%,
+      var(--color-background) 100%
+    );
+    padding: var(--space-16) 0;
+  }
+
+  .back-link {
+    display: inline-block;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-medium);
+    margin-bottom: var(--space-4);
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  .article-header h1 {
+    margin-bottom: var(--space-4);
+  }
+
+  .article-subtitle {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 70ch;
+  }
+
+  .article-content {
+    max-width: 900px;
+    padding: var(--space-12) var(--container-padding);
+  }
+
+  .article-content section {
+    margin-bottom: var(--space-12);
+  }
+
+  .article-content h2 {
+    margin-bottom: var(--space-6);
+    margin-top: var(--space-8);
+  }
+
+  .article-content p {
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-4);
+  }
+
+  .principle-box {
+    background: var(--color-primary-50);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .principle-box h2 {
+    margin-top: 0;
+    margin-bottom: var(--space-4);
+  }
+
+  .principle-box blockquote {
+    margin: 0;
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text);
+  }
+
+  /* Zahlen aus dem Modell */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: var(--space-3);
+    margin: var(--space-6) 0;
+  }
+
+  .stat-card {
+    background: var(--color-background-alt);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .stat-count {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+  }
+
+  .stat-label {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .stat-note {
+    font-size: var(--text-sm);
+    color: var(--color-text-light);
+  }
+
+  /* Screenshots */
+  .screenshot {
+    margin: var(--space-6) 0;
+  }
+
+  .screenshot img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-background);
+  }
+
+  .screenshot-wide {
+    width: min(1240px, 94vw);
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .screenshot figcaption {
+    margin-top: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--color-text-light);
+  }
+
+  /* Befunde */
+  .findings-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-6) 0;
+  }
+
+  .findings-list li {
+    padding: var(--space-4);
+    margin-bottom: var(--space-3);
+    background: var(--color-background-alt);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--color-warning);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+  }
+
+  .findings-list strong {
+    color: var(--color-text);
+  }
+
+  /* Karten */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .card {
+    background: var(--color-background-alt);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+  }
+
+  .card h3 {
+    font-size: var(--text-lg);
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+  }
+
+  .card p {
+    font-size: var(--text-sm);
+    margin-bottom: 0;
+  }
+
+  .limits {
+    padding: var(--space-4) var(--space-6);
+    border-left: 4px solid var(--color-border);
+  }
+
+  /* Dokumentliste */
+  .doc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .doc-list li {
+    margin-bottom: var(--space-2);
+  }
+
+  .doc-list a {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-4);
+    background: var(--color-background-alt);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--color-primary);
+    text-decoration: none;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .doc-list a:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .doc-title {
+    color: var(--color-primary);
+    font-weight: var(--font-semibold);
+  }
+
+  .doc-summary {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  /* CTA */
+  .cta-box {
+    background: var(--color-primary-50);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    margin-top: var(--space-16);
+  }
+
+  .cta-box h2 {
+    margin-top: 0;
+  }
+
+  .cta-box p {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-6);
+  }
+
+  @media (max-width: 768px) {
+    .stats-grid {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+  }
+</style>
