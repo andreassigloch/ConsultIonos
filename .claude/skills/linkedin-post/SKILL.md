@@ -34,9 +34,6 @@ Ablage und Bildschema: [channels/README.md](../../../channels/README.md).
   Veröffentlichung von Hand nachgeschoben werden (Entscheidung Andreas 2026-10-03 für
   siglochimmo, hier übernommen).
 
-Der Validator aus `@sigloch/linkedin-tools` meldet dazu noch „Link im Post gefunden - besser im
-ersten Kommentar posten". Der Hinweis ist überholt und wird ignoriert.
-
 ## Begleitbild
 
 Jeder Post braucht ein Bild. Formate und Muster liegen unter `channels/assets/`:

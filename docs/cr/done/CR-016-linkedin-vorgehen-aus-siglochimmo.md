@@ -44,13 +44,16 @@ ohne einen einzigen Unit-Test auszuführen. Der Aufruf ist auf `tests/unit` begr
 
 ## Offen
 
-- `validatePost` in `@sigloch/linkedin-tools` warnt weiter „Link im Post gefunden - besser im
-  ersten Kommentar posten". Das widerspricht der Regel in beiden Repos und gehört im
-  gemeinsamen Modul entfernt, nicht hier weggefiltert.
-- `recipe.json` des FMEA-Karussells: `rechte` und `reproduzieren` sind nicht belegt.
-- `channels/assets/_unzugeordnet/China Speed Visualisierung.png` (1,6 MB): keine Datei nennt es.
+- Karussell, Vorlagen und `China Speed Visualisierung.png` sind Entwurfsstand (Andreas,
+  2026-10-12); `rechte` und `reproduzieren` im `recipe.json` werden mit dem echten Beitrag belegt.
 - Logos und Favicons des Markenpakets sind nicht übernommen — das ist der Website-Auftritt,
   nicht der LinkedIn-Kanal.
+
+## Nachtrag 2026-10-12
+
+Die Warnung „Link im Post gefunden - besser im ersten Kommentar posten" ist aus `validatePost`
+in `@sigloch/linkedin-tools` entfernt (sigloch-modules, mit Test). Sie widersprach der Regel in
+beiden Repos.
 
 ## Nachweis
 
