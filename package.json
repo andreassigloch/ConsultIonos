@@ -9,7 +9,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "deploy": "./scripts/build-and-deploy.sh",
-    "test": "vitest run",
+    "test": "vitest run tests/unit",
     "test:watch": "vitest",
     "test:unit": "vitest run --testNamePattern='Unit'",
     "test:integration": "vitest run --testNamePattern='Integration'",
@@ -25,13 +25,13 @@
     "validate:schema": "tsx scripts/schema-org-validator.ts",
     "security:audit": "tsx scripts/security-audit.ts",
     "validate:all": "npm run compliance && npm run lint:design && npm run validate:schema && npm run security:audit",
-    "linkedin:prepare": "tsx scripts/linkedin/prepare.ts",
-    "linkedin:post": "tsx scripts/linkedin/generate-post.ts",
-    "linkedin:image": "tsx scripts/linkedin/generate-image.ts"
+    "linkedin:prepare": "tsx ops/jobs/linkedin/prepare.ts",
+    "linkedin:post": "tsx ops/jobs/linkedin/generate-post.ts",
+    "linkedin:image": "tsx ops/jobs/linkedin/generate-image.ts"
   },
   "dependencies": {
-    "@sigloch/linkedin-tools": "file:../../../sigloch-modules/packages/linkedin-tools",
-    "@sigloch/quality-checkers": "file:../../../sigloch-modules/packages/quality-checkers",
+    "@sigloch/linkedin-tools": "file:../../dev/sigloch-modules/packages/linkedin-tools",
+    "@sigloch/quality-checkers": "file:../../dev/sigloch-modules/packages/quality-checkers",
     "@astrojs/sitemap": "^3.6.0",
     "@fontsource/poppins": "^5.2.7",
     "astro": "^5.15.4",

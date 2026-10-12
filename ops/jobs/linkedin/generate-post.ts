@@ -1,13 +1,15 @@
 /**
- * LinkedIn Post Generator
+ * LinkedIn Post Generator — sicon Site Adapter
  * @author andreas@siglochconsulting.de
  *
- * Generiert LinkedIn-Posts aus Blog-Artikeln:
+ * Site-spezifische Logik für siglochconsulting.de:
+ * - Ein Content-Verzeichnis (blog), URL-Muster /blog/{slug}
  * - Hook: Max 140 Zeichen (vor "See more")
- * - Body: 800-1.200 Zeichen Kerninhalt
- * - CTA: Frage oder Aufforderung
+ * - Body: 800-1.200 Zeichen Kerninhalt, Kernthese (Blockquote) zuerst
+ * - CTA: Frage oder Aufforderung, danach der Link zum Artikel
  * - Hashtags: 3-5 am Ende
- * - Link: Im ersten Kommentar (Algorithmus-optimiert)
+ *
+ * Generische LinkedIn-Werkzeuge kommen aus @sigloch/linkedin-tools
  */
 
 import fs from 'fs/promises';
@@ -16,7 +18,6 @@ import matter from 'gray-matter';
 import {
   type PostTemplate,
   formatPost,
-  formatLinkComment,
   validatePost,
   DEFAULT_POST_CONFIG,
   type PostConfig,
@@ -46,6 +47,7 @@ interface BlogFrontmatter {
 export interface LinkedInPost {
   slug: string;
   title: string;
+  linkedinType: 'post' | 'article';
   hook: string;
   body: string;
   cta: string;
@@ -53,7 +55,6 @@ export interface LinkedInPost {
   hashtags: string[];
   hashtagString: string;
   url: string;
-  linkComment: string;
   imagePath?: string;
   validation: ValidationResult;
 }
@@ -255,11 +256,14 @@ export function generateLinkedInPost(
   config: PostConfig = DEFAULT_POST_CONFIG
 ): LinkedInPost {
   const url = `${SITE_URL}/blog/${slug}`;
+  const linkedinType = frontmatter.linkedinType || 'post';
 
   // Komponenten extrahieren
   const hook = extractHook(frontmatter, content, config.hookMaxLength);
   const body = extractBody(frontmatter, content, config.targetLength - 200);
-  const cta = generateCTA(frontmatter, content);
+  // Link im Text, nicht im ersten Kommentar: ein geplanter Post nimmt keinen Kommentar mit,
+  // der müsste nach der Veröffentlichung von Hand nachgeschoben werden
+  const cta = `${generateCTA(frontmatter, content)}\n\n👉 ${url}`;
   const hashtags = generateHashtags(frontmatter, config.hashtagCount);
 
   // Template zusammenbauen
@@ -268,7 +272,7 @@ export function generateLinkedInPost(
     body,
     cta,
     hashtags,
-    linkComment: formatLinkComment(url, frontmatter.title),
+    linkComment: '', // Pflichtfeld von @sigloch/linkedin-tools; der Link steht im CTA
   };
 
   // Post-Text generieren
@@ -280,6 +284,7 @@ export function generateLinkedInPost(
   return {
     slug,
     title: frontmatter.title,
+    linkedinType,
     hook,
     body,
     cta,
@@ -287,7 +292,6 @@ export function generateLinkedInPost(
     hashtags,
     hashtagString: hashtags.map(h => `#${h}`).join(' '),
     url,
-    linkComment: template.linkComment,
     imagePath: frontmatter.image,
     validation,
   };
@@ -356,13 +360,11 @@ if (import.meta.url === `file://${process.argv[1]}`) {
       console.log('─'.repeat(60));
       console.log(`📄 ${post.title}`);
       console.log(`🔗 ${post.url}`);
+      console.log(`📋 Typ: LinkedIn ${post.linkedinType}`);
       console.log(`🖼️  ${post.imagePath || 'Kein Bild'}`);
       console.log('');
       console.log('--- POST TEXT ---');
       console.log(post.text);
-      console.log('');
-      console.log('--- ERSTER KOMMENTAR ---');
-      console.log(post.linkComment);
       console.log('');
       console.log(`📊 Validierung: ${post.validation.valid ? '✅' : '⚠️'}`);
       console.log(`   Zeichen: ${post.validation.stats.totalChars}`);

@@ -1,0 +1,19 @@
+{
+  "motiv": "Karussell „FMEA neu gedacht“, 7 Seiten: FMEA dauert Wochen → Problem → Struktur → Entwurf durch das Modell → Entscheidung beim Experten → Änderung → Frage an die Leser",
+  "quelle": "Markenpaket „Sigloch-Consulting-Auftritt“ (ZIP, übernommen am 2026-10-12 aus ~/Downloads/Sigloch-Consulting-Auftritt/karussell-fmea/)",
+  "rechte": "eigene Grafik aus dem Markenpaket — von Andreas zu bestätigen, im Paket steht dazu nichts",
+  "erstellt": "2026-10-11",
+  "reproduzieren": "unbekannt — fertig geliefert, die Erzeuger-Datei liegt nicht im Repo",
+  "alt": "Siebenseitiges Karussell: Eine FMEA dauert Wochen und veraltet nach der ersten Design-Änderung. Mit Anforderungen, Funktionen und Komponenten als Graph entwirft das Modell Fehlerarten mit Quellenangabe, der Experte bewertet und gibt frei, bei Änderungen liefert der Graph die betroffenen Zeilen.",
+  "verwendet_in": [],
+  "varianten": [
+    "fmea-karussell--li-4x5-1.png",
+    "fmea-karussell--li-4x5-2.png",
+    "fmea-karussell--li-4x5-3.png",
+    "fmea-karussell--li-4x5-4.png",
+    "fmea-karussell--li-4x5-5.png",
+    "fmea-karussell--li-4x5-6.png",
+    "fmea-karussell--li-4x5-7.png",
+    "fmea-karussell--li-doc.pdf"
+  ]
+}

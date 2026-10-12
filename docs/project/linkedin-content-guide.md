@@ -36,8 +36,9 @@ Template und Stilbeschreibung für Blog-Artikel und LinkedIn-Postings.
 [HASHTAGS - 3-5, am Ende]
 ```
 
-**Wichtig:** Link im **ersten Kommentar** posten, nicht im Post-Text!
-LinkedIn-Algorithmus bestraft externe Links im Hauptpost.
+**Link im Post-Text**, als letzte Zeile vor den Hashtags (`👉 <url>`) — nicht im ersten Kommentar.
+Ein geplanter Post nimmt keinen Kommentar mit; der müsste nach der Veröffentlichung von Hand
+nachgeschoben werden (CR-016).
 
 ### Bild-Spezifikationen
 
