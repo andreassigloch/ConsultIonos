@@ -7,6 +7,7 @@
  */
 
 import { siteConfig } from '@lib/config';
+import Logo from '@components/Logo.astro';
 
 const currentPath = Astro.url.pathname;
 
@@ -22,9 +23,8 @@ const navItems = [
 <header class="header">
   <div class="header-background"></div>
   <nav class="nav container">
-    <a href="/" class="logo" data-testid="logo">
-      <span class="logo-text">{siteConfig.contact.name}</span>
-      <span class="logo-subtitle">Consulting</span>
+    <a href="/" class="logo" data-testid="logo" aria-label={`${siteConfig.name} – Startseite`}>
+      <Logo />
     </a>
 
     <button class="nav-toggle" aria-label="Navigation öffnen" aria-expanded="false" data-testid="nav-toggle">
@@ -58,14 +58,7 @@ const navItems = [
   .header-background {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      135deg,
-      var(--color-primary-700) 0%,
-      var(--color-primary-600) 25%,
-      var(--color-primary-500) 50%,
-      var(--color-primary-600) 75%,
-      var(--color-primary-700) 100%
-    );
+    background: var(--color-background-dark);
     opacity: 0.95;
     backdrop-filter: blur(10px);
   }
@@ -80,25 +73,10 @@ const navItems = [
   }
 
   .logo {
-    display: flex;
-    flex-direction: column;
+    display: block;
+    height: var(--space-12);
     text-decoration: none;
     z-index: 2;
-  }
-
-  .logo-text {
-    font-family: var(--font-heading);
-    font-size: var(--text-xl);
-    font-weight: var(--font-bold);
-    color: var(--color-background);
-    line-height: 1.2;
-  }
-
-  .logo-subtitle {
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    color: var(--color-primary-100);
-    letter-spacing: var(--tracking-wide);
   }
 
   .nav-toggle {
@@ -177,7 +155,7 @@ const navItems = [
   }
 
   .nav-link.active {
-    background: var(--color-primary-800);
+    background: var(--color-primary);
   }
 
   /* Mobile Styles */
@@ -191,7 +169,7 @@ const navItems = [
       top: 70px;
       right: -100%;
       flex-direction: column;
-      background: var(--color-primary-700);
+      background: var(--color-background-dark);
       width: 100%;
       max-width: 300px;
       height: calc(100vh - 70px);

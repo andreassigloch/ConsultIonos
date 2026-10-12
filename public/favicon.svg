@@ -1,4 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#9b7853"/>
-  <text x="16" y="23" font-family="system-ui, sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="white">S</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64"><rect width="64" height="64" rx="14" fill="#68780e"/><polyline points="44.48,16.40 19.52,22.64 32.00,32.00 44.48,41.36 19.52,47.60" fill="none" stroke="#ffffff" stroke-width="4.68" stroke-linejoin="round" stroke-linecap="round"/><circle cx="32.00" cy="32.00" r="6.24" fill="#ffffff"/></svg>

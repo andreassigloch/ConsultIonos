@@ -7,13 +7,16 @@
  */
 
 import { siteConfig } from '@lib/config';
+import Logo from '@components/Logo.astro';
 ---
 
 <footer class="footer">
   <div class="footer-background"></div>
   <div class="footer-content container">
     <div class="footer-section">
-      <h3 class="footer-heading">{siteConfig.name}</h3>
+      <a href="/" class="footer-logo" data-testid="footer-logo" aria-label={`${siteConfig.name} – Startseite`}>
+        <Logo />
+      </a>
       <p class="footer-text">
         Daten strukturieren. Qualität messbar machen.
       </p>
@@ -83,14 +86,7 @@ import { siteConfig } from '@lib/config';
   .footer-background {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      135deg,
-      var(--color-primary-800) 0%,
-      var(--color-primary-700) 25%,
-      var(--color-primary-600) 50%,
-      var(--color-primary-700) 75%,
-      var(--color-primary-800) 100%
-    );
+    background: var(--color-background-dark);
   }
 
   .footer-content {
@@ -104,6 +100,12 @@ import { siteConfig } from '@lib/config';
   .footer-section {
     display: flex;
     flex-direction: column;
+  }
+
+  .footer-logo {
+    display: block;
+    height: var(--space-12);
+    margin-bottom: var(--space-4);
   }
 
   .footer-heading {

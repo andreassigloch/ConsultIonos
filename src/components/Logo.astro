@@ -1,0 +1,27 @@
+---
+/**
+ * Logo Component
+ * @author andreas@siglochconsulting.de
+ *
+ * Wortmarke „Sigloch Consulting" für dunkle Flächen (Header, Footer).
+ * Die Schrift ist im SVG in Pfade umgewandelt — keine Font-Abhängigkeit.
+ */
+
+import logoDunkel from '../assets/logo/logo-dunkel.svg?raw';
+---
+
+<span class="logo-mark" aria-hidden="true" set:html={logoDunkel} />
+
+<style>
+  .logo-mark {
+    display: block;
+    height: 100%;
+    line-height: 0;
+  }
+
+  .logo-mark :global(svg) {
+    display: block;
+    width: auto;
+    height: 100%;
+  }
+</style>

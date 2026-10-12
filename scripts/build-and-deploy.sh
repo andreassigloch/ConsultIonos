@@ -39,6 +39,10 @@ echo ""
 echo "[1/5] Building..."
 npm run build
 
+# lftp überträgt die lokalen Dateirechte. Eine Datei mit 600 liefert der Webserver als 403 aus
+# (favicon.svg, robots.txt, llms.txt bis CR-017).
+chmod -R a+rX dist/
+
 # Step 2: Generate version file (Health Check Endpoint)
 echo "[2/5] Creating version.json..."
 cat > dist/version.json << EOF

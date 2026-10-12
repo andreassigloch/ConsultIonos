@@ -27,7 +27,8 @@
     "validate:all": "npm run compliance && npm run lint:design && npm run validate:schema && npm run security:audit",
     "linkedin:prepare": "tsx ops/jobs/linkedin/prepare.ts",
     "linkedin:post": "tsx ops/jobs/linkedin/generate-post.ts",
-    "linkedin:image": "tsx ops/jobs/linkedin/generate-image.ts"
+    "linkedin:image": "tsx ops/jobs/linkedin/generate-image.ts",
+    "og:image": "node ops/jobs/og-image.mjs"
   },
   "dependencies": {
     "@sigloch/linkedin-tools": "file:../../dev/sigloch-modules/packages/linkedin-tools",

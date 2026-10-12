@@ -71,7 +71,7 @@ export const siteConfig = {
 
   // SEO
   seo: {
-    defaultOgImage: '/images/og-image.jpg',
+    defaultOgImage: '/images/og-image.png',
   },
 
   // Business Hours (for Schema.org)
