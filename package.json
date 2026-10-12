@@ -27,13 +27,14 @@
     "linkedin:prepare": "tsx ops/jobs/linkedin/prepare.ts",
     "linkedin:post": "tsx ops/jobs/linkedin/generate-post.ts",
     "linkedin:image": "tsx ops/jobs/linkedin/generate-image.ts",
-    "og:image": "node ops/jobs/og-image.mjs"
+    "og:image": "node ops/jobs/og-image.mjs",
+    "seo:request-index": "tsx --env-file=.env ops/jobs/gsc-request-indexing.ts"
   },
   "dependencies": {
-    "@sigloch/linkedin-tools": "file:../../dev/sigloch-modules/packages/linkedin-tools",
-    "@sigloch/quality-checkers": "file:../../dev/sigloch-modules/packages/quality-checkers",
     "@astrojs/sitemap": "^3.6.0",
     "@fontsource/poppins": "^5.2.7",
+    "@sigloch/linkedin-tools": "file:../../dev/sigloch-modules/packages/linkedin-tools",
+    "@sigloch/quality-checkers": "file:../../dev/sigloch-modules/packages/quality-checkers",
     "astro": "^5.15.4",
     "cheerio": "^1.1.2",
     "playwright": "^1.56.1"
@@ -45,6 +46,7 @@
     "@vitest/coverage-v8": "^4.0.8",
     "dotenv": "^17.2.3",
     "glob": "^13.0.0",
+    "google-auth-library": "^11.2.0",
     "gray-matter": "^4.0.3",
     "jsdom": "^27.1.0",
     "lightningcss": "^1.30.2",
