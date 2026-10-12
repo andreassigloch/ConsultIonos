@@ -229,6 +229,11 @@ const stages = [
 
     --ceo-warn: #C0392B;
     --ceo-warn-soft: #FBE8E4;
+    --ceo-bad-bg: #FBEEEB;
+    --ceo-bad-ink: #6B1B12;
+    --ceo-good-bg: #ECF4E2;
+    --ceo-good-ink: #1A4A28;
+    --ceo-emphasis-end: #F8F9EE;
     --ceo-good: #1F8A4C;
 
     background: var(--ceo-bg);
@@ -256,7 +261,7 @@ const stages = [
     padding: var(--space-2) var(--space-3);
     border-radius: var(--radius-pill);
   }
-  .eyebrow-light { background: rgba(255,255,255,0.18); color: #fff; }
+  .eyebrow-light { background: rgba(255,255,255,0.18); color: var(--color-background); }
 
   /* ========================================================
      HERO
@@ -382,7 +387,7 @@ const stages = [
       0 14px 40px rgba(104,120,14,0.18),
       0 0 0 1px rgba(104,120,14,0.18);
     transform: translateY(-6px);
-    background: linear-gradient(180deg, #FFFFFF 0%, #F8F9EE 100%);
+    background: linear-gradient(180deg, var(--ceo-card) 0%, var(--ceo-emphasis-end) 100%);
   }
   .stage.emphasis-2:hover { transform: translateY(-10px); }
 
@@ -450,8 +455,8 @@ const stages = [
     border-radius: var(--radius-md);
     padding: var(--space-4);
   }
-  .compare-col.bad  { background: #FBEEEB; }
-  .compare-col.good { background: #ECF4E2; }
+  .compare-col.bad  { background: var(--ceo-bad-bg); }
+  .compare-col.good { background: var(--ceo-good-bg); }
   .compare-col h4 {
     font-size: var(--text-xs);
     letter-spacing: 0.1em;
@@ -465,8 +470,8 @@ const stages = [
     line-height: 1.5;
     margin: 0;
   }
-  .compare-col.bad p  { color: #6B1B12; }
-  .compare-col.good p { color: #1A4A28; }
+  .compare-col.bad p  { color: var(--ceo-bad-ink); }
+  .compare-col.good p { color: var(--ceo-good-ink); }
 
   .callout-foot {
     font-size: var(--text-sm);
@@ -528,7 +533,7 @@ const stages = [
   }
   .caption {
     background: var(--ceo-d);
-    color: #fff;
+    color: var(--color-background);
     padding: var(--space-4) var(--space-5);
     border-radius: var(--radius-md);
     font-size: var(--text-base);
@@ -619,7 +624,7 @@ const stages = [
   .stage-btn.active {
     border-color: var(--color-primary);
     background: var(--color-primary);
-    color: #fff;
+    color: var(--color-background);
     box-shadow: 0 6px 18px rgba(104,120,14,0.25);
   }
   .stage-btn .step {
@@ -654,7 +659,7 @@ const stages = [
   .ctl:hover { border-color: var(--ceo-ink); }
   .ctl-primary {
     background: var(--ceo-ink);
-    color: #fff;
+    color: var(--color-background);
     border-color: var(--ceo-ink);
   }
 
@@ -666,7 +671,7 @@ const stages = [
     background:
       radial-gradient(circle at 90% 10%, rgba(255,255,255,0.10), transparent 40%),
       linear-gradient(135deg, var(--color-primary-dark) 0%, var(--ceo-d) 100%);
-    color: #fff;
+    color: var(--color-background);
     border-radius: var(--radius-xl);
     padding: var(--space-12);
     box-shadow: 0 24px 60px rgba(46,58,14,0.30);
@@ -677,13 +682,13 @@ const stages = [
     font-weight: var(--font-semibold);
     line-height: 1.4;
     margin: var(--space-4) 0 var(--space-6);
-    color: #fff;
+    color: var(--color-background);
   }
   .cta {
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    background: #fff;
+    background: var(--color-background);
     color: var(--color-primary-dark);
     padding: var(--space-3) var(--space-6);
     border-radius: var(--radius-pill);

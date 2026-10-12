@@ -8,6 +8,9 @@
 | Sitemap Integration | ✅ Done | - | - |
 | Open Graph Tags | ✅ Done | - | - |
 | Rich Results Test | ⏳ Nach Deploy | - | - |
+| Link-Vorschaubild `og-image.png` (vorher 404) | ✅ Done 2026-10-12 (CR-017) | LinkedIn Post Inspector nach Deploy | Vorschau zeigt Wortmarke + Claim |
+| Schema.org `logo` zeigt auf vorhandene Datei, `telephone` ergänzt | ✅ Done 2026-10-12 (CR-017/018) | Rich Results Test nach Deploy | `npm run validate:schema`: 0 Fehler, 0 Warnungen |
+| `robots.txt`, `llms.txt`, `favicon.svg` erreichbar (vorher 403) | ✅ Done 2026-10-12 (CR-017) | GSC robots.txt-Bericht: 2026-10-19 | Baseline 2026-10-12: alle drei HTTP 403 |
 
 ## Tracking-Kalender
 

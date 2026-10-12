@@ -174,6 +174,7 @@ export const organizationSchema = {
   logo: `${siteConfig.url}/images/logo.svg`,
   image: `${siteConfig.url}/images/andreas-sigloch.png`,
   description: siteConfig.description,
+  telephone: siteConfig.contact.phone,
   founder: {
     '@type': 'Person',
     name: siteConfig.contact.name,

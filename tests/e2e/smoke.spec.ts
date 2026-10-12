@@ -14,8 +14,8 @@ test.describe('Homepage v2.0', () => {
     // Check new headline
     const heroSection = page.locator('[data-testid="hero-section"]');
     await expect(heroSection).toBeVisible();
-    await expect(heroSection.locator('h1')).toContainText('Daten strukturieren');
-    await expect(heroSection.locator('h1')).toContainText('Qualität messbar machen');
+    await expect(heroSection.locator('h1')).toContainText('Struktur vor KI.');
+    await expect(heroSection.locator('h1')).toContainText('Mehrwert durch KI.');
   });
 
   test('should display problem section', async ({ page }) => {
@@ -23,7 +23,7 @@ test.describe('Homepage v2.0', () => {
 
     const problemSection = page.locator('[data-testid="problem-section"]');
     await expect(problemSection).toBeVisible();
-    await expect(problemSection).toContainText('KI-Tools können das nicht lösen');
+    await expect(problemSection).toContainText('KI-Tools alleine können das nur lindern. Nicht lösen.');
   });
 
   test('should display solution steps', async ({ page }) => {
