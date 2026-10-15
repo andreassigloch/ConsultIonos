@@ -97,7 +97,7 @@ export function explainAuthFailure(status: number | undefined, message: string, 
   if (status === 403 && /permission|owner|Inhaber/i.test(message)) {
     return [
       'Der Service Account ist in der GSC-Property nicht Inhaber.',
-      '→ https://search.google.com/search-console/users?resource_id=sc-domain%3Asiglochconsulting.de',
+      '→ https://search.google.com/search-console/users?resource_id=https%3A%2F%2Fsiglochconsulting.de%2F',
       `   Nutzer hinzufügen: ${account}`,
       '   Berechtigung: Inhaber (nicht "Vollständig")',
     ].join('\n');

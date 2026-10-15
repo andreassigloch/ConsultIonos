@@ -24,9 +24,14 @@ sie in der Search Console einzeln einreicht. Übernommen aus siglochimmo
 
 Der erste echte Lauf (2026-10-12, 5 URLs, Tag `cr-017-logo`) endete mit 5× HTTP 403
 „Failed to verify the URL ownership". Anmeldung und API-Aufruf funktionieren; der Service
-Account ist in der Property `siglochconsulting.de` nicht Inhaber.
+Account ist in der Property nicht Inhaber.
 
-1. https://search.google.com/search-console/users?resource_id=sc-domain%3Asiglochconsulting.de
+Die Property existierte noch nicht. Andreas legt sie als URL-Präfix-Property
+`https://siglochconsulting.de/` an; die Verifizierungsdatei `google54227443d5a55a17.html` ist seit
+2026-10-15 live (`1ed7427`).
+
+0. In der Search Console „Bestätigen" klicken
+1. https://search.google.com/search-console/users?resource_id=https%3A%2F%2Fsiglochconsulting.de%2F
 2. Nutzer hinzufügen: `search-console-seo-bot@sigloch-immobilien-website.iam.gserviceaccount.com`
 3. Berechtigung **Inhaber** (nicht „Vollständig")
 
