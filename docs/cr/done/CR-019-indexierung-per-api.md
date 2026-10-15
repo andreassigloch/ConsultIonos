@@ -1,7 +1,8 @@
 # CR-019 — Indexierung per Google Indexing API beantragen
 
-**Status:** offen — Code fertig, Zugang fehlt
+**Status:** abgeschlossen
 **Erstellt:** 2026-10-12
+**Abgeschlossen:** 2026-10-15
 **Typ:** feat
 
 ## Ziel
@@ -20,7 +21,7 @@ sie in der Search Console einzeln einreicht. Übernommen aus siglochimmo
 - Es wird derselbe Service Account wie in siglochimmo benutzt. Der Schlüssel bleibt dort
   liegen, `.env` zeigt nur auf die Datei.
 
-## Offen — braucht Andreas
+## Zugang (erledigt 2026-10-15)
 
 Der erste echte Lauf (2026-10-12, 5 URLs, Tag `cr-017-logo`) endete mit 5× HTTP 403
 „Failed to verify the URL ownership". Anmeldung und API-Aufruf funktionieren; der Service
@@ -35,7 +36,12 @@ Die Property existierte noch nicht. Andreas legt sie als URL-Präfix-Property
 2. Nutzer hinzufügen: `search-console-seo-bot@sigloch-immobilien-website.iam.gserviceaccount.com`
 3. Berechtigung **Inhaber** (nicht „Vollständig")
 
-Danach denselben Lauf wiederholen und die CR schließen.
+Der Inhaber wird **nicht** unter „Nutzer hinzufügen" eingetragen (dort gibt es nur
+„Uneingeschränkt"/„Eingeschränkt"), sondern auf der Verifizierungsseite
+https://www.google.com/webmasters/verification/home → Property → „Inhaber hinzufügen".
+
+Ergebnis 2026-10-15: Service Account sieht `https://siglochconsulting.de/` als `siteOwner`;
+5/5 Anträge (Tag `cr-017-logo`) mit Status `ok`.
 
 ## Einschränkung
 
