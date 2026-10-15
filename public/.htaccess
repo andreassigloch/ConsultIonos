@@ -1,0 +1,10 @@
+# Kanonische Adresse: https://siglochconsulting.de (CR-020)
+# http und www leiten per 301 dorthin weiter. Regel wie in siglochimmo, gleicher IONOS-Host.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  RewriteCond %{HTTPS} off [OR]
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteRule ^(.*)$ https://siglochconsulting.de/$1 [R=301,L]
+</IfModule>
