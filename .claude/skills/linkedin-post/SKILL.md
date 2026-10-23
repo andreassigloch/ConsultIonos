@@ -42,6 +42,7 @@ Jeder Post braucht ein Bild. Formate und Muster liegen unter `channels/assets/`:
 |---|---|---|
 | Praxisbeitrag | `_vorlagen/vorlage-praxisfall--li-4x5.png` (hell, Diagramm + Kernsatz) | 1080×1350 |
 | These / Fachbeitrag | `_vorlagen/vorlage-statement--li-4x5.png` (dunkel, zwei Zeilen) | 1080×1350 |
+| Szene, Pointe | Figur Andreas Rossi aus `_vorlagen/vorlage-figur-andreas-rossi--src.html`: `<defs>` kopieren, Pose per `<use>` setzen, Beispiel `2026-10-23-agent-klippe/` | 1080×1350 |
 | Mehrstufige Erklärung | Karussell wie `2026-10-11-fmea-karussell/`, als PDF-Dokument-Post | 1080×1350 je Seite |
 
 Ein fertiges Bild bekommt einen Motiv-Ordner `channels/assets/<JJJJ-MM-TT>-<motiv-slug>/` mit

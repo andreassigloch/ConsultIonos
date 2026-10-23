@@ -1,0 +1,15 @@
+{
+  "motiv": "Andreas Rossi mit Kreditkarte auf einer Klippe, ein Bein über dem Abgrund; Titel „Mut. Oder schon Leichtsinn?“",
+  "quelle": "eigene HTML-Ausgangsfassung agent-klippe--src.html; Figur aus _vorlagen/vorlage-figur-andreas-rossi--src.html",
+  "rechte": "eigene Grafik",
+  "erstellt": "2026-10-23",
+  "reproduzieren": "npx playwright screenshot --viewport-size=1080,1350 \"file://$PWD/channels/assets/2026-10-23-agent-klippe/agent-klippe--src.html\" channels/assets/2026-10-23-agent-klippe/agent-klippe--li-4x5.png",
+  "alt": "Grafik mit Titel „Mut. Oder schon Leichtsinn?“. Ein Strichmännchen mit Brille steht an der Kante einer Klippe auf einem Bein, das andere Bein schwebt über dem Abgrund. In der erhobenen Hand hält es lächelnd eine Kreditkarte. Darüber: KI-Agent mit Kreditkarte.",
+  "verwendet_in": [
+    "channels/linkedin/2026-10-25-agent-kreditkarte-firewall.md"
+  ],
+  "varianten": [
+    "agent-klippe--li-4x5.png",
+    "agent-klippe--src.html"
+  ]
+}

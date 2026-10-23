@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<!-- Figurenblatt „Andreas Rossi". Für ein neues Bild den defs-Block kopieren und eine Pose per use einsetzen. -->
+<style>
+  @font-face { font-family: 'Poppins'; font-weight: 400; src: url('../../../node_modules/@fontsource/poppins/files/poppins-latin-400-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'Poppins'; font-weight: 600; src: url('../../../node_modules/@fontsource/poppins/files/poppins-latin-600-normal.woff2') format('woff2'); }
+  html, body { margin: 0; }
+  body {
+    width: 1080px; height: 1350px; box-sizing: border-box; padding: 104px 72px 64px;
+    display: flex; flex-direction: column;
+    background: #151515; color: #ffffff; font-family: 'Poppins', sans-serif;
+  }
+  .kicker { font-size: 22px; letter-spacing: 0.3em; color: #9baa47; }
+  h1 { margin: 40px 0 0; font-size: 96px; line-height: 1.05; font-weight: 600; letter-spacing: -0.02em; }
+  h1 span { color: #9baa47; }
+  .posen { margin-top: 48px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 16px; }
+  .posen figure { margin: 0; }
+  .posen svg { display: block; width: 100%; height: auto; }
+  .posen figcaption { margin-top: 8px; font-size: 20px; letter-spacing: 0.2em; color: #8a8a8a; text-align: center; }
+  .detail { margin-top: 72px; display: flex; align-items: center; gap: 48px; }
+  .detail svg { flex: none; }
+  .regeln { margin: 0; padding: 0; list-style: none; font-size: 26px; line-height: 1.6; color: #cbd5e1; }
+  .regeln b { font-weight: 600; color: #ffffff; }
+  footer {
+    margin-top: auto; padding-top: 40px; border-top: 1px solid #3a3a3a;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  footer img { height: 48px; }
+  footer span { font-size: 22px; color: #cbd5e1; }
+</style>
+</head>
+<body>
+  <!-- Figur: Kopf, Rumpf und Posen. Strich weiß 7 px, Brille 4 px, Krawatte #9baa47, Füllung = Hintergrund #151515. -->
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <!-- Kopf, Mittelpunkt (0,0), Blick nach rechts: Brille, kleine Nase, kurze Haare -->
+      <g id="rossi-kopf" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round">
+        <circle r="34" fill="#151515" stroke-width="7"/>
+        <path d="M-33.9 -2.4 L-38.5 -11.0 M-33.0 -8.2 L-36.0 -17.5 M-31.1 -13.8 L-32.4 -23.5 M-28.2 -19.0 L-27.8 -28.8 M-24.5 -23.6 L-22.4 -33.2 M-20.0 -27.5 L-16.3 -36.5 M-14.9 -30.6 L-9.7 -38.8 M-9.4 -32.7 L-2.8 -39.9 M-3.6 -33.8 L4.2 -39.8 M2.4 -33.9 L11.0 -38.5 M8.2 -33.0 L17.5 -36.0 M13.8 -31.1 L23.5 -32.4 M19.0 -28.2 L28.8 -27.8" stroke-width="5"/>
+        <path d="M32 -2 q12 5 0 13" fill="#151515" stroke-width="5"/>
+        <circle cx="1" cy="-9" r="10" fill="#151515" stroke-width="4"/>
+        <circle cx="21" cy="-9" r="8" fill="#151515" stroke-width="4"/>
+        <path d="M11 -10 h2 M-9 -10 L-29 -6" stroke-width="4"/>
+        <circle cx="4" cy="-8" r="3.5" fill="#ffffff" stroke="none"/>
+        <circle cx="23" cy="-8" r="3" fill="#ffffff" stroke="none"/>
+        <path d="M4 17 q10 7 20 -1" stroke-width="4"/>
+      </g>
+
+      <!-- Rumpf mit Krawatte, Hals bei (150,100), Hüfte bei y=224 -->
+      <g id="rossi-rumpf">
+        <rect x="122" y="100" width="56" height="124" rx="26" fill="#151515" stroke="#ffffff" stroke-width="7"/>
+        <path d="M144 106 h12 l-2 8 l7 42 l-11 12 l-11 -12 l7 -42 Z" fill="#9baa47"/>
+      </g>
+
+      <!-- Posen: Fläche 300×360, Kopf bei (150,70), Schuhsohle auf y=315. Reihenfolge: Beine, Arme, Rumpf, Kopf -->
+      <symbol id="rossi-steht" viewBox="0 0 300 360">
+        <g fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M138 222 L134 300 M162 222 L166 300 M128 130 L110 200 M172 130 L190 200"/>
+        </g>
+        <g fill="#ffffff"><ellipse cx="142" cy="306" rx="17" ry="9"/><ellipse cx="176" cy="306" rx="17" ry="9"/><circle cx="110" cy="202" r="7"/><circle cx="190" cy="202" r="7"/></g>
+        <use href="#rossi-rumpf"/>
+        <use href="#rossi-kopf" transform="translate(150 70)"/>
+      </symbol>
+
+      <symbol id="rossi-zeigt" viewBox="0 0 300 360">
+        <g fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M138 222 L134 300 M162 222 L166 300 M128 130 L106 196 M172 130 L214 116 L258 86"/>
+        </g>
+        <g fill="#ffffff"><ellipse cx="142" cy="306" rx="17" ry="9"/><ellipse cx="176" cy="306" rx="17" ry="9"/><circle cx="106" cy="200" r="7"/><circle cx="261" cy="83" r="7"/></g>
+        <use href="#rossi-rumpf"/>
+        <use href="#rossi-kopf" transform="translate(150 70)"/>
+      </symbol>
+
+      <symbol id="rossi-schulterzucken" viewBox="0 0 300 360">
+        <g fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M138 222 L134 300 M162 222 L166 300 M128 132 L98 150 L86 110 M172 132 L202 150 L214 110"/>
+        </g>
+        <g fill="#ffffff"><ellipse cx="142" cy="306" rx="17" ry="9"/><ellipse cx="176" cy="306" rx="17" ry="9"/><circle cx="85" cy="106" r="7"/><circle cx="215" cy="106" r="7"/></g>
+        <use href="#rossi-rumpf"/>
+        <use href="#rossi-kopf" transform="translate(150 70)"/>
+      </symbol>
+
+      <!-- Auf einem Bein, Spielbein nach rechts in der Luft; Schuhspitze des Standbeins bei (195,315) -->
+      <symbol id="rossi-einbein" viewBox="0 0 300 360">
+        <g fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M156 222 L164 304 M146 218 L222 196 L250 222 M128 130 L100 128 L80 96 M172 130 L206 108 L228 70"/>
+        </g>
+        <g fill="#ffffff"><ellipse cx="178" cy="306" rx="17" ry="9"/><ellipse cx="262" cy="224" rx="17" ry="9" transform="rotate(-12 262 224)"/><circle cx="78" cy="92" r="7"/><circle cx="230" cy="66" r="7"/></g>
+        <use href="#rossi-rumpf"/>
+        <use href="#rossi-kopf" transform="translate(150 70)"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="kicker">FIGUR FÜR LINKEDIN-BILDER</div>
+  <h1>Andreas Rossi<span>.</span></h1>
+
+  <div class="posen">
+    <figure><svg viewBox="0 0 300 360"><use href="#rossi-steht"/></svg><figcaption>STEHT</figcaption></figure>
+    <figure><svg viewBox="0 0 300 360"><use href="#rossi-zeigt"/></svg><figcaption>ZEIGT</figcaption></figure>
+    <figure><svg viewBox="0 0 300 360"><use href="#rossi-schulterzucken"/></svg><figcaption>ZUCKT</figcaption></figure>
+    <figure><svg viewBox="0 0 300 360"><use href="#rossi-einbein"/></svg><figcaption>EIN BEIN</figcaption></figure>
+  </div>
+
+  <div class="detail">
+  <svg width="300" height="300" viewBox="-56 -56 112 112"><use href="#rossi-kopf" transform="scale(1.2)"/></svg>
+  <ul class="regeln">
+    <li><b>Kopf:</b> Brille, kleine Nase, kurze Haare</li>
+    <li><b>Körper:</b> Rumpf, olive Krawatte</li>
+    <li><b>Linie:</b> weiß, 7 px, runde Enden</li>
+    <li><b>Requisiten:</b> flach in Oliv #9baa47</li>
+    <li><b>Umgebung:</b> Fläche #68780E</li>
+    <li><b>Nebensachen:</b> grau #8a8a8a</li>
+  </ul>
+  </div>
+
+  <footer>
+    <img src="../../../src/assets/logo/logo-dunkel.svg" alt="Sigloch Consulting">
+    <span>siglochconsulting.de</span>
+  </footer>
+</body>
+</html>

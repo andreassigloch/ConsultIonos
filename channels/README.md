@@ -66,7 +66,7 @@ Pflicht je Motiv:
 
 | Ordner | Inhalt |
 |---|---|
-| `assets/_vorlagen/` | Mustergrafiken des Markenauftritts: `vorlage-praxisfall` (hell, Diagramm), `vorlage-statement` (dunkel, These) |
+| `assets/_vorlagen/` | Mustergrafiken des Markenauftritts: `vorlage-praxisfall` (hell, Diagramm), `vorlage-statement` (dunkel, These), `vorlage-figur-andreas-rossi` (wiederkehrende Strichfigur mit Brille, Posen als SVG) |
 | `assets/_profil/` | Profil-Ausstattung: Banner 1584×396, Avatar 800×800 |
 | `assets/_unzugeordnet/` | Bilder ohne bekannte Aussage und Quelle — zuordnen oder löschen |
 

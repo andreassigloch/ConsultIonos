@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="UTF-8">
+<!-- Stilvarianten der Figur (A–D), Auswahl 2026-10-23: C. Render-Befehl wie bei den anderen Vorlagen, Viewport 1080×1350. -->
+<style>
+  @font-face { font-family: 'Poppins'; font-weight: 400; src: url('../../../node_modules/@fontsource/poppins/files/poppins-latin-400-normal.woff2'); }
+  @font-face { font-family: 'Poppins'; font-weight: 600; src: url('../../../node_modules/@fontsource/poppins/files/poppins-latin-600-normal.woff2'); }
+  html, body { margin: 0; }
+  body { width: 1080px; height: 1350px; box-sizing: border-box; padding: 72px; background: #151515; color: #fff; font-family: 'Poppins', sans-serif; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 40px; }
+  figure { margin: 0; }
+  svg { display: block; width: 100%; height: auto; }
+  figcaption { font-size: 26px; font-weight: 600; } figcaption span { display: block; font-size: 20px; font-weight: 400; color: #8a8a8a; }
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <g id="kopf" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">
+    <circle r="34" fill="#151515" stroke-width="7"/>
+    <path d="M32 -2 q12 5 0 13" fill="#151515" stroke-width="5"/>
+    <circle cx="1" cy="-9" r="10" fill="#151515" stroke-width="4"/>
+    <circle cx="21" cy="-9" r="8" fill="#151515" stroke-width="4"/>
+    <path d="M11 -10 h2 M-9 -10 L-29 -6" stroke-width="4"/>
+    <circle cx="4" cy="-8" r="3.5" fill="#fff" stroke="none"/>
+    <circle cx="23" cy="-8" r="3" fill="#fff" stroke="none"/>
+    <path d="M4 17 q10 7 20 -1" stroke-width="4"/>
+  </g>
+  <g id="haare" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round">
+    <path d="M-30 -14 q2 -22 22 -26 M-20 -26 q10 -14 28 -8 M-2 -32 q14 -8 26 2"/>
+  </g>
+  <filter id="skizze"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="6"/></filter>
+
+  <!-- A: heute -->
+  <symbol id="a" viewBox="0 0 300 360"><g fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M150 104 V210 L126 318 M150 210 L174 318 M112 318 h16 M172 318 h22"/>
+    <path d="M150 128 L120 196 M150 128 L210 118 L262 84"/></g>
+    <use href="#kopf" transform="translate(150 70)"/></symbol>
+
+  <!-- B: Körper mit Volumen -->
+  <symbol id="b" viewBox="0 0 300 360"><g stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M138 222 L134 300 M162 222 L166 300" fill="none"/>
+    <ellipse cx="142" cy="306" rx="17" ry="9" fill="#fff"/><ellipse cx="176" cy="306" rx="17" ry="9" fill="#fff"/>
+    <path d="M128 130 L106 196 M172 130 L214 116 L258 86" fill="none"/>
+    <rect x="122" y="100" width="56" height="124" rx="26" fill="#151515"/>
+    <circle cx="106" cy="200" r="7" fill="#fff" stroke="none"/><circle cx="261" cy="83" r="7" fill="#fff" stroke="none"/></g>
+    <use href="#kopf" transform="translate(150 70)"/></symbol>
+
+  <!-- C: Volumen + Haare + Krawatte -->
+  <symbol id="c" viewBox="0 0 300 360"><g stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M138 222 L134 300 M162 222 L166 300" fill="none"/>
+    <ellipse cx="142" cy="306" rx="17" ry="9" fill="#fff"/><ellipse cx="176" cy="306" rx="17" ry="9" fill="#fff"/>
+    <path d="M128 130 L106 196 M172 130 L214 116 L258 86" fill="none"/>
+    <rect x="122" y="100" width="56" height="124" rx="26" fill="#151515"/>
+    <circle cx="106" cy="200" r="7" fill="#fff" stroke="none"/><circle cx="261" cy="83" r="7" fill="#fff" stroke="none"/></g>
+    <path d="M144 106 h12 l-2 8 l7 42 l-11 12 l-11 -12 l7 -42 Z" fill="#9baa47"/>
+    <use href="#kopf" transform="translate(150 70)"/><use href="#haare" transform="translate(150 70)"/></symbol>
+</defs></svg>
+
+<div class="grid">
+  <figure><svg viewBox="0 0 300 360"><use href="#a"/></svg><figcaption>A — heute<span>Strichfigur, nur Linien</span></figcaption></figure>
+  <figure><svg viewBox="0 0 300 360"><use href="#b"/></svg><figcaption>B — Körper<span>Rumpf mit Volumen, Schuhe, Hände</span></figcaption></figure>
+  <figure><svg viewBox="0 0 300 360"><use href="#c"/></svg><figcaption>C — Berater<span>wie B, plus Haare und olive Krawatte</span></figcaption></figure>
+  <figure><svg viewBox="0 0 300 360"><g filter="url(#skizze)"><use href="#c"/></g></svg><figcaption>D — Skizze<span>wie C, Linie leicht zittrig wie von Hand</span></figcaption></figure>
+</div>
+</body></html>
