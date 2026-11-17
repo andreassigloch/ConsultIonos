@@ -1,0 +1,52 @@
+---
+/**
+ * „Das Systemmodell in Bildern" — graphcode-Erklärseite
+ * @author andreas@siglochconsulting.de
+ *
+ * Eigenes Design der Seite, darum ohne BaseLayout und ohne globale Site-CSS.
+ * Inhalt: Snapshot aus graphcode/docs/project/systemmodell-in-bildern.html (src/lib/systemmodell.ts).
+ * Schriften Fraunces und Atkinson Hyperlegible liegen lokal unter /fonts/graphcode/ (DSGVO).
+ */
+
+import SeoHead from '../../../components/SeoHead.astro';
+import { systemmodell, SNAPSHOT_DATE } from '@lib/systemmodell';
+
+const fontFaces = `
+@font-face { font-family: "Fraunces"; font-weight: 500; font-display: swap; src: url("/fonts/graphcode/fraunces-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Fraunces"; font-weight: 600; font-display: swap; src: url("/fonts/graphcode/fraunces-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Atkinson Hyperlegible"; font-weight: 400; font-display: swap; src: url("/fonts/graphcode/atkinson-hyperlegible-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Atkinson Hyperlegible"; font-weight: 700; font-display: swap; src: url("/fonts/graphcode/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2"); }
+.sitebar { max-width: 960px; margin: 0 auto; padding-top: 16px; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.9rem; }
+.sitebar a { color: var(--accent); }
+.snapshot { max-width: 960px; margin: 48px auto 0; font-size: 0.85rem; color: var(--muted); }
+.snapshot a { color: var(--accent); }
+`;
+---
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <SeoHead
+    title="Das Systemmodell in Bildern – graphcode | Sigloch Consulting"
+    description="Wie graphcode ein technisches System als Netz beschreibt: zwölf Bausteine, sechs Verbindungen, Regeln in zwölf Stufen und die Methode dahinter – am Beispiel einer Paketstation."
+  />
+  <style is:inline set:html={fontFaces + systemmodell.css} />
+</head>
+<body>
+  <nav class="sitebar" aria-label="Navigation" data-testid="systemmodell-nav">
+    <a href="/projekte/graphcode">← graphcode</a>
+    <a href="/projekte">Projekte</a>
+    <a href="/">Sigloch Consulting</a>
+  </nav>
+  <main data-testid="systemmodell">
+    <Fragment set:html={systemmodell.body} />
+  </main>
+  <p class="snapshot">
+    Stand {SNAPSHOT_DATE}. Die Quelle liegt im
+    <a href="https://github.com/andreassigloch/graphcode/blob/master/docs/project/systemmodell-in-bildern.html">graphcode-Repo</a>;
+    dort prüft ein Test jede Zahl der Seite gegen den Regelkatalog.
+    · <a href="/impressum">Impressum</a> · <a href="/datenschutz">Datenschutz</a>
+  </p>
+  <script is:inline set:html={systemmodell.script} />
+</body>
+</html>

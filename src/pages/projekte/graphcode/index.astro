@@ -1,0 +1,395 @@
+---
+/**
+ * graphcode — Harness für Coding-Agenten: Einstieg, Installation, Key Features
+ * @author andreas@siglochconsulting.de
+ *
+ * Inhalte aus dem graphcode-Repo: README (Installation, Werkzeuge),
+ * docs/graphcode_leitlinie.md (Kern-Claim, Stufen der Steuerung, offener Stand)
+ * und docs/project/systemmodell-in-bildern.html (Bausteine, Methode).
+ */
+
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+
+const INSTALL = 'npx @sigloch/graphcode init';
+const REPO = 'https://github.com/andreassigloch/graphcode';
+const LEITLINIE = `${REPO}/blob/master/docs/graphcode_leitlinie.md`;
+
+const features = [
+  {
+    title: 'Ein Modell, vier Fragen',
+    text: 'Warum (Anwendungsfälle, Anforderungen), Wie (Funktionen in Ebenen), Womit (Module) und Worüber (Wirkketten mit dem Vertrag jeder Übergabe). Jede Ebene ist eine Blackbox mit 3 bis 9 Teilen.',
+  },
+  {
+    title: 'Das Gate: unterbinden',
+    text: 'Jede Änderung läuft durch dieselbe Prüfung, ob Mensch oder KI-Agent sie schreibt. Blockiert wird nur, was die Änderung neu an Fehlern einführt. Eine Anforderung ohne Test kommt nicht ins Modell.',
+  },
+  {
+    title: 'Das Gummiband: steuern',
+    text: '81 Regeln in 12 Stufen, mit den Marken SRR, PDR, CDR, TRR und Bau. Übersprungene Stufen erzeugen Hinweise, keine Blockade. Nach jedem Zug nennt graphcode den nächsten Schritt.',
+  },
+  {
+    title: 'Constraints: gestalten',
+    text: 'Die Architektur entscheidet der Autor, im Modell: als Anforderung mit Test an Wirkkette, Modul oder System. Kopplung, Kohäsion und Kapselung misst graphcode bei jeder Änderung.',
+  },
+  {
+    title: 'Wissen statt grep',
+    text: 'Der Agent fragt den Graphen: Was bricht, wenn ich diese Funktion ändere? Gemessen an einer Aufgabe: 250 Tokens aus dem Graphen statt 34.000 Tokens aus Spezifikation und Notizen.',
+  },
+  {
+    title: 'Dokumente aus dem Modell',
+    text: 'SRS, ConOps, Architektur, ICD, Traceability-Matrix, Testkonzept, FMEA: nach jeder Änderung neu erzeugt, dasselbe Modell ergibt dieselben Bytes. Auf Wunsch als Word oder PDF.',
+  },
+  {
+    title: 'Bestand einlesen',
+    text: 'TypeScript-Code liefert Funktionen, Module und Datenflüsse, ohne Sprachmodell. Lastenhefte als PDF oder Markdown liefern Anforderungen; jeder Fund geht durch das Gate.',
+  },
+  {
+    title: 'Ihr Agent ist der Client',
+    text: 'graphcode ist ein MCP-Server für Claude Code, OpenCode oder jeden anderen MCP-Host. Das Modell liegt als JSON im Repo, versioniert mit dem Code. Auch für lokale Modelle gebaut.',
+  },
+];
+
+const steps = [
+  'Im eigenen Repository ausführen. init schreibt die Host-Konfiguration, die Regeln für den Agenten (GRAPHCODE.md) und installiert das Paket.',
+  '.graphcode/ in .gitignore eintragen. Dort liegt der lokale Graph-Speicher.',
+  'Claude Code oder OpenCode neu laden. Der Agent sieht jetzt den MCP-Server „graphcode“.',
+  'Dem Agenten sagen: „Lies GRAPHCODE.md und rufe graph_readiness auf: Wo steht das Projekt, was ist der nächste Schritt?“',
+];
+---
+
+<BaseLayout
+  title="graphcode: Harness für Coding-Agenten | Sigloch Consulting"
+  description="graphcode führt Coding-Agenten über ein geprüftes Systemmodell: Anforderungen, Tests, Funktionen und Module, verbunden und durch ein Regel-Gate geschützt. Installation mit npx @sigloch/graphcode init."
+>
+  <Header />
+
+  <main>
+    <article class="article" data-testid="graphcode-harness">
+      <header class="article-header">
+        <div class="container">
+          <a href="/projekte" class="back-link">← Projekte</a>
+          <h1>graphcode: Harness für Coding-Agenten</h1>
+          <p class="article-subtitle">
+            Ein Coding-Agent, der aus Dokumenten und grep arbeitet, liest viel und rät,
+            was zusammengehört. graphcode gibt ihm ein Modell Ihres Systems:
+            Anforderungen, Tests, Funktionen und Module, verbunden und durch ein Regel-Gate
+            geschützt. Der Code bleibt Text im Repo.
+          </p>
+          <div class="hero-links">
+            <a href="/projekte/graphcode/systemmodell" class="button button-primary" data-testid="link-systemmodell">
+              Das Systemmodell in Bildern
+            </a>
+            <a href="#installation" class="button button-secondary">Installation</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="container article-content">
+        <section class="principle-box">
+          <h2>Kern-Claim aus der Leitlinie</h2>
+          <blockquote>
+            Komplexe Systeme <strong>verstehen</strong>, <strong>managen</strong> und
+            <strong>optimieren</strong> durch Abstraktion: nicht die Implementierung 1:1
+            abbilden, sondern Blackboxen mit definierten Schnittstellen sicherstellen,
+            von der Systemwurzel bis zur implementierten Funktion.
+          </blockquote>
+          <p class="source">
+            Quelle: <a href={LEITLINIE} target="_blank" rel="noopener noreferrer">graphcode-Leitlinie</a>.
+            Jeder Abschnitt dort endet mit einer Definition of Done und den Tests, die sie prüfen.
+          </p>
+        </section>
+
+        <section id="installation" data-testid="install">
+          <h2>Installation</h2>
+          <p>Voraussetzung: Node.js ab Version 22 und ein Agent-Host, Claude Code oder OpenCode.</p>
+          <div class="install">
+            <code data-testid="install-command">{INSTALL}</code>
+            <button type="button" class="copy" data-copy={INSTALL} aria-label="Befehl kopieren">Kopieren</button>
+          </div>
+          <ol class="steps">
+            {steps.map((s) => <li>{s}</li>)}
+          </ol>
+          <p class="hint">
+            Ohne bestehendes Modell starten Sie mit Ihrer Absicht in einem Satz:
+            „Lies GRAPHCODE.md, dann starte se:generate: Was soll das System für wen tun?“
+          </p>
+        </section>
+
+        <section data-testid="features">
+          <h2>Key Features</h2>
+          <div class="cards">
+            {features.map((f) => (
+              <div class="card">
+                <h3>{f.title}</h3>
+                <p>{f.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section data-testid="weiterlesen">
+          <h2>Weiterlesen und ansehen</h2>
+          <ul class="doc-list">
+            <li>
+              <a href="/projekte/graphcode/systemmodell">
+                <span class="doc-title">Das Systemmodell in Bildern</span>
+                <span class="doc-summary">Zwölf Bausteine, sechs Verbindungen, Regeln je Stufe und die Methode, am Beispiel einer Paketstation. Mit Schalter für Theorie, Spezifikation oder Code.</span>
+              </a>
+            </li>
+            <li>
+              <a href="/projekte/graphcode-demo">
+                <span class="doc-title">Demo: City People Mover</span>
+                <span class="doc-summary">Ein vollständig modelliertes Beispielsystem mit 15 daraus erzeugten Dokumenten.</span>
+              </a>
+            </li>
+            <li>
+              <a href={LEITLINIE} target="_blank" rel="noopener noreferrer">
+                <span class="doc-title">Die Leitlinie</span>
+                <span class="doc-summary">Ziele, Definition of Done je Ziel und der offene Stand, Test für Test.</span>
+              </a>
+            </li>
+            <li>
+              <a href={REPO} target="_blank" rel="noopener noreferrer">
+                <span class="doc-title">Quellcode auf GitHub</span>
+                <span class="doc-summary">README mit allen Befehlen und MCP-Werkzeugen.</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.npmjs.com/package/@sigloch/graphcode" target="_blank" rel="noopener noreferrer">
+                <span class="doc-title">Paket auf npm</span>
+                <span class="doc-summary">@sigloch/graphcode</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+
+        <p class="limits" data-testid="stand">
+          <strong>Stand:</strong> Die Leitlinie führt jedes Ziel als Test mit Ergebnis.
+          Offen sind unter anderem der Nachweis bis zum gebundenen Code und die Kosten:
+          Geführtes Arbeiten ist heute rund 3,5-mal teurer als ein frei laufender Agent.
+          Was offen ist, nennen wir offen.
+        </p>
+
+        <section class="cta-box">
+          <h2>graphcode an Ihrem System ausprobieren?</h2>
+          <p>Wir modellieren gemeinsam einen Anwendungsfall aus Ihrer Welt, vom Anforderungsbaum bis zum Test.</p>
+          <a href="/kontakt" class="button button-primary">Gespräch vereinbaren</a>
+        </section>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('button.copy').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      await navigator.clipboard.writeText(btn.dataset.copy ?? '');
+      btn.textContent = 'Kopiert';
+    });
+  });
+</script>
+
+<style>
+  .article-header {
+    background: linear-gradient(
+      180deg,
+      var(--color-primary-50) 0%,
+      var(--color-background) 100%
+    );
+    padding: var(--space-16) 0;
+  }
+
+  .back-link {
+    display: inline-block;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-medium);
+    margin-bottom: var(--space-4);
+  }
+
+  .article-header h1 {
+    margin-bottom: var(--space-4);
+  }
+
+  .article-subtitle {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 70ch;
+  }
+
+  .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  .article-content {
+    padding: var(--space-12) var(--container-padding);
+  }
+
+  .article-content section {
+    margin-bottom: var(--space-12);
+  }
+
+  .article-content h2 {
+    margin-bottom: var(--space-6);
+  }
+
+  .article-content p {
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-4);
+  }
+
+  .principle-box {
+    background: var(--color-primary-50);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .principle-box blockquote {
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text);
+  }
+
+  .source {
+    font-size: var(--text-sm);
+  }
+
+  .install {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    background: var(--color-gray-900);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-6);
+    margin-bottom: var(--space-6);
+  }
+
+  .install code {
+    font-family: var(--font-mono);
+    font-size: var(--text-lg);
+    color: var(--color-gray-50);
+    flex: 1;
+    overflow-wrap: anywhere;
+  }
+
+  .copy {
+    font: inherit;
+    font-size: var(--text-sm);
+    color: var(--color-gray-900);
+    background: var(--color-gray-100);
+    border: 0;
+    border-radius: var(--radius-sm);
+    padding: var(--space-2) var(--space-4);
+    cursor: pointer;
+  }
+
+  .steps {
+    padding-left: var(--space-6);
+    margin-bottom: var(--space-4);
+  }
+
+  .steps li {
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-2);
+  }
+
+  .hint {
+    font-size: var(--text-sm);
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .card {
+    background: var(--color-background-alt);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    border-top: 4px solid var(--color-primary);
+  }
+
+  .card h3 {
+    font-size: var(--text-lg);
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+  }
+
+  .card p {
+    font-size: var(--text-sm);
+    margin-bottom: 0;
+  }
+
+  .doc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .doc-list li {
+    margin-bottom: var(--space-2);
+  }
+
+  .doc-list a {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-4);
+    background: var(--color-background-alt);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--color-primary);
+    text-decoration: none;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .doc-list a:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .doc-title {
+    color: var(--color-primary);
+    font-weight: var(--font-semibold);
+  }
+
+  .doc-summary {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .limits {
+    padding: var(--space-4) var(--space-6);
+    border-left: 4px solid var(--color-border);
+  }
+
+  .cta-box {
+    background: var(--color-primary-50);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    margin-top: var(--space-16);
+  }
+
+  .cta-box h2 {
+    margin-top: 0;
+  }
+
+  .cta-box p {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-6);
+  }
+</style>
