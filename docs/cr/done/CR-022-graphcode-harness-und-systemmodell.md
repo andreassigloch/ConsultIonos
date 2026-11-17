@@ -1,7 +1,8 @@
 # CR-022 — graphcode-Harness-Seite und „Das Systemmodell in Bildern"
 
-**Status:** implementiert, Deploy offen
+**Status:** abgeschlossen
 **Erstellt:** 2026-11-17
+**Abgeschlossen:** 2026-11-17
 
 ## Ziel
 
@@ -44,4 +45,4 @@ Datei aus `graphcode/docs/project/` nach `src/data/graphcode/` kopieren, `SNAPSH
 - [x] `/projekte/graphcode/systemmodell` rendert Landkarte, Beispiel und 13 Regelbeispiele, lädt nichts von fremden Hosts
 - [x] Beide Seiten in der Sitemap, mit Description und Canonical
 - [x] Unit-Tests, E2E, compliance, BFSG, design lint, seo:check, schema grün
-- [ ] Deploy und Indexierungs-Antrag für beide URLs
+- [x] Deploy (953b444) und Indexierungs-Antrag: 3/3 URLs angenommen
