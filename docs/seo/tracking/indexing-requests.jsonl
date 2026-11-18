@@ -17,3 +17,5 @@
 {"url":"https://siglochconsulting.de/projekte/graphcode/","requestedAt":"2026-11-17T13:09:35.122Z","tag":"cr-022","status":"ok","apiResponse":"{\"urlNotificationMetadata\":{\"url\":\"https://siglochconsulting.de/projekte/graphcode/\"}}"}
 {"url":"https://siglochconsulting.de/projekte/graphcode/systemmodell/","requestedAt":"2026-11-17T13:09:35.447Z","tag":"cr-022","status":"ok","apiResponse":"{\"urlNotificationMetadata\":{\"url\":\"https://siglochconsulting.de/projekte/graphcode/systemmodell/\"}}"}
 {"url":"https://siglochconsulting.de/projekte/","requestedAt":"2026-11-17T13:09:35.807Z","tag":"cr-022","status":"ok","apiResponse":"{\"urlNotificationMetadata\":{\"url\":\"https://siglochconsulting.de/projekte/\"}}"}
+{"url":"https://siglochconsulting.de/projekte/","requestedAt":"2026-11-18T17:25:22.388Z","tag":"manual-run","status":"ok","apiResponse":"{\"urlNotificationMetadata\":{\"url\":\"https://siglochconsulting.de/projekte/\"}}"}
+{"url":"https://siglochconsulting.de/mein-ansatz/","requestedAt":"2026-11-18T17:25:22.770Z","tag":"manual-run","status":"ok","apiResponse":"{\"urlNotificationMetadata\":{\"url\":\"https://siglochconsulting.de/mein-ansatz/\"}}"}
